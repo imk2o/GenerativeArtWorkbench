@@ -11,6 +11,11 @@
 		B1DF267329B808740047907E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267229B808740047907E /* ContentView.swift */; };
 		B1DF267529B808750047907E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267429B808750047907E /* Assets.xcassets */; };
 		B1DF267829B808750047907E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267729B808750047907E /* Preview Assets.xcassets */; };
+		B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */; };
+		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
+		B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268329BA89EF0047907E /* StableDiffusion */; };
+		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
+		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,9 @@
 		B1DF267229B808740047907E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B1DF267429B808750047907E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1DF267729B808750047907E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundView.swift; sourceTree = "<group>"; };
+		B1DF268029BA89D30047907E /* DiffusionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffusionService.swift; sourceTree = "<group>"; };
+		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */,
+				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +63,9 @@
 			children = (
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
 				B1DF267229B808740047907E /* ContentView.swift */,
+				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
+				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
+				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
 			);
@@ -83,6 +96,10 @@
 			dependencies = (
 			);
 			name = GenerativeArtWorkbench;
+			packageProductDependencies = (
+				B1DF268329BA89EF0047907E /* StableDiffusion */,
+				B1DF268829BA8B410047907E /* Steward */,
+			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +128,10 @@
 				Base,
 			);
 			mainGroup = B1DF266429B808730047907E;
+			packageReferences = (
+				B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
+				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
+			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +159,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
+				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
+				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
+				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +363,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/imk2o/Steward.git";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1DF268329BA89EF0047907E /* StableDiffusion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			productName = StableDiffusion;
+		};
+		B1DF268829BA8B410047907E /* Steward */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */;
+			productName = Steward;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1DF266529B808730047907E /* Project object */;
 }

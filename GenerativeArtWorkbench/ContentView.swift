@@ -7,15 +7,44 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+enum Playground: String, Identifiable, CaseIterable {
+    case diffusion
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .diffusion: return "Diffusion"
         }
-        .padding()
+    }
+}
+
+struct ContentView: View {
+    @State private var selectedCategory: Category?
+    
+    var body: some View {
+        NavigationSplitView(
+            sidebar: {
+                List {
+                    Section("Scripts") {
+                        Text("FIXME")
+                    }
+                    Section("Playgrounds") {
+                        ForEach(Playground.allCases) { playground in
+                            NavigationLink(playground.title, value: playground)
+                        }
+                    }
+                }
+                .listStyle(.sidebar)
+                .navigationSplitViewColumnWidth(240)
+            },
+            detail: {
+                NavigationStack {
+                    DiffusionPlaygroundView()
+                }
+            }
+        )
+        .navigationSplitViewStyle(.balanced)
     }
 }
 
