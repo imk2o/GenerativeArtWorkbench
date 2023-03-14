@@ -8,20 +8,25 @@
 import SwiftUI
 import PhotosUI
 
+import StewardSwiftUI
+
 struct DiffusionPlaygroundView: View {
     @StateObject private var presenter = DiffusionPlaygroundPresenter()
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: UIImage?
-
+    @State private var previewItem: DocumentPreview.Item?
+    
     var body: some View {
         HStack {
             VStack {
                 Text(presenter.progressSummary ?? "")
                 Group {
-                    if let image = presenter.resultImage {
+                    if let image = presenter.previewImage {
                         Image(image, scale: 1, label: Text("Preview"))
                             .resizable()
                             .scaledToFit()
+                            .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
+                            .documentPreview($previewItem)
                     } else {
                         Text("No image")
                     }
@@ -32,7 +37,9 @@ struct DiffusionPlaygroundView: View {
                 Form {
                     Section("Prompt") {
                         TextEditor(text: $presenter.prompt)
+                            .frame(minHeight: 80)
                         TextEditor(text: $presenter.negativePrompt)
+                            .frame(minHeight: 80)
                     }
                     Section("Parameter") {
                         HStack(alignment: .center, spacing: 8) {

@@ -38,7 +38,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
 
-    @Published private(set) var resultImage: CGImage?
+    @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
 
     func setStartingImage(_ image: UIImage) {
@@ -64,7 +64,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 generateProgressImage: true
             )
             
-            resultImage = try await diffusionService.run(request: request) { progress in
+            previewImage = try await diffusionService.run(request: request) { progress in
                 dump(progress)
                 Task.detached { @MainActor [self] in
                     switch progress {
@@ -72,7 +72,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                         progressSummary = "Preparing..."
                     case .step(let step, let image):
                         if let image {
-                            resultImage = image
+                            previewImage = image
                         }
                         progressSummary = "Step: \(step)"
                     case .done(let duration):
@@ -90,6 +90,22 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
 
             dump(error)
         }
-
+    }
+    
+    func previewImageURL() -> URL? {
+        guard
+            let previewImage,
+            let pngData = UIImage(cgImage: previewImage).pngData()
+        else {
+            return nil
+        }
+        
+        do {
+            let fileURL = FileManager.default.temporaryFileURL(path: "\(UUID().uuidString).png")
+            try pngData.write(to: fileURL)
+            return fileURL
+        } catch {
+            return nil
+        }
     }
 }
