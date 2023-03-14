@@ -9,23 +9,25 @@ import SwiftUI
 
 enum Playground: String, Identifiable, CaseIterable {
     case diffusion
-
+    case upscaling
+    
     var id: String { rawValue }
 
     var title: String {
         switch self {
         case .diffusion: return "Diffusion"
+        case .upscaling: return "Upscaling"
         }
     }
 }
 
 struct ContentView: View {
-    @State private var selectedCategory: Category?
+    @State private var selectedPlayground: Playground?
     
     var body: some View {
         NavigationSplitView(
             sidebar: {
-                List {
+                List(selection: $selectedPlayground) {
                     Section("Scripts") {
                         Text("FIXME")
                     }
@@ -40,7 +42,16 @@ struct ContentView: View {
             },
             detail: {
                 NavigationStack {
-                    DiffusionPlaygroundView()
+                    if let selectedPlayground {
+                        switch selectedPlayground {
+                        case .diffusion:
+                            DiffusionPlaygroundView()
+                        case .upscaling:
+                            UpscalingPlaygroundView()
+                        }
+                    } else {
+                        Text("Select Playground")
+                    }
                 }
             }
         )

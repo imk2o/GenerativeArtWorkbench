@@ -16,6 +16,9 @@
 		B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268329BA89EF0047907E /* StableDiffusion */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
+		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
+		B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */; };
+		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,8 @@
 		B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundView.swift; sourceTree = "<group>"; };
 		B1DF268029BA89D30047907E /* DiffusionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffusionService.swift; sourceTree = "<group>"; };
 		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
+		B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundView.swift; sourceTree = "<group>"; };
+		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */,
+				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,6 +74,8 @@
 				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
+				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
+				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
 			);
 			path = GenerativeArtWorkbench;
 			sourceTree = "<group>";
@@ -99,6 +107,7 @@
 			packageProductDependencies = (
 				B1DF268329BA89EF0047907E /* StableDiffusion */,
 				B1DF268829BA8B410047907E /* Steward */,
+				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -131,6 +140,7 @@
 			packageReferences = (
 				B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
+				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -158,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
+				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
@@ -381,6 +393,14 @@
 				kind = branch;
 			};
 		};
+		B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rodrigoatbcl/CoreMLHelpers";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -393,6 +413,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */;
 			productName = Steward;
+		};
+		B1DF26AD29C0A38B0047907E /* CoreMLHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */;
+			productName = CoreMLHelpers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

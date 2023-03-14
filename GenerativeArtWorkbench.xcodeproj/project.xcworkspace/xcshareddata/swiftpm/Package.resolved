@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "coremlhelpers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rodrigoatbcl/CoreMLHelpers",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5b12b2c44332e4061a6a818cca178120c502e787"
+      }
+    },
+    {
       "identity" : "ml-stable-diffusion",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/ml-stable-diffusion",
