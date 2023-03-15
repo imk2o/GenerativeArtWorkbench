@@ -19,6 +19,7 @@
 		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
 		B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */; };
 		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
+		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
 		B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundView.swift; sourceTree = "<group>"; };
 		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
+		B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		B1DF266F29B808740047907E /* GenerativeArtWorkbench */ = {
 			isa = PBXGroup;
 			children = (
+				B1DF26AF29C13DC20047907E /* Presentation */,
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
 				B1DF267229B808740047907E /* ContentView.swift */,
 				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
@@ -86,6 +89,22 @@
 				B1DF267729B808750047907E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B1DF26AF29C13DC20047907E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF26B029C13DCC0047907E /* Components */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B1DF26B029C13DCC0047907E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +192,7 @@
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
+				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 			);

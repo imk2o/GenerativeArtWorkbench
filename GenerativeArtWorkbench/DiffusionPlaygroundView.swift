@@ -25,6 +25,7 @@ struct DiffusionPlaygroundView: View {
                         Image(image, scale: 1, label: Text("Preview"))
                             .resizable()
                             .scaledToFit()
+                            .onDrag { presenter.previewImageDragItem() }
                             .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
                             .documentPreview($previewItem)
                     } else {
@@ -140,27 +141,6 @@ struct DiffusionPlaygroundView: View {
                 Text("FIXME: History")
             }
             .frame(width: 320)
-        }
-    }
-    
-    private struct ImageDropDelegate: DropDelegate {
-        @Binding var image: UIImage?
-
-        func performDrop(info: DropInfo) -> Bool {
-            guard let item = info.itemProviders(for: [.image]).first else { return false }
-
-            _ = item.loadTransferable(type: Data.self) { result in
-                if
-                    case .success(let data) = result,
-                    let image = UIImage(data: data)
-                {
-                    Task { @MainActor in
-                        self.image = image
-                    }
-                }
-            }
-            
-            return true
         }
     }
 }

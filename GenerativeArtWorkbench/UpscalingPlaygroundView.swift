@@ -11,10 +11,15 @@ import PhotosUI
 import StewardSwiftUI
 
 struct UpscalingPlaygroundView: View {
-    @StateObject private var presenter = UpscalingPlaygroundPresenter()
+    @StateObject private var presenter: UpscalingPlaygroundPresenter
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: UIImage?
     @State private var previewItem: DocumentPreview.Item?
+    
+    init(inputImage: CGImage? = nil) {
+        // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
+        _presenter = .init(wrappedValue: .init(inputImage: inputImage))
+    }
     
     var body: some View {
         HStack {
@@ -88,27 +93,6 @@ struct UpscalingPlaygroundView: View {
                 }
             }
             .toolbarRole(.editor)
-        }
-    }
-    
-    private struct ImageDropDelegate: DropDelegate {
-        @Binding var image: UIImage?
-
-        func performDrop(info: DropInfo) -> Bool {
-            guard let item = info.itemProviders(for: [.image]).first else { return false }
-
-            _ = item.loadTransferable(type: Data.self) { result in
-                if
-                    case .success(let data) = result,
-                    let image = UIImage(data: data)
-                {
-                    Task { @MainActor in
-                        self.image = image
-                    }
-                }
-            }
-            
-            return true
         }
     }
 }

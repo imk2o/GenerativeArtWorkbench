@@ -15,18 +15,16 @@ import StewardUIKit
 
 @MainActor
 final class UpscalingPlaygroundPresenter: ObservableObject {
-    init() {
-        let url = FileManager.default.documentDirectory.appending(path: "/MLModels")
-        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-
-        let configuration = MLModelConfiguration()
-        configuration.computeUnits = .cpuAndNeuralEngine
-    }
-
     @Published var inputImage: CGImage?
 
     @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
+
+    init(inputImage: CGImage? = nil) {
+        if let inputImage {
+            setInputImage(UIImage(cgImage: inputImage))
+        }
+    }
 
     private let ciContext = CIContext()
     

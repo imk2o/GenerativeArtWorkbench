@@ -7,23 +7,15 @@
 
 import SwiftUI
 
-enum Playground: String, Identifiable, CaseIterable {
+enum Playground: Hashable {
     case diffusion
-    case upscaling
-    
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .diffusion: return "Diffusion"
-        case .upscaling: return "Upscaling"
-        }
-    }
+    case upscaling(inputImage: CGImage?)
 }
 
 struct ContentView: View {
     @State private var selectedPlayground: Playground?
-    
+    @State private var droppedImage: UIImage?
+
     var body: some View {
         NavigationSplitView(
             sidebar: {
@@ -32,9 +24,14 @@ struct ContentView: View {
                         Text("FIXME")
                     }
                     Section("Playgrounds") {
-                        ForEach(Playground.allCases) { playground in
-                            NavigationLink(playground.title, value: playground)
-                        }
+                        NavigationLink("Diffusion", value: Playground.diffusion)
+                        NavigationLink("Upscaling", value: Playground.upscaling(inputImage: nil))
+                            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
+                            .onChange(of: droppedImage) { image in
+                                if let image {
+                                    selectedPlayground = .upscaling(inputImage: image.cgImage)
+                                }
+                            }
                     }
                 }
                 .listStyle(.sidebar)
@@ -46,8 +43,8 @@ struct ContentView: View {
                         switch selectedPlayground {
                         case .diffusion:
                             DiffusionPlaygroundView()
-                        case .upscaling:
-                            UpscalingPlaygroundView()
+                        case .upscaling(let image):
+                            UpscalingPlaygroundView(inputImage: image)
                         }
                     } else {
                         Text("Select Playground")
