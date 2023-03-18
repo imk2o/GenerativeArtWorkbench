@@ -9,7 +9,7 @@ import SwiftUI
 
 enum Playground: Hashable {
     case diffusion
-    case upscaling(inputImage: CGImage?)
+    case upscaling(CGImage?)
 }
 
 struct ContentView: View {
@@ -25,11 +25,11 @@ struct ContentView: View {
                     }
                     Section("Playgrounds") {
                         NavigationLink("Diffusion", value: Playground.diffusion)
-                        NavigationLink("Upscaling", value: Playground.upscaling(inputImage: nil))
+                        NavigationLink("Upscaling", value: Playground.upscaling(nil))
                             .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
                             .onChange(of: droppedImage) { image in
                                 if let image {
-                                    selectedPlayground = .upscaling(inputImage: image.cgImage)
+                                    selectedPlayground = .upscaling(image.cgImage)
                                 }
                             }
                     }
@@ -44,7 +44,7 @@ struct ContentView: View {
                         case .diffusion:
                             DiffusionPlaygroundView()
                         case .upscaling(let image):
-                            UpscalingPlaygroundView(inputImage: image)
+                            UpscalingPlaygroundView(context: image.map { .inputImage($0) } ?? .new)
                         }
                     } else {
                         Text("Select Playground")

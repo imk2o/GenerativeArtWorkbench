@@ -12,13 +12,15 @@ import StewardSwiftUI
 
 struct UpscalingPlaygroundView: View {
     @StateObject private var presenter: UpscalingPlaygroundPresenter
+    typealias Context = UpscalingPlaygroundPresenter.Context
+    
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: UIImage?
     @State private var previewItem: DocumentPreview.Item?
     
-    init(inputImage: CGImage? = nil) {
+    init(context: Context = .new) {
         // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
-        _presenter = .init(wrappedValue: .init(inputImage: inputImage))
+        _presenter = .init(wrappedValue: .init(context: context))
     }
     
     var body: some View {
@@ -94,5 +96,6 @@ struct UpscalingPlaygroundView: View {
             }
             .toolbarRole(.editor)
         }
+        .onAppear { Task { await presenter.prepare() } }
     }
 }
