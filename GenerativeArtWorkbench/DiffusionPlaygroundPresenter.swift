@@ -93,12 +93,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     }
     
     func previewImageURL() -> URL? {
-        guard
-            let previewImage,
-            let pngData = UIImage(cgImage: previewImage).pngData()
-        else {
-            return nil
-        }
+        guard let pngData = previewImagePngData() else { return nil }
         
         do {
             let fileURL = FileManager.default.temporaryFileURL(path: "\(UUID().uuidString).png")
@@ -107,5 +102,25 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         } catch {
             return nil
         }
+    }
+    
+    func previewImageDragItem() -> NSItemProvider {
+        guard let pngData = previewImagePngData() else { return .init() }
+
+        return .init(
+            item: pngData as NSSecureCoding,
+            typeIdentifier: UTType.png.identifier
+        )
+    }
+    
+    private func previewImagePngData() -> Data? {
+        guard
+            let previewImage,
+            let pngData = UIImage(cgImage: previewImage).pngData()
+        else {
+            return nil
+        }
+        
+        return pngData
     }
 }

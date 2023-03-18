@@ -7,32 +7,31 @@
 
 import SwiftUI
 
-enum Playground: String, Identifiable, CaseIterable {
+enum Playground: Hashable {
     case diffusion
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .diffusion: return "Diffusion"
-        }
-    }
+    case upscaling(CGImage?)
 }
 
 struct ContentView: View {
-    @State private var selectedCategory: Category?
-    
+    @State private var selectedPlayground: Playground?
+    @State private var droppedImage: UIImage?
+
     var body: some View {
         NavigationSplitView(
             sidebar: {
-                List {
+                List(selection: $selectedPlayground) {
                     Section("Scripts") {
                         Text("FIXME")
                     }
                     Section("Playgrounds") {
-                        ForEach(Playground.allCases) { playground in
-                            NavigationLink(playground.title, value: playground)
-                        }
+                        NavigationLink("Diffusion", value: Playground.diffusion)
+                        NavigationLink("Upscaling", value: Playground.upscaling(nil))
+                            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
+                            .onChange(of: droppedImage) { image in
+                                if let image {
+                                    selectedPlayground = .upscaling(image.cgImage)
+                                }
+                            }
                     }
                 }
                 .listStyle(.sidebar)
@@ -40,7 +39,16 @@ struct ContentView: View {
             },
             detail: {
                 NavigationStack {
-                    DiffusionPlaygroundView()
+                    if let selectedPlayground {
+                        switch selectedPlayground {
+                        case .diffusion:
+                            DiffusionPlaygroundView()
+                        case .upscaling(let image):
+                            UpscalingPlaygroundView(context: image.map { .inputImage($0) } ?? .new)
+                        }
+                    } else {
+                        Text("Select Playground")
+                    }
                 }
             }
         )

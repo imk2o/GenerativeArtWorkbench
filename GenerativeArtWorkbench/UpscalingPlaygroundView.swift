@@ -1,8 +1,8 @@
 //
-//  DiffusionPlaygroundView.swift
+//  UpscalingPlaygroundView.swift
 //  GenerativeArtWorkbench
 //
-//  Created by k2o on 2023/03/08.
+//  Created by k2o on 2023/03/14.
 //
 
 import SwiftUI
@@ -10,22 +10,28 @@ import PhotosUI
 
 import StewardSwiftUI
 
-struct DiffusionPlaygroundView: View {
-    @StateObject private var presenter = DiffusionPlaygroundPresenter()
+struct UpscalingPlaygroundView: View {
+    @StateObject private var presenter: UpscalingPlaygroundPresenter
+    typealias Context = UpscalingPlaygroundPresenter.Context
+    
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: UIImage?
     @State private var previewItem: DocumentPreview.Item?
     
+    init(context: Context = .new) {
+        // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
+        _presenter = .init(wrappedValue: .init(context: context))
+    }
+    
     var body: some View {
         HStack {
             VStack {
-                Text(presenter.progressSummary ?? "")
+//                Text(presenter.progressSummary ?? "")
                 Group {
                     if let image = presenter.previewImage {
                         Image(image, scale: 1, label: Text("Preview"))
                             .resizable()
                             .scaledToFit()
-                            .onDrag { presenter.previewImageDragItem() }
                             .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
                             .documentPreview($previewItem)
                     } else {
@@ -36,46 +42,10 @@ struct DiffusionPlaygroundView: View {
                 .background(Color.secondary)
                 .cornerRadius(8)
                 Form {
-                    Section("Prompt") {
-                        TextEditor(text: $presenter.prompt)
-                            .frame(minHeight: 80)
-                        TextEditor(text: $presenter.negativePrompt)
-                            .frame(minHeight: 80)
-                    }
-                    Section("Parameter") {
-                        HStack(alignment: .center, spacing: 8) {
-                            Text("Seed")
-                            Spacer()
-                            TextField("", value: $presenter.seed, format: .number)
-                                .disabled(presenter.randomSeed)
-                            Toggle("Random", isOn: $presenter.randomSeed)
-                        }
-
-                        HStack(alignment: .center, spacing: 8) {
-                            Text("Step")
-                            Spacer()
-                            Slider(
-                                value: $presenter.stepCount,
-                                in: 1...50,
-                                step: 1
-                            )
-                            Text("\(presenter.stepCount)")
-                        }
-                        HStack(alignment: .center, spacing: 8) {
-                            Text("Guidance")
-                            Spacer()
-                            Slider(
-                                value: $presenter.guidanceScale,
-                                in: 0...20,
-                                step: 0.1
-                            )
-                            Text("\(presenter.guidanceScale)")
-                        }
-                    }
-                    Section("Staring Image") {
+                    Section("Input Image") {
                         HStack(alignment: .center) {
                             Group {
-                                if let image = presenter.startingImage {
+                                if let image = presenter.inputImage {
                                     Image(image, scale: 1, label: Text("Preview"))
                                         .resizable()
                                         .scaledToFit()
@@ -86,7 +56,7 @@ struct DiffusionPlaygroundView: View {
                             .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedStaringImage))
                             .onChange(of: droppedStaringImage) { image in
                                 if let image {
-                                    presenter.setStartingImage(image)
+                                    presenter.setInputImage(image)
                                 }
                             }
                             .frame(width: 80, height: 80)
@@ -102,26 +72,15 @@ struct DiffusionPlaygroundView: View {
                                         let data = try? await item?.loadTransferable(type: Data.self),
                                         let image = UIImage(data: data)
                                     {
-                                        presenter.setStartingImage(image)
+                                        presenter.setInputImage(image)
                                     }
                                 }
                             }
                         }
-                        
-                        HStack(alignment: .center) {
-                            Text("Strength")
-                            Spacer()
-                            Slider(
-                                value: $presenter.startingImageStrength,
-                                in: 0...1,
-                                step: 0.01
-                            )
-                            Text("\(presenter.startingImageStrength)")
-                        }
                     }
                 }
             }
-            .navigationTitle("Diffusion")
+            .navigationTitle("Upscaing")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -136,11 +95,7 @@ struct DiffusionPlaygroundView: View {
                 }
             }
             .toolbarRole(.editor)
-            Divider()
-            List {
-                Text("FIXME: History")
-            }
-            .frame(width: 320)
         }
+        .onAppear { Task { await presenter.prepare() } }
     }
 }
