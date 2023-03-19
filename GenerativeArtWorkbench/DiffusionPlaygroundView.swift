@@ -36,6 +36,20 @@ struct DiffusionPlaygroundView: View {
                 .background(Color.secondary)
                 .cornerRadius(8)
                 Form {
+                    Section {
+                        HStack {
+                            Picker("Model", selection: $presenter.selectedModel, content: {
+                                ForEach(presenter.availableModels) { model in
+                                    Text(model.name)
+                                        .tag(model)
+                                }
+                            })
+                            Button(action: { presenter.openModelDirectory() }, label: {
+                                Image(systemName: "folder.fill")
+                            })
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
                     Section("Prompt") {
                         TextEditor(text: $presenter.prompt)
                             .frame(minHeight: 80)
@@ -142,5 +156,6 @@ struct DiffusionPlaygroundView: View {
             }
             .frame(width: 320)
         }
+        .onAppear { Task { await presenter.prepare() } }
     }
 }

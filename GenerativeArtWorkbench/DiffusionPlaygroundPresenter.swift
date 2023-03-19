@@ -14,19 +14,10 @@ import StewardUIKit
 
 @MainActor
 final class DiffusionPlaygroundPresenter: ObservableObject {
-    private let diffusionService: DiffusionService
+    private var diffusionService: DiffusionService?
+    private let diffusionModelStore = DiffusionModelStore.shared
     
     init() {
-        let url = FileManager.default.documentDirectory.appending(path: "/MLModels")
-        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
-
-        let configuration = MLModelConfiguration()
-        configuration.computeUnits = .cpuAndNeuralEngine
-
-        self.diffusionService = try! .init(
-            directoryURL: url,
-            configuration: configuration
-        )
     }
 
     @Published var seed: UInt32 = 0
@@ -38,16 +29,63 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
 
+    struct DiffusionModel: Identifiable, Hashable {
+        var id : String { name }
+        let name: String
+        let url: URL
+        
+        init(url: URL) {
+            self.name = url.lastPathComponent
+            self.url = url
+        }
+
+        private init(name: String, url: URL) {
+            self.name = name
+            self.url = url
+        }
+
+        static let empty = DiffusionModel(name: "(Not selected)", url: URL(string: "https://example.com")!)
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    }
+    
+    @Published private(set) var availableModels: [DiffusionModel] = []
+    @Published var selectedModel: DiffusionModel = .empty {
+        didSet { setModel(selectedModel) }
+    }
+
     @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
 
+    func prepare() async {
+        let urls = await diffusionModelStore.urls()
+        availableModels = urls.map { DiffusionModel(url: $0) }
+        if let model = availableModels.first {
+            selectedModel = model
+        }
+    }
+    
     func setStartingImage(_ image: UIImage) {
         startingImage = image
             .aspectFilled(size: CGSize(width: 512, height: 512), imageScale: 1)
             .cgImage
     }
     
+    private func setModel(_ model: DiffusionModel) {
+        let configuration = MLModelConfiguration()
+        configuration.computeUnits = .cpuAndNeuralEngine
+        
+        self.diffusionService = try! .init(
+            directoryURL: model.url,
+            configuration: configuration
+        )
+    }
+    
     func run() async {
+        guard let diffusionService else { return }
+        
         if randomSeed {
             seed = .random(in: 0...UInt32.max)
         }
@@ -90,6 +128,10 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
 
             dump(error)
         }
+    }
+    
+    func openModelDirectory() {
+        openDirectory(url: diffusionModelStore.baseURL)
     }
     
     func previewImageURL() -> URL? {
