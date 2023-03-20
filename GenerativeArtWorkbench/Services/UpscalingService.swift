@@ -16,19 +16,13 @@ final class UpscalingService {
         case decodingFailed(Swift.Error?)
     }
     
-    static func service(
+    init(
         with modelURL: URL,
-        configuration: MLModelConfiguration = .init()
-    ) async throws -> Self {
+        configuration: MLModelConfiguration
+    ) async throws {
 //        let modelcURL = try await MLModel.compileModel(at: modelURL)
-        let mlModel = try await MLModel.load(contentsOf: modelURL, configuration: configuration)
-        let vnModel = try VNCoreMLModel(for: mlModel)
-        return Self.init(mlModel: mlModel, vnModel: vnModel)
-    }
-    
-    private init(mlModel: MLModel, vnModel: VNCoreMLModel) {
-        self.mlModel = mlModel
-        self.vnModel = vnModel
+        self.mlModel = try await MLModel.load(contentsOf: modelURL, configuration: configuration)
+        self.vnModel = try VNCoreMLModel(for: mlModel)
     }
 
     private let mlModel: MLModel

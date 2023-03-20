@@ -24,7 +24,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var randomSeed: Bool = true
     @Published var prompt: String = "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus"
     @Published var negativePrompt: String = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
-    @Published var stepCount: Float = 10
+    @Published var stepCount: Int = 10
     @Published var guidanceScale: Float = 11
     @Published var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
@@ -132,6 +132,10 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     
     func openModelDirectory() {
         openDirectory(url: diffusionModelStore.baseURL)
+    }
+    
+    func openSite() {
+        openURL(.init(string: "https://huggingface.co/coreml")!)
     }
     
     func previewImageURL() -> URL? {

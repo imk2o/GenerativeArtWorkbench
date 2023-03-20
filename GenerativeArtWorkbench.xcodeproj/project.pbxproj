@@ -24,6 +24,7 @@
 		B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */; };
 		B1DF26BB29C732C90047907E /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26BA29C732C90047907E /* Dynamic */; };
 		B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26BD29C7348E0047907E /* SystemUtilities.swift */; };
+		B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelStore.swift; sourceTree = "<group>"; };
 		B1DF26BD29C7348E0047907E /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
 		B1DF26BF29C737350047907E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binging+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,14 +85,8 @@
 				B1DF26B629C6C4810047907E /* Store */,
 				B1DF26B329C65EC10047907E /* Services */,
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
-				B1DF267229B808740047907E /* ContentView.swift */,
-				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
-				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
-				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
 			);
 			path = GenerativeArtWorkbench;
 			sourceTree = "<group>";
@@ -106,7 +102,9 @@
 		B1DF26AF29C13DC20047907E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B1EDC46029C897E800E595E9 /* Views */,
 				B1DF26B029C13DCC0047907E /* Components */,
+				B1EDC45D29C8560F00E595E9 /* Extensions */,
 				B1DF26BC29C733170047907E /* Misc */,
 			);
 			path = Presentation;
@@ -123,6 +121,7 @@
 		B1DF26B329C65EC10047907E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF26B429C65EDC0047907E /* UpscalingService.swift */,
 			);
 			path = Services;
@@ -142,6 +141,34 @@
 				B1DF26BD29C7348E0047907E /* SystemUtilities.swift */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		B1EDC45D29C8560F00E595E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B1EDC46029C897E800E595E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC46129C897F300E595E9 /* Playground */,
+				B1DF267229B808740047907E /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B1EDC46129C897F300E595E9 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
+				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
+				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
+				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
+			);
+			path = Playground;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +261,7 @@
 				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
+				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,

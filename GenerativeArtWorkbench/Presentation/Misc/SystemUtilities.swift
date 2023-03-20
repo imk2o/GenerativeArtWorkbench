@@ -22,3 +22,7 @@ func openDirectory(url: URL) {
         }
     }
 }
+
+func openURL(_ url: URL) {
+    UIApplication.shared.open(url)
+}
