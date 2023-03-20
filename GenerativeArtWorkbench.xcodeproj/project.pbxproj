@@ -21,6 +21,10 @@
 		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 		B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B429C65EDC0047907E /* UpscalingService.swift */; };
+		B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */; };
+		B1DF26BB29C732C90047907E /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26BA29C732C90047907E /* Dynamic */; };
+		B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26BD29C7348E0047907E /* SystemUtilities.swift */; };
+		B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
 		B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		B1DF26B429C65EDC0047907E /* UpscalingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingService.swift; sourceTree = "<group>"; };
+		B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelStore.swift; sourceTree = "<group>"; };
+		B1DF26BD29C7348E0047907E /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
+		B1DF26BF29C737350047907E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binging+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DF26BB29C732C90047907E /* Dynamic in Frameworks */,
 				B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */,
 				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
@@ -71,17 +80,13 @@
 		B1DF266F29B808740047907E /* GenerativeArtWorkbench */ = {
 			isa = PBXGroup;
 			children = (
+				B1DF26BF29C737350047907E /* Info.plist */,
 				B1DF26AF29C13DC20047907E /* Presentation */,
+				B1DF26B629C6C4810047907E /* Store */,
 				B1DF26B329C65EC10047907E /* Services */,
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
-				B1DF267229B808740047907E /* ContentView.swift */,
-				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
-				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
-				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
 			);
 			path = GenerativeArtWorkbench;
 			sourceTree = "<group>";
@@ -97,7 +102,10 @@
 		B1DF26AF29C13DC20047907E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B1EDC46029C897E800E595E9 /* Views */,
 				B1DF26B029C13DCC0047907E /* Components */,
+				B1EDC45D29C8560F00E595E9 /* Extensions */,
+				B1DF26BC29C733170047907E /* Misc */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -113,9 +121,54 @@
 		B1DF26B329C65EC10047907E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF26B429C65EDC0047907E /* UpscalingService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		B1DF26B629C6C4810047907E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		B1DF26BC29C733170047907E /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF26BD29C7348E0047907E /* SystemUtilities.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		B1EDC45D29C8560F00E595E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B1EDC46029C897E800E595E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC46129C897F300E595E9 /* Playground */,
+				B1DF267229B808740047907E /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B1EDC46129C897F300E595E9 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
+				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
+				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
+				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
+			);
+			path = Playground;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +191,7 @@
 				B1DF268329BA89EF0047907E /* StableDiffusion */,
 				B1DF268829BA8B410047907E /* Steward */,
 				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
+				B1DF26BA29C732C90047907E /* Dynamic */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -171,6 +225,7 @@
 				B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
 				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
+				B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -198,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
 				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
@@ -205,6 +261,8 @@
 				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
+				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
+				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 			);
@@ -338,6 +396,8 @@
 				DEVELOPMENT_TEAM = 427QQ329ZX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenerativeArtWorkbench/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -367,6 +427,8 @@
 				DEVELOPMENT_TEAM = 427QQ329ZX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenerativeArtWorkbench/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -433,6 +495,14 @@
 				kind = branch;
 			};
 		};
+		B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mhdhejazi/Dynamic.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -450,6 +520,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */;
 			productName = CoreMLHelpers;
+		};
+		B1DF26BA29C732C90047907E /* Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */;
+			productName = Dynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

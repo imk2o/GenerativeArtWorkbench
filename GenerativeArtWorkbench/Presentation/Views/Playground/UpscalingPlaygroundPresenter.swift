@@ -34,7 +34,7 @@ final class UpscalingPlaygroundPresenter: ObservableObject {
         do {
 //            let modelcURL = FileManager.default.documentDirectory.appending(path: "MMRealSRGAN.mlmodelc")
             let modelcURL = FileManager.default.documentDirectory.appending(path: "realesrgan512.mlmodelc")
-            upscalingService = try await UpscalingService.service(with: modelcURL)
+            upscalingService = try await .init(with: modelcURL, configuration: .init())
             
             if case .inputImage(let inputImage) = context {
                 setInputImage(UIImage(cgImage: inputImage))

@@ -36,6 +36,25 @@ struct DiffusionPlaygroundView: View {
                 .background(Color.secondary)
                 .cornerRadius(8)
                 Form {
+                    Section {
+                        HStack {
+                            Picker("Model", selection: $presenter.selectedModel, content: {
+                                ForEach(presenter.availableModels) { model in
+                                    Text(model.name)
+                                        .tag(model)
+                                }
+                            })
+                            Button(action: { presenter.openModelDirectory() }, label: {
+                                Image(systemName: "folder.fill")
+                            })
+                            .buttonStyle(BorderlessButtonStyle())
+                            Divider()
+                            Button(action: { presenter.openSite() }, label: {
+                                Image(systemName: "globe")
+                            })
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
                     Section("Prompt") {
                         TextEditor(text: $presenter.prompt)
                             .frame(minHeight: 80)
@@ -55,7 +74,7 @@ struct DiffusionPlaygroundView: View {
                             Text("Step")
                             Spacer()
                             Slider(
-                                value: $presenter.stepCount,
+                                value: $presenter.stepCount.asFloat(),
                                 in: 1...50,
                                 step: 1
                             )
@@ -69,7 +88,7 @@ struct DiffusionPlaygroundView: View {
                                 in: 0...20,
                                 step: 0.1
                             )
-                            Text("\(presenter.guidanceScale)")
+                            Text(String(format: "%.1f", presenter.guidanceScale))
                         }
                     }
                     Section("Staring Image") {
@@ -142,5 +161,6 @@ struct DiffusionPlaygroundView: View {
             }
             .frame(width: 320)
         }
+        .onAppear { Task { await presenter.prepare() } }
     }
 }
