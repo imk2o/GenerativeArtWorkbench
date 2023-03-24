@@ -29,28 +29,6 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
 
-    struct DiffusionModel: Identifiable, Hashable {
-        var id : String { name }
-        let name: String
-        let url: URL
-        
-        init(url: URL) {
-            self.name = url.lastPathComponent
-            self.url = url
-        }
-
-        private init(name: String, url: URL) {
-            self.name = name
-            self.url = url
-        }
-
-        static let empty = DiffusionModel(name: "(Not selected)", url: URL(string: "https://example.com")!)
-        
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(id)
-        }
-    }
-    
     @Published private(set) var availableModels: [DiffusionModel] = []
     @Published var selectedModel: DiffusionModel = .empty {
         didSet { setModel(selectedModel) }
@@ -67,10 +45,14 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
     }
     
-    func setStartingImage(_ image: UIImage) {
-        startingImage = image
-            .aspectFilled(size: CGSize(width: 512, height: 512), imageScale: 1)
-            .cgImage
+    func setStartingImage(_ image: UIImage?) {
+        if let image {
+            startingImage = image
+                .aspectFilled(size: CGSize(width: 512, height: 512), imageScale: 1)
+                .cgImage
+        } else {
+            startingImage = nil
+        }
     }
     
     private func setModel(_ model: DiffusionModel) {
@@ -91,7 +73,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
         
         do {
-            let request = DiffusionService.Request(
+            let request = DiffusionRequest(
                 seed: seed,
                 prompt: prompt,
                 negativePrompt: negativePrompt,
@@ -102,7 +84,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 generateProgressImage: true
             )
             
-            previewImage = try await diffusionService.run(request: request) { progress in
+            let resultImage = try await diffusionService.run(request: request) { progress in
                 dump(progress)
                 Task.detached { @MainActor [self] in
                     switch progress {
@@ -120,6 +102,13 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 
                 return true
             }
+            
+            try await DiffusionHistoryStore.shared.add(
+                resultImage: resultImage,
+                request: request,
+                model: selectedModel
+            )
+            previewImage = resultImage
         } catch {
             guard !Task.isCancelled else {
                 progressSummary = "Cancelled"
@@ -128,6 +117,30 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
 
             dump(error)
         }
+    }
+    
+    func configure(with history: DiffusionHistory) async {
+        seed = history.request.seed
+        randomSeed = false
+        prompt = history.request.prompt
+        negativePrompt = history.request.negativePrompt
+        stepCount = history.request.stepCount
+        guidanceScale = history.request.guidanceScale
+        if
+            let url = history.request.startingImageURL,
+            let data = try? Data(contentsOf: url),
+            let image = UIImage(data: data)
+        {
+            setStartingImage(image)
+        } else {
+            setStartingImage(nil)
+        }
+        
+        startingImageStrength = history.request.startingImageStrength
+        selectedModel = availableModels.first { $0.id == history.modelID } ?? .empty
+        
+        previewImage = nil
+        progressSummary = nil
     }
     
     func openModelDirectory() {
@@ -168,5 +181,15 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
         
         return pngData
+    }
+}
+
+extension DiffusionModel: Hashable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

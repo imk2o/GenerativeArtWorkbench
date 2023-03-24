@@ -156,10 +156,10 @@ struct DiffusionPlaygroundView: View {
             }
             .toolbarRole(.editor)
             Divider()
-            List {
-                Text("FIXME: History")
-            }
-            .frame(width: 320)
+            DiffusionPlaygroundHistoryView(onTap: { history in
+                Task { await presenter.configure(with: history) }
+            })
+            .frame(width: 400)
         }
         .onAppear { Task { await presenter.prepare() } }
     }
