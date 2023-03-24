@@ -25,6 +25,12 @@
 		B1DF26BB29C732C90047907E /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26BA29C732C90047907E /* Dynamic */; };
 		B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26BD29C7348E0047907E /* SystemUtilities.swift */; };
 		B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */; };
+		B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */; };
+		B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */; };
+		B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46829CA738800E595E9 /* DiffusionModel.swift */; };
+		B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */; };
+		B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */; };
+		B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +50,12 @@
 		B1DF26BD29C7348E0047907E /* SystemUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemUtilities.swift; sourceTree = "<group>"; };
 		B1DF26BF29C737350047907E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binging+Extension.swift"; sourceTree = "<group>"; };
+		B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionHistoryStore.swift; sourceTree = "<group>"; };
+		B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundHistoryPresenter.swift; sourceTree = "<group>"; };
+		B1EDC46829CA738800E595E9 /* DiffusionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModel.swift; sourceTree = "<group>"; };
+		B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionRequest.swift; sourceTree = "<group>"; };
+		B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionHistory.swift; sourceTree = "<group>"; };
+		B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +94,8 @@
 			children = (
 				B1DF26BF29C737350047907E /* Info.plist */,
 				B1DF26AF29C13DC20047907E /* Presentation */,
+				B1EDC46629CA736A00E595E9 /* Domain */,
 				B1DF26B629C6C4810047907E /* Store */,
-				B1DF26B329C65EC10047907E /* Services */,
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
@@ -131,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */,
+				B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -163,12 +176,41 @@
 		B1EDC46129C897F300E595E9 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
-				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
-				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
+				B1FB322829CD874800364219 /* Diffusion */,
 				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
 				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
 			);
 			path = Playground;
+			sourceTree = "<group>";
+		};
+		B1EDC46629CA736A00E595E9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC46729CA737400E595E9 /* Models */,
+				B1DF26B329C65EC10047907E /* Services */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		B1EDC46729CA737400E595E9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B1EDC46829CA738800E595E9 /* DiffusionModel.swift */,
+				B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */,
+				B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B1FB322829CD874800364219 /* Diffusion */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */,
+				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
+				B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */,
+				B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */,
+			);
+			path = Diffusion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
+				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
+				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
 				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
@@ -263,8 +307,12 @@
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
+				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
+				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
+				B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
+				B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
