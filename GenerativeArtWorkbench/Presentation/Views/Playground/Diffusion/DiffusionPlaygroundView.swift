@@ -13,7 +13,7 @@ import StewardSwiftUI
 struct DiffusionPlaygroundView: View {
     @StateObject private var presenter = DiffusionPlaygroundPresenter()
     @State private var photosPickerItem: PhotosPickerItem?
-    @State private var droppedStaringImage: UIImage?
+    @State private var droppedStaringImage: CGImage?
     @State private var previewItem: DocumentPreview.Item?
     
     var body: some View {
@@ -119,7 +119,7 @@ struct DiffusionPlaygroundView: View {
                                 Task {
                                     if
                                         let data = try? await item?.loadTransferable(type: Data.self),
-                                        let image = UIImage(data: data)
+                                        let image = UIImage(data: data)?.normalized().cgImage
                                     {
                                         presenter.setStartingImage(image)
                                     }

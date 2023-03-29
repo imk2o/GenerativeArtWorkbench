@@ -31,6 +31,16 @@
 		B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */; };
 		B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */; };
 		B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */; };
+		B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB322B29CFEA6700364219 /* CoreImagePlaygroundView.swift */; };
+		B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB322D29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift */; };
+		B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB322F29CFEAF000364219 /* CGImage+Extension.swift */; };
+		B1FB323229D25C5700364219 /* FormSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323129D25C5700364219 /* FormSlider.swift */; };
+		B1FB323429D25ED600364219 /* FormImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323329D25ED600364219 /* FormImagePicker.swift */; };
+		B1FB323629D2669400364219 /* Vector4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323529D2669400364219 /* Vector4.swift */; };
+		B1FB323829D267E400364219 /* FormVectorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323729D267E400364219 /* FormVectorField.swift */; };
+		B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */; };
+		B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323E29D47B6F00364219 /* ColorRGB.swift */; };
+		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +66,18 @@
 		B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionRequest.swift; sourceTree = "<group>"; };
 		B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionHistory.swift; sourceTree = "<group>"; };
 		B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundHistoryView.swift; sourceTree = "<group>"; };
+		B1FB322B29CFEA6700364219 /* CoreImagePlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImagePlaygroundView.swift; sourceTree = "<group>"; };
+		B1FB322D29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreImagePlaygroundPresenter.swift; sourceTree = "<group>"; };
+		B1FB322F29CFEAF000364219 /* CGImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+Extension.swift"; sourceTree = "<group>"; };
+		B1FB323129D25C5700364219 /* FormSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSlider.swift; sourceTree = "<group>"; };
+		B1FB323329D25ED600364219 /* FormImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormImagePicker.swift; sourceTree = "<group>"; };
+		B1FB323529D2669400364219 /* Vector4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector4.swift; sourceTree = "<group>"; };
+		B1FB323729D267E400364219 /* FormVectorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormVectorField.swift; sourceTree = "<group>"; };
+		B1FB323A29D475B600364219 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SafeKVC.m"; sourceTree = "<group>"; };
+		B1FB323D29D475EC00364219 /* NSObject+SafeKVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeKVC.h"; sourceTree = "<group>"; };
+		B1FB323E29D47B6F00364219 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
+		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +118,7 @@
 				B1DF26AF29C13DC20047907E /* Presentation */,
 				B1EDC46629CA736A00E595E9 /* Domain */,
 				B1DF26B629C6C4810047907E /* Store */,
+				B1FB323929D4759100364219 /* ObjC */,
 				B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */,
 				B1DF267429B808750047907E /* Assets.xcassets */,
 				B1DF267629B808750047907E /* Preview Content */,
@@ -126,6 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */,
+				B1FB323129D25C5700364219 /* FormSlider.swift */,
+				B1FB323329D25ED600364219 /* FormImagePicker.swift */,
+				B1FB323729D267E400364219 /* FormVectorField.swift */,
+				B1FB324029D47EF300364219 /* FormColorPicker.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -160,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */,
+				B1FB322F29CFEAF000364219 /* CGImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -176,9 +204,9 @@
 		B1EDC46129C897F300E595E9 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				B1FB322A29CFEA5400364219 /* CoreImage */,
 				B1FB322829CD874800364219 /* Diffusion */,
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
+				B1FB322929CFEA4800364219 /* Upscaling */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -198,6 +226,8 @@
 				B1EDC46829CA738800E595E9 /* DiffusionModel.swift */,
 				B1EDC46A29CA761800E595E9 /* DiffusionRequest.swift */,
 				B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */,
+				B1FB323529D2669400364219 /* Vector4.swift */,
+				B1FB323E29D47B6F00364219 /* ColorRGB.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,6 +241,34 @@
 				B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */,
 			);
 			path = Diffusion;
+			sourceTree = "<group>";
+		};
+		B1FB322929CFEA4800364219 /* Upscaling */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
+				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
+			);
+			path = Upscaling;
+			sourceTree = "<group>";
+		};
+		B1FB322A29CFEA5400364219 /* CoreImage */ = {
+			isa = PBXGroup;
+			children = (
+				B1FB322B29CFEA6700364219 /* CoreImagePlaygroundView.swift */,
+				B1FB322D29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift */,
+			);
+			path = CoreImage;
+			sourceTree = "<group>";
+		};
+		B1FB323929D4759100364219 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				B1FB323A29D475B600364219 /* Bridging-Header.h */,
+				B1FB323D29D475EC00364219 /* NSObject+SafeKVC.h */,
+				B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */,
+			);
+			path = ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +309,7 @@
 				TargetAttributes = {
 					B1DF266C29B808730047907E = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -300,17 +359,27 @@
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
 				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
+				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
+				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
+				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
 				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
+				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
+				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
+				B1FB323429D25ED600364219 /* FormImagePicker.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
+				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
+				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
+				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
 				B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */,
+				B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 				B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */,
 			);
@@ -438,6 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GenerativeArtWorkbench/Preview Content\"";
@@ -459,6 +529,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.imk2o.GenerativeArtWorkbench;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GenerativeArtWorkbench/ObjC/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -469,6 +541,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GenerativeArtWorkbench/Preview Content\"";
@@ -490,6 +563,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.imk2o.GenerativeArtWorkbench;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GenerativeArtWorkbench/ObjC/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
