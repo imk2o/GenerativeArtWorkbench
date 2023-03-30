@@ -19,16 +19,15 @@ final class UpscalingPlaygroundPresenter: ObservableObject {
 
     private var upscalingService: UpscalingService?
 
-    enum Context {
+    enum Context: Hashable {
         case new
         case inputImage(CGImage)
     }
-    
+    let context: Context
+
     init(context: Context = .new) {
         self.context = context
     }
-
-    private let context: Context
 
     func prepare() async {
         do {
@@ -37,19 +36,22 @@ final class UpscalingPlaygroundPresenter: ObservableObject {
             upscalingService = try await .init(with: modelcURL, configuration: .init())
             
             if case .inputImage(let inputImage) = context {
-                setInputImage(UIImage(cgImage: inputImage))
+                setInputImage(inputImage)
             }
         } catch {
             dump(error)
         }
     }
     
-    func setInputImage(_ image: UIImage) {
+    func setInputImage(_ image: CGImage?) {
         guard let upscalingService else { return }
         
-        inputImage = image
-            .aspectFilled(size: upscalingService.inputSize, imageScale: 1)
-            .cgImage
+        inputImage = {
+            guard let image else { return nil }
+            return UIImage(cgImage: image)
+                .aspectFilled(size: upscalingService.inputSize, imageScale: 1)
+                .cgImage
+        }()
     }
     
     func run() async {

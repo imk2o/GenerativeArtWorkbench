@@ -8,8 +8,9 @@
 import SwiftUI
 
 enum Playground: Hashable {
+    case coreImage(CoreImagePlaygroundView.Context)
     case diffusion
-    case upscaling(CGImage?)
+    case upscaling(UpscalingPlaygroundView.Context)
 }
 
 struct ContentView: View {
@@ -24,14 +25,15 @@ struct ContentView: View {
                         Text("FIXME")
                     }
                     Section("Playgrounds") {
+                        ImageDropNavigationLink(
+                            title: "Core Image",
+                            value: Playground.coreImage(.new)
+                        ) { selectedPlayground = .coreImage(.inputImage($0)) }
                         NavigationLink("Diffusion", value: Playground.diffusion)
-                        NavigationLink("Upscaling", value: Playground.upscaling(nil))
-                            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
-                            .onChange(of: droppedImage) { image in
-                                if let image {
-                                    selectedPlayground = .upscaling(image.cgImage)
-                                }
-                            }
+                        ImageDropNavigationLink(
+                            title: "Upscaling",
+                            value: Playground.upscaling(.new)
+                        ) { selectedPlayground = .upscaling(.inputImage($0)) }
                     }
                 }
                 .listStyle(.sidebar)
@@ -41,10 +43,12 @@ struct ContentView: View {
                 NavigationStack {
                     if let selectedPlayground {
                         switch selectedPlayground {
+                        case .coreImage(let context):
+                            CoreImagePlaygroundView(context: context)
                         case .diffusion:
                             DiffusionPlaygroundView()
-                        case .upscaling(let image):
-                            UpscalingPlaygroundView(context: image.map { .inputImage($0) } ?? .new)
+                        case .upscaling(let context):
+                            UpscalingPlaygroundView(context: context)
                         }
                     } else {
                         Text("Select Playground")
@@ -53,6 +57,24 @@ struct ContentView: View {
             }
         )
         .navigationSplitViewStyle(.balanced)
+    }
+    
+    private struct ImageDropNavigationLink<P: Hashable>: View {
+        let title: String
+        let value: P?
+        let onDrop: (CGImage) -> Void
+        
+        @State private var droppedImage: CGImage?
+
+        var body: some View {
+            NavigationLink(title, value: value)
+                .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
+                .onChange(of: droppedImage) { image in
+                    if let image {
+                        onDrop(image)
+                    }
+                }
+        }
     }
 }
 

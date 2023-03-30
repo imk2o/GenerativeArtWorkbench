@@ -45,14 +45,13 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
     }
     
-    func setStartingImage(_ image: UIImage?) {
-        if let image {
-            startingImage = image
+    func setStartingImage(_ image: CGImage?) {
+        startingImage = {
+            guard let image else { return nil }
+            return UIImage(cgImage: image)
                 .aspectFilled(size: CGSize(width: 512, height: 512), imageScale: 1)
                 .cgImage
-        } else {
-            startingImage = nil
-        }
+        }()
     }
     
     private func setModel(_ model: DiffusionModel) {
@@ -129,7 +128,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         if
             let url = history.request.startingImageURL,
             let data = try? Data(contentsOf: url),
-            let image = UIImage(data: data)
+            let image = UIImage(data: data)?.cgImage
         {
             setStartingImage(image)
         } else {

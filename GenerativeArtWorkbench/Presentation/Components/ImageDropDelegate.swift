@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import StewardUIKit
 
 struct ImageDropDelegate: DropDelegate {
-    @Binding var image: UIImage?
+    @Binding var image: CGImage?
 
     func performDrop(info: DropInfo) -> Bool {
         guard let item = info.itemProviders(for: [.image]).first else { return false }
@@ -16,7 +17,7 @@ struct ImageDropDelegate: DropDelegate {
         _ = item.loadTransferable(type: Data.self) { result in
             if
                 case .success(let data) = result,
-                let image = UIImage(data: data)
+                let image = UIImage(data: data)?.normalized().cgImage
             {
                 Task { @MainActor in
                     self.image = image

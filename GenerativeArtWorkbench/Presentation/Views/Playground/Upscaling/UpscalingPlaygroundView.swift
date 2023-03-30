@@ -11,11 +11,11 @@ import PhotosUI
 import StewardSwiftUI
 
 struct UpscalingPlaygroundView: View {
-    @StateObject private var presenter: UpscalingPlaygroundPresenter
     typealias Context = UpscalingPlaygroundPresenter.Context
+    @StateObject private var presenter: UpscalingPlaygroundPresenter
     
     @State private var photosPickerItem: PhotosPickerItem?
-    @State private var droppedStaringImage: UIImage?
+    @State private var droppedStaringImage: CGImage?
     @State private var previewItem: DocumentPreview.Item?
     
     init(context: Context = .new) {
@@ -70,7 +70,7 @@ struct UpscalingPlaygroundView: View {
                                 Task {
                                     if
                                         let data = try? await item?.loadTransferable(type: Data.self),
-                                        let image = UIImage(data: data)
+                                        let image = UIImage(data: data)?.normalized().cgImage
                                     {
                                         presenter.setInputImage(image)
                                     }
