@@ -41,6 +41,8 @@
 		B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */; };
 		B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323E29D47B6F00364219 /* ColorRGB.swift */; };
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
+		B1FB324429D655FB00364219 /* ScriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324329D655FB00364219 /* ScriptView.swift */; };
+		B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324529D6560400364219 /* ScriptPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		B1FB323D29D475EC00364219 /* NSObject+SafeKVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeKVC.h"; sourceTree = "<group>"; };
 		B1FB323E29D47B6F00364219 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
+		B1FB324329D655FB00364219 /* ScriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptView.swift; sourceTree = "<group>"; };
+		B1FB324529D6560400364219 /* ScriptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 		B1EDC46029C897E800E595E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1FB324229D655D800364219 /* Script */,
 				B1EDC46129C897F300E595E9 /* Playground */,
 				B1DF267229B808740047907E /* ContentView.swift */,
 			);
@@ -269,6 +274,15 @@
 				B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */,
 			);
 			path = ObjC;
+			sourceTree = "<group>";
+		};
+		B1FB324229D655D800364219 /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				B1FB324329D655FB00364219 /* ScriptView.swift */,
+				B1FB324529D6560400364219 /* ScriptPresenter.swift */,
+			);
+			path = Script;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +372,7 @@
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
+				B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */,
 				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
@@ -373,6 +388,7 @@
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
+				B1FB324429D655FB00364219 /* ScriptView.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
