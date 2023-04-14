@@ -21,10 +21,10 @@
     {
       "identity" : "ml-stable-diffusion",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/ml-stable-diffusion",
+      "location" : "https://github.com/ryu38/ml-stable-diffusion.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "2c4e9de73c9e723de264356f9563706ea9104212"
+        "branch" : "add-controlnet",
+        "revision" : "2b0a64df4793487b3a433bd36dda648042870b64"
       }
     },
     {

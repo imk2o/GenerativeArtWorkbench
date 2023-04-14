@@ -20,6 +20,8 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     init() {
     }
 
+    @Published private(set) var modelConfiguration: DiffusionModelConfiguration?
+    
     @Published var seed: UInt32 = 0
     @Published var randomSeed: Bool = true
     @Published var prompt: String = "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus"
@@ -29,20 +31,19 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
 
-    @Published private(set) var availableModels: [DiffusionModel] = []
-    @Published var selectedModel: DiffusionModel = .empty {
-        didSet { setModel(selectedModel) }
-    }
+    @Published private var controlNetInputImages: [String: CGImage] = [:]
 
     @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
 
+    private var availableModels: [DiffusionModel] = []
+    private func model(for id: String) -> DiffusionModel? {
+        return availableModels.first { $0.id == id }
+    }
+    
     func prepare() async {
         let urls = await diffusionModelStore.urls()
         availableModels = urls.map { DiffusionModel(url: $0) }
-        if let model = availableModels.first {
-            selectedModel = model
-        }
     }
     
     func setStartingImage(_ image: CGImage?) {
@@ -53,19 +54,47 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 .cgImage
         }()
     }
-    
-    private func setModel(_ model: DiffusionModel) {
-        let configuration = MLModelConfiguration()
-        configuration.computeUnits = .cpuAndNeuralEngine
+
+    func setModelConfiguration(_ modelConfiguration: DiffusionModelConfiguration) {
+        guard let model = model(for: modelConfiguration.modelID) else { return }
         
+        let configuration = MLModelConfiguration()
+        configuration.computeUnits = .init(modelConfiguration.computeUnits)
+
         self.diffusionService = try! .init(
             directoryURL: model.url,
-            configuration: configuration
+            configuration: configuration,
+            controlNets: modelConfiguration.controlNets,
+            disableSafety: true,
+            reduceMemory: false
+        )
+
+        self.modelConfiguration = modelConfiguration
+    }
+
+    func controlNetInputImage(for name: String) -> CGImage? {
+        return controlNetInputImages[name]
+    }
+    
+    func setControlNetInputImage(_ image: CGImage?, for name: String) {
+        // TODO: align 512x512
+        controlNetInputImages[name] = image
+    }
+    
+    func controlNetInputImageBinding(for name: String) -> Binding<CGImage?> {
+        return .init(
+            get: { [self] in controlNetInputImage(for: name) },
+            set: { [self] in setControlNetInputImage($0, for: name) }
         )
     }
     
+    private let blackImage = UIImage(named: "black_512x512")!.cgImage!
+    
     func run() async {
-        guard let diffusionService else { return }
+        guard
+            let modelConfiguration,
+            let diffusionService
+        else { return }
         
         if randomSeed {
             seed = .random(in: 0...UInt32.max)
@@ -80,6 +109,10 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 startingImageStrength: startingImageStrength,
                 stepCount: Int(stepCount),
                 guidanceScale: guidanceScale,
+                controlNetInputs: modelConfiguration.controlNets.map {
+                    let image = controlNetInputImages[$0] ?? blackImage
+                    return DiffusionRequest.ControlNetInput(name: $0, image: image)
+                },
                 generateProgressImage: true
             )
             
@@ -105,7 +138,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
             try await DiffusionHistoryStore.shared.add(
                 resultImage: resultImage,
                 request: request,
-                model: selectedModel
+                modelConfiguration: modelConfiguration
             )
             previewImage = resultImage
         } catch {
@@ -125,6 +158,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         negativePrompt = history.request.negativePrompt
         stepCount = history.request.stepCount
         guidanceScale = history.request.guidanceScale
+        // Starting imageの復元
         if
             let url = history.request.startingImageURL,
             let data = try? Data(contentsOf: url),
@@ -134,9 +168,19 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         } else {
             setStartingImage(nil)
         }
+        // ControlNetの入力画像の復元
+        controlNetInputImages = [:]
+        history.request.controlNetInputImageURLs.forEach { name, url in
+            if
+                let data = try? Data(contentsOf: url),
+                let image = UIImage(data: data)?.cgImage
+            {
+                setControlNetInputImage(image, for: name)
+            }
+        }
         
         startingImageStrength = history.request.startingImageStrength
-        selectedModel = availableModels.first { $0.id == history.modelID } ?? .empty
+        setModelConfiguration(history.modelConfiguration)
         
         previewImage = nil
         progressSummary = nil
@@ -190,5 +234,20 @@ extension DiffusionModel: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+}
+
+extension MLComputeUnits {
+    init(_ computeUnits: DiffusionModelConfiguration.ComputeUnits) {
+        switch computeUnits {
+        case .all:
+            self = .all
+        case .cpu:
+            self = .cpuOnly
+        case .cpuGPU:
+            self = .cpuAndGPU
+        case .cpuNE:
+            self = .cpuAndNeuralEngine
+        }
     }
 }

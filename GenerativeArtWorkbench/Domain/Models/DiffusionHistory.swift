@@ -10,7 +10,7 @@ import Foundation
 struct DiffusionHistory: Identifiable, Codable {
     let id: String
     let creationDate: Date
-    let modelID: String
+    let modelConfiguration: DiffusionModelConfiguration
     struct Request: Codable {
         let seed: UInt32
         let prompt: String
@@ -24,20 +24,22 @@ struct DiffusionHistory: Identifiable, Codable {
             case dpmSolverMultistep = "DPM-Solver++"
         }
         let scheduler: Scheduler
-
+        let controlNetInputImageURLs: [String: URL]
+        
         struct Configuration {
             let id: String
             let baseURL: URL
+            let modelConfiguration: DiffusionModelConfiguration
         }
     }
     let request: Request
     let resultImageURL: URL
 
-    init(creationDate: Date = .now, modelID: String, request: DiffusionRequest, baseURL: URL) {
+    init(creationDate: Date = .now, modelConfiguration: DiffusionModelConfiguration, request: DiffusionRequest, baseURL: URL) {
         self.id = Self.id(for: creationDate)
         self.creationDate = creationDate
-        self.modelID = modelID
-        self.request = .init(request: request, configuration: .init(id: id, baseURL: baseURL))
+        self.modelConfiguration = modelConfiguration
+        self.request = .init(request: request, configuration: .init(id: id, baseURL: baseURL, modelConfiguration: modelConfiguration))
         self.resultImageURL = Self.resultImageURL(id: id, baseURL: baseURL)
     }
 
@@ -54,7 +56,7 @@ struct DiffusionHistory: Identifiable, Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case creationDate
-        case modelID
+        case modelConfiguration
         case request
         case resultImageURL
     }
@@ -65,10 +67,10 @@ struct DiffusionHistory: Identifiable, Codable {
 
         self.id = try container.decode(String.self, forKey: .id)
         self.creationDate = try container.decode(Date.self, forKey: .creationDate)
-        self.modelID = try container.decode(String.self, forKey: .modelID)
+        self.modelConfiguration = try container.decode(DiffusionModelConfiguration.self, forKey: .modelConfiguration)
         self.request = try container.decode(
             Request.self, forKey: .request,
-            configuration: Request.Configuration(id: id, baseURL: baseURL)
+            configuration: Request.Configuration(id: id, baseURL: baseURL, modelConfiguration: modelConfiguration)
         )
 
         self.resultImageURL = Self.resultImageURL(id: id, baseURL: baseURL)
@@ -80,10 +82,10 @@ struct DiffusionHistory: Identifiable, Codable {
 
         try container.encode(id, forKey: .id)
         try container.encode(creationDate, forKey: .creationDate)
-        try container.encode(modelID, forKey: .modelID)
+        try container.encode(modelConfiguration, forKey: .modelConfiguration)
         try container.encode(
             request, forKey: .request,
-            configuration: Request.Configuration(id: id, baseURL: baseURL)
+            configuration: Request.Configuration(id: id, baseURL: baseURL, modelConfiguration: modelConfiguration)
         )
     }
     
@@ -105,6 +107,12 @@ extension DiffusionHistory.Request: CodableWithConfiguration {
         return configuration.baseURL.appendingPathComponent("\(configuration.id).starting.png")
     }
 
+    private static func controlNetInputImageURLs(for configuration: Configuration) -> [String: URL] {
+        return configuration.modelConfiguration.controlNets.reduce(into: [:]) { dictionary, name in
+            dictionary[name] = configuration.baseURL.appendingPathComponent("\(configuration.id).\(name).png")
+        }
+    }
+
     private enum CodingKeys: String, CodingKey {
         case seed
         case prompt
@@ -114,6 +122,7 @@ extension DiffusionHistory.Request: CodableWithConfiguration {
         case stepCount
         case guidanceScale
         case scheduler
+        case controlNetInputImageURLs
     }
 
     init(from decoder: Decoder, configuration: Configuration) throws {
@@ -127,6 +136,7 @@ extension DiffusionHistory.Request: CodableWithConfiguration {
         self.stepCount = try container.decode(Int.self, forKey: .stepCount)
         self.guidanceScale = try container.decode(Float.self, forKey: .guidanceScale)
         self.scheduler = try container.decode(Scheduler.self, forKey: .scheduler)
+        self.controlNetInputImageURLs = Self.controlNetInputImageURLs(for: configuration)
     }
 
     func encode(to encoder: Encoder, configuration: Configuration) throws {
@@ -135,10 +145,12 @@ extension DiffusionHistory.Request: CodableWithConfiguration {
         try container.encode(seed, forKey: .seed)
         try container.encode(prompt, forKey: .prompt)
         try container.encode(negativePrompt, forKey: .negativePrompt)
+        // startingImageURLは関数導出するため保存しない
         try container.encode(startingImageStrength, forKey: .startingImageStrength)
         try container.encode(stepCount, forKey: .stepCount)
         try container.encode(guidanceScale, forKey: .guidanceScale)
         try container.encode(scheduler, forKey: .scheduler)
+        // controlNetInputImageURLsは関数導出するため保存しない
     }
 
     fileprivate init(request: DiffusionRequest, configuration: Configuration) {
@@ -150,6 +162,7 @@ extension DiffusionHistory.Request: CodableWithConfiguration {
         self.stepCount = request.stepCount
         self.guidanceScale = request.guidanceScale
         self.scheduler = .init(request.scheduler)
+        self.controlNetInputImageURLs = Self.controlNetInputImageURLs(for: configuration)
     }
 }
 

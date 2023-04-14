@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B10CA10829E676BB00FC0A2C /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B10CA10729E676BB00FC0A2C /* StableDiffusion */; };
+		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
+		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
 		B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */; };
 		B1DF267329B808740047907E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267229B808740047907E /* ContentView.swift */; };
 		B1DF267529B808750047907E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267429B808750047907E /* Assets.xcassets */; };
 		B1DF267829B808750047907E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267729B808750047907E /* Preview Assets.xcassets */; };
 		B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */; };
 		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
-		B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268329BA89EF0047907E /* StableDiffusion */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
 		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
+		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
 		B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenerativeArtWorkbench.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerativeArtWorkbenchApp.swift; sourceTree = "<group>"; };
 		B1DF267229B808740047907E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF26BB29C732C90047907E /* Dynamic in Frameworks */,
-				B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */,
+				B10CA10829E676BB00FC0A2C /* StableDiffusion in Frameworks */,
 				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
@@ -228,6 +232,7 @@
 				B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */,
 				B1FB323529D2669400364219 /* Vector4.swift */,
 				B1FB323E29D47B6F00364219 /* ColorRGB.swift */,
+				B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
 				B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */,
 				B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */,
+				B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */,
 			);
 			path = Diffusion;
 			sourceTree = "<group>";
@@ -288,10 +294,10 @@
 			);
 			name = GenerativeArtWorkbench;
 			packageProductDependencies = (
-				B1DF268329BA89EF0047907E /* StableDiffusion */,
 				B1DF268829BA8B410047907E /* Steward */,
 				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
 				B1DF26BA29C732C90047907E /* Dynamic */,
+				B10CA10729E676BB00FC0A2C /* StableDiffusion */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -323,10 +329,10 @@
 			);
 			mainGroup = B1DF266429B808730047907E;
 			packageReferences = (
-				B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
 				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 				B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */,
+				B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -372,8 +378,10 @@
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
+				B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
+				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
@@ -593,11 +601,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+		B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
+			repositoryURL = "https://github.com/ryu38/ml-stable-diffusion.git";
 			requirement = {
-				branch = main;
+				branch = "add-controlnet";
 				kind = branch;
 			};
 		};
@@ -628,9 +636,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B1DF268329BA89EF0047907E /* StableDiffusion */ = {
+		B10CA10729E676BB00FC0A2C /* StableDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			package = B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
 			productName = StableDiffusion;
 		};
 		B1DF268829BA8B410047907E /* Steward */ = {

@@ -10,17 +10,23 @@ import UIKit
 import PhotosUI
 
 struct FormImagePicker: View {
+    private let title: String
     private let image: Binding<CGImage?>
 
     @State private var droppedImage: CGImage?
     @State private var photosPickerItem: PhotosPickerItem?
 
-    init(image: Binding<CGImage?>) {
+    init(title: String = "", image: Binding<CGImage?>) {
+        self.title = title
         self.image = image
     }
     
     var body: some View {
         HStack(alignment: .center) {
+            if !title.isEmpty {
+                Text(title)
+                Spacer()
+            }
             Group {
                 if let image = image.wrappedValue {
                     Image(image, scale: 1, label: Text("Preview"))
