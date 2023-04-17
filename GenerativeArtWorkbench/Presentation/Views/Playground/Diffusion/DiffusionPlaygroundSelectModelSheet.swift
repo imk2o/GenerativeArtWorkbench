@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct DiffusionPlaygroundSelectModelSheet: View {
-    @StateObject private var presenter = DiffusionPlaygroundSelectModelPresenter()
+    init(
+        _ configuration: DiffusionModelConfiguration? = nil,
+        onSelect: @escaping (DiffusionModelConfiguration) -> Void
+    ) {
+        _presenter = .init(wrappedValue: .init(configuration))
+        self.onSelect = onSelect
+    }
+    
+    @StateObject private var presenter: DiffusionPlaygroundSelectModelPresenter
     let onSelect: (DiffusionModelConfiguration) -> Void
     
     @Environment(\.dismiss) private var dismiss
@@ -29,11 +37,7 @@ struct DiffusionPlaygroundSelectModelSheet: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button("OK") {
-                        onSelect(.init(
-                            modelID: presenter.selectedModel.id,
-                            controlNets: Array(presenter.selectedControlNets),
-                            computeUnits: presenter.selectedComputeUnits
-                        ))
+                        onSelect(presenter.currentConfiguration)
                         dismiss()
                     }
                 }
@@ -109,18 +113,41 @@ struct DiffusionPlaygroundSelectModelSheet: View {
 
 @MainActor
 final class DiffusionPlaygroundSelectModelPresenter: ObservableObject {
+    init(_ configuration: DiffusionModelConfiguration?) {
+        self.initialConfiguration = configuration
+    }
+    
     @Published private(set) var availableModels: [DiffusionModel] = []
+    @Published var selectedModel: DiffusionModel = .empty {
+        didSet { selectedControlNets = .init() }
+    }
     @Published var selectedComputeUnits: DiffusionModelConfiguration.ComputeUnits = .all
-    @Published var selectedModel: DiffusionModel = .empty
     @Published var selectedControlNets: Set<String> = []
-
+    
+    var currentConfiguration: DiffusionModelConfiguration {
+        return .init(
+            modelID: selectedModel.id,
+            controlNets: Array(selectedControlNets),
+            computeUnits: selectedComputeUnits
+        )
+    }
+    
+    private let initialConfiguration: DiffusionModelConfiguration?
     private let diffusionModelStore = DiffusionModelStore.shared
     
     func prepare() async {
         let urls = await diffusionModelStore.urls()
         availableModels = urls.map { DiffusionModel(url: $0) }
-        if let model = availableModels.first {
+        if
+            let initialConfiguration,
+            let model = availableModels.first(where: { $0.id == initialConfiguration.modelID }) {
             selectedModel = model
+        } else if let model = availableModels.first {
+            selectedModel = model
+        }
+        if let initialConfiguration {
+            selectedComputeUnits = initialConfiguration.computeUnits
+            selectedControlNets = .init(initialConfiguration.controlNets)
         }
     }
     

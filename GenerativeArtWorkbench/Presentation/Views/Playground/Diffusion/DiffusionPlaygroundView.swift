@@ -48,9 +48,9 @@ struct DiffusionPlaygroundView: View {
                             }
                             .buttonStyle(BorderlessButtonStyle())
                             .sheet(isPresented: $isSelectModelSheetPresented) {
-                                DiffusionPlaygroundSelectModelSheet(onSelect: { modelConfiguration in
-                                    presenter.setModelConfiguration(modelConfiguration)
-                                })
+                                DiffusionPlaygroundSelectModelSheet(presenter.modelConfiguration) {
+                                    presenter.setModelConfiguration($0)
+                                }
                             }
                         }
                     }
