@@ -32,7 +32,7 @@ struct DiffusionModel: Identifiable {
     
     private static func controlNetFiles(for url: URL) -> [String] {
         guard let fileURLs = (try? FileManager.default.contentsOfDirectory(
-            at: url.appendingPathComponent("Controlnet"),
+            at: url.appendingPathComponent("controlnet"),
             includingPropertiesForKeys: nil,
             options: .skipsHiddenFiles
         )) else {

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B10CA10829E676BB00FC0A2C /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B10CA10729E676BB00FC0A2C /* StableDiffusion */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
+		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
 		B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */; };
 		B1DF267329B808740047907E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267229B808740047907E /* ContentView.swift */; };
 		B1DF267529B808750047907E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267429B808750047907E /* Assets.xcassets */; };
@@ -90,7 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF26BB29C732C90047907E /* Dynamic in Frameworks */,
-				B10CA10829E676BB00FC0A2C /* StableDiffusion in Frameworks */,
+				B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */,
 				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
@@ -297,7 +297,7 @@
 				B1DF268829BA8B410047907E /* Steward */,
 				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
 				B1DF26BA29C732C90047907E /* Dynamic */,
-				B10CA10729E676BB00FC0A2C /* StableDiffusion */,
+				B1BFF28229F0AEC600185688 /* StableDiffusion */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -332,7 +332,7 @@
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
 				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 				B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */,
-				B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
+				B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -601,11 +601,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+		B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ryu38/ml-stable-diffusion.git";
+			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
 			requirement = {
-				branch = "add-controlnet";
+				branch = main;
 				kind = branch;
 			};
 		};
@@ -636,9 +636,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B10CA10729E676BB00FC0A2C /* StableDiffusion */ = {
+		B1BFF28229F0AEC600185688 /* StableDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B10CA10629E676BB00FC0A2C /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			package = B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
 			productName = StableDiffusion;
 		};
 		B1DF268829BA8B410047907E /* Steward */ = {
