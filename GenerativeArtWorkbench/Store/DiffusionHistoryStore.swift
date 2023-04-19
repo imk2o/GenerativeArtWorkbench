@@ -77,9 +77,9 @@ final class DiffusionHistoryStore {
     func add(
         resultImage: CGImage,
         request: DiffusionRequest,
-        model: DiffusionModel
+        modelConfiguration: DiffusionModelConfiguration
     ) async throws {
-        let history = DiffusionHistory(modelID: model.id, request: request, baseURL: baseURL)
+        let history = DiffusionHistory(modelConfiguration: modelConfiguration, request: request, baseURL: baseURL)
         
         let historyURL = baseURL.appendingPathComponent("\(history.id).json")
         let jsonData = try jsonEncoder.encode(history)
@@ -92,10 +92,20 @@ final class DiffusionHistoryStore {
         if
             let startingImage = request.startingImage,
             let startingImageURL = history.request.startingImageURL,
-            let startingImageData = UIImage(cgImage: startingImage).pngData() {
+            let startingImageData = UIImage(cgImage: startingImage).pngData()
+        {
             try startingImageData.write(to: startingImageURL)
         }
-
+        // ControlNet入力画像の保存
+        try request.controlNetInputs.forEach {
+            if
+                let inputImageURL = history.request.controlNetInputImageURLs[$0.name],
+                let inputImageData = UIImage(cgImage: $0.image).pngData()
+            {
+                try inputImageData.write(to: inputImageURL)
+            }
+        }
+        
         var histories = historiesSubject.value
         histories.insert(history, at: 0)
         historiesSubject.send(histories)

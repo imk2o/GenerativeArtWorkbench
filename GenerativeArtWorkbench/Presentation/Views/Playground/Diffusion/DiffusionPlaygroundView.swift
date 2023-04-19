@@ -15,6 +15,7 @@ struct DiffusionPlaygroundView: View {
     @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: CGImage?
     @State private var previewItem: DocumentPreview.Item?
+    @State private var isSelectModelSheetPresented = false
     
     var body: some View {
         HStack {
@@ -38,21 +39,19 @@ struct DiffusionPlaygroundView: View {
                 Form {
                     Section {
                         HStack {
-                            Picker("Model", selection: $presenter.selectedModel, content: {
-                                ForEach(presenter.availableModels) { model in
-                                    Text(model.name)
-                                        .tag(model)
+                            Text("Model")
+                            Spacer()
+                            Text(presenter.modelConfiguration?.modelID ?? "(Unspecified)")
+                                .foregroundColor(.secondaryLabel)
+                            Button("Select...") {
+                                isSelectModelSheetPresented = true
+                            }
+                            .buttonStyle(BorderlessButtonStyle())
+                            .sheet(isPresented: $isSelectModelSheetPresented) {
+                                DiffusionPlaygroundSelectModelSheet(presenter.modelConfiguration) {
+                                    presenter.setModelConfiguration($0)
                                 }
-                            })
-                            Button(action: { presenter.openModelDirectory() }, label: {
-                                Image(systemName: "folder.fill")
-                            })
-                            .buttonStyle(BorderlessButtonStyle())
-                            Divider()
-                            Button(action: { presenter.openSite() }, label: {
-                                Image(systemName: "globe")
-                            })
-                            .buttonStyle(BorderlessButtonStyle())
+                            }
                         }
                     }
                     Section("Prompt") {
@@ -138,6 +137,12 @@ struct DiffusionPlaygroundView: View {
                             Text("\(presenter.startingImageStrength)")
                         }
                     }
+                    if
+                        let modelConfiguration = presenter.modelConfiguration,
+                        !modelConfiguration.controlNets.isEmpty
+                    {
+                        controlNetSection(modelConfiguration)
+                    }
                 }
             }
             .navigationTitle("Diffusion")
@@ -162,5 +167,16 @@ struct DiffusionPlaygroundView: View {
             .frame(width: 400)
         }
         .onAppear { Task { await presenter.prepare() } }
+    }
+    
+    private func controlNetSection(_ modelConfiguration: DiffusionModelConfiguration) -> some View {
+        Section("Control Net") {
+            ForEach(modelConfiguration.controlNets, id: \.self) { controlNet in
+                FormImagePicker(
+                    title: controlNet,
+                    image: presenter.controlNetInputImageBinding(for: controlNet)
+                )
+            }
+        }
     }
 }
