@@ -36,6 +36,16 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
 
+    var inputSize: CGSize {
+        // FIXME: モデルに応じて
+        return CGSize(width: 512, height: 512)
+    }
+    private(set) lazy var controlNetDefaultImage: CGImage = .create(
+        size: inputSize,
+        scale: 1,
+        color: .black
+    )
+
     private var availableModels: [DiffusionModel] = []
     private func model(for id: String) -> DiffusionModel? {
         return availableModels.first { $0.id == id }
@@ -50,7 +60,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         startingImage = {
             guard let image else { return nil }
             return UIImage(cgImage: image)
-                .aspectFilled(size: CGSize(width: 512, height: 512), imageScale: 1)
+                .aspectFilled(size: inputSize, imageScale: 1)
                 .cgImage
         }()
     }
@@ -88,8 +98,6 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         )
     }
     
-    private let blackImage = UIImage(named: "black_512x512")!.cgImage!
-    
     func run() async {
         guard
             let modelConfiguration,
@@ -110,7 +118,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 stepCount: Int(stepCount),
                 guidanceScale: guidanceScale,
                 controlNetInputs: modelConfiguration.controlNets.map {
-                    let image = controlNetInputImages[$0] ?? blackImage
+                    let image = controlNetInputImages[$0] ?? controlNetDefaultImage
                     return DiffusionRequest.ControlNetInput(name: $0, image: image)
                 },
                 generateProgressImage: true

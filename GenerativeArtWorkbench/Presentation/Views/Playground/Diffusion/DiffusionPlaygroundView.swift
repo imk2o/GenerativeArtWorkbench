@@ -174,7 +174,8 @@ struct DiffusionPlaygroundView: View {
             ForEach(modelConfiguration.controlNets, id: \.self) { controlNet in
                 FormImagePicker(
                     title: controlNet,
-                    image: presenter.controlNetInputImageBinding(for: controlNet)
+                    image: presenter.controlNetInputImageBinding(for: controlNet),
+                    defaultSketchImage: presenter.controlNetDefaultImage
                 )
             }
         }
