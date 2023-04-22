@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sketch View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="SketchViewController" customModule="GenerativeArtWorkbench" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVZ-9p-3U8" customClass="SketchView" customModule="GenerativeArtWorkbench" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="704" height="939.5"/>
+                                <subviews>
+                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMe-yB-qqV">
+                                        <rect key="frame" x="0.0" y="0.0" width="704" height="56"/>
+                                        <items>
+                                            <navigationItem title="Sketch" id="S9b-Fi-1nv">
+                                                <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="gpP-5r-yu9">
+                                                    <connections>
+                                                        <action selector="cancel:" destination="Y6W-OH-hqX" id="P5Q-at-urb"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" image="checkmark" catalog="system" id="3Mg-rz-aQR">
+                                                    <connections>
+                                                        <action selector="done:" destination="Y6W-OH-hqX" id="TCR-m5-Gde"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </navigationItem>
+                                        </items>
+                                    </navigationBar>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="aMe-yB-qqV" secondAttribute="trailing" id="NCa-Lp-h7I"/>
+                                    <constraint firstItem="aMe-yB-qqV" firstAttribute="top" secondItem="SVZ-9p-3U8" secondAttribute="top" id="iKf-H9-OfE"/>
+                                    <constraint firstItem="aMe-yB-qqV" firstAttribute="leading" secondItem="SVZ-9p-3U8" secondAttribute="leading" id="q32-7d-HmU"/>
+                                </constraints>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjv-mv-FI6">
+                                <rect key="frame" x="0.0" y="945.5" width="704" height="50"/>
+                                <items>
+                                    <barButtonItem id="eQy-xt-TR9">
+                                        <imageReference key="image" image="arrow.uturn.left" catalog="system" symbolScale="default"/>
+                                        <connections>
+                                            <action selector="undo:" destination="Y6W-OH-hqX" id="9Zy-yo-Zxn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="udM-pL-VGm"/>
+                                    <barButtonItem style="plain" id="1JD-AV-VMd">
+                                        <colorWell key="customView" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="CLo-bf-arP">
+                                            <rect key="frame" x="87" y="7" width="36" height="36"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </colorWell>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="CPx-Mg-pcT">
+                                        <view key="customView" contentMode="scaleToFill" id="tSJ-gf-e42">
+                                            <rect key="frame" x="123" y="6.5" width="280" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jl3-Mc-7m8">
+                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pmI-LH-nuH">
+                                                            <rect key="frame" x="0.0" y="1" width="32" height="26"/>
+                                                            <color key="tintColor" systemColor="labelColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="32" id="VUL-ay-2g9"/>
+                                                                <constraint firstAttribute="height" constant="32" id="a5P-uG-xis"/>
+                                                            </constraints>
+                                                            <imageReference key="image" image="scribble.variable" catalog="system" symbolScale="small"/>
+                                                        </imageView>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vTX-LS-VF9">
+                                                            <rect key="frame" x="38" y="0.0" width="244" height="31"/>
+                                                            <connections>
+                                                                <action selector="changeWidth:" destination="Y6W-OH-hqX" eventType="valueChanged" id="ale-qZ-fKo"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="280" id="rbs-NW-yhK"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Jl3-Mc-7m8" firstAttribute="leading" secondItem="tSJ-gf-e42" secondAttribute="leading" id="9cu-KO-ijT"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jl3-Mc-7m8" secondAttribute="trailing" id="Csh-gf-BRD"/>
+                                                <constraint firstItem="Jl3-Mc-7m8" firstAttribute="top" secondItem="tSJ-gf-e42" secondAttribute="top" id="ifY-0c-Beb"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jl3-Mc-7m8" secondAttribute="bottom" id="yTf-BG-9mb"/>
+                                            </constraints>
+                                        </view>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MGk-5L-5Ap"/>
+                                    <barButtonItem image="wand.and.rays" catalog="system" id="BYO-D8-4zR">
+                                        <connections>
+                                            <action selector="clear:" destination="Y6W-OH-hqX" id="niq-ll-zzY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pjv-mv-FI6" secondAttribute="bottom" id="7U4-gY-t06"/>
+                            <constraint firstItem="pjv-mv-FI6" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="MlQ-Nf-gcB"/>
+                            <constraint firstItem="SVZ-9p-3U8" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="azA-Dw-5FD"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="SVZ-9p-3U8" secondAttribute="bottom" id="kkn-lC-NsB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="SVZ-9p-3U8" secondAttribute="trailing" id="n71-gi-Ovl"/>
+                            <constraint firstAttribute="trailing" secondItem="pjv-mv-FI6" secondAttribute="trailing" id="rPv-98-0aP"/>
+                            <constraint firstItem="SVZ-9p-3U8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rkN-ZW-7Ew"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="clearButton" destination="BYO-D8-4zR" id="wTB-qO-RLM"/>
+                        <outlet property="colorPicker" destination="CLo-bf-arP" id="b8k-7A-ZQg"/>
+                        <outlet property="sketchView" destination="SVZ-9p-3U8" id="C8K-j3-gbg"/>
+                        <outlet property="undoButton" destination="eQy-xt-TR9" id="k9X-Zg-UKo"/>
+                        <outlet property="widthSlider" destination="vTX-LS-VF9" id="Sym-4A-fY4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1845.0381679389311" y="-17.605633802816904"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.uturn.left" catalog="system" width="128" height="113"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="scribble.variable" catalog="system" width="128" height="119"/>
+        <image name="wand.and.rays" catalog="system" width="128" height="123"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
