@@ -84,9 +84,11 @@ struct FormImagePicker: View {
                 Task {
                     if
                         let data = try? await item?.loadTransferable(type: Data.self),
-                        let image = UIImage(data: data)
+                        let image = UIImage(data: data)?.normalized().cgImage
                     {
-                        applyImage(image.cgImage)
+                        Task { @MainActor in
+                            applyImage(image)
+                        }
                     }
                 }
             }
@@ -95,7 +97,7 @@ struct FormImagePicker: View {
                     .frame(width: 16, height: 8)
                 Button(
                     action: { isSketchPresented = true },
-                    label: { Image(systemName: "pencil.and.outline") }
+                    label: { Image(systemName: "scribble.variable") }
                 )
                 .sketch(
                     isPresented: $isSketchPresented,

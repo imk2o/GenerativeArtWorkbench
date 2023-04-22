@@ -43,6 +43,10 @@ final class SketchViewController: UIViewController {
     // MARK: - Subviews
 
     @IBOutlet private weak var sketchView: SketchView!
+    @IBOutlet private weak var undoButton: UIBarButtonItem!
+    @IBOutlet private weak var colorPicker: UIColorWell!
+    @IBOutlet private weak var widthSlider: UISlider!
+    @IBOutlet private weak var clearButton: UIBarButtonItem!
     
     // MARK: - Property
     private var presenter: SketchPresenter
@@ -80,6 +84,8 @@ final class SketchViewController: UIViewController {
         whitePen.color = .white
         whitePen.lineWidth = 8
         sketchView.currentTool = whitePen
+
+        colorPicker.addTarget(self, action: #selector(changeColor(_:)), for: .valueChanged)
     }
 
     private func bind() {
@@ -101,6 +107,34 @@ final class SketchViewController: UIViewController {
 
     // MARK: Actions
 
+    @IBAction private func undo(_ sender: Any) {
+        sketchView.undo()
+    }
+
+    @IBAction private func changeColor(_ sender: UIColorWell) {
+        guard
+            let penTool = sketchView.currentTool as? SketchView.PenTool,
+            let color = sender.selectedColor
+        else { return }
+        
+        penTool.color = color
+    }
+
+    @IBAction private func changeWidth(_ slider: UISlider) {
+        guard let penTool = sketchView.currentTool as? SketchView.PenTool else { return }
+
+        let baseSize = min(
+            sketchView.canvasImage.size.width,
+            sketchView.canvasImage.size.height
+        )
+        let ratio = CGFloat(slider.value / slider.maximumValue)
+        penTool.lineWidth = (baseSize / 10 * ratio) + 1
+    }
+    
+    @IBAction private func clear(_ sender: Any) {
+        sketchView.restoreCanvasToOriginal()
+    }
+    
     @IBAction private func done(_ sender: Any) {
         actionHandler?(.done(sketchView.canvasImage.cgImage!))
         dismiss(animated: true)

@@ -89,6 +89,13 @@ final class SketchView: UIView {
         setNeedsDisplay()
     }
 
+    func restoreCanvasToOriginal() {
+        restoreCanvas(
+            with: originalCanvasImage,
+            contentMode: canvasContentMode
+        )
+    }
+    
     /// Undo可能であればtrueを返す。
     func canUndo() -> Bool {
         !commandHistory.isEmpty

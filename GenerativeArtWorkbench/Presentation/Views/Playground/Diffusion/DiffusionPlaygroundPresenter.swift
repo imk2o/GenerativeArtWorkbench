@@ -57,12 +57,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     }
     
     func setStartingImage(_ image: CGImage?) {
-        startingImage = {
-            guard let image else { return nil }
-            return UIImage(cgImage: image)
-                .aspectFilled(size: inputSize, imageScale: 1)
-                .cgImage
-        }()
+        startingImage = image?.aspectFilled(size: inputSize)
     }
 
     func setModelConfiguration(_ modelConfiguration: DiffusionModelConfiguration) {
@@ -88,7 +83,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     
     func setControlNetInputImage(_ image: CGImage?, for name: String) {
         // TODO: align 512x512
-        controlNetInputImages[name] = image
+        controlNetInputImages[name] = image?.aspectFilled(size: inputSize)
     }
     
     func controlNetInputImageBinding(for name: String) -> Binding<CGImage?> {
