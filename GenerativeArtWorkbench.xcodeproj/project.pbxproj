@@ -48,6 +48,7 @@
 		B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */; };
 		B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323E29D47B6F00364219 /* ColorRGB.swift */; };
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
+		B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,8 @@
 		B1FB323D29D475EC00364219 /* NSObject+SafeKVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeKVC.h"; sourceTree = "<group>"; };
 		B1FB323E29D47B6F00364219 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
+		B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		B1FC89D429F4BB70002B95A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,7 @@
 		B1DF266429B808730047907E = {
 			isa = PBXGroup;
 			children = (
+				B1FC89D429F4BB70002B95A4 /* README.md */,
 				B1DF266F29B808740047907E /* GenerativeArtWorkbench */,
 				B1DF266E29B808740047907E /* Products */,
 			);
@@ -180,6 +184,7 @@
 				B1FB323329D25ED600364219 /* FormImagePicker.swift */,
 				B1FB323729D267E400364219 /* FormVectorField.swift */,
 				B1FB324029D47EF300364219 /* FormColorPicker.swift */,
+				B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
+				B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
 				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,

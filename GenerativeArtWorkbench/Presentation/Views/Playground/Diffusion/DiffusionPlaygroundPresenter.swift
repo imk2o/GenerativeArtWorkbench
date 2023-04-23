@@ -20,7 +20,24 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     init() {
     }
 
-    @Published private(set) var modelConfiguration: DiffusionModelConfiguration?
+    enum Progress {
+        case preparing
+        case step(Float)
+        case done(String)
+    }
+    @Published private(set) var progress: Progress?
+    
+    @Published private(set) var modelConfiguration: DiffusionModelConfiguration? {
+        didSet {
+            modelConfigurationData = {
+                if let modelConfiguration {
+                    return try? JSONEncoder().encode(modelConfiguration)
+                } else {
+                    return nil
+                }
+            }()
+        }
+    }
     
     @Published var seed: UInt32 = 0
     @Published var randomSeed: Bool = true
@@ -28,7 +45,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published var negativePrompt: String = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
     @Published var stepCount: Int = 10
     @Published var guidanceScale: Float = 11
-    @Published var startingImage: CGImage?
+    @Published private(set) var startingImage: CGImage?
     @Published var startingImageStrength: Float = 0.8
 
     @Published private var controlNetInputImages: [String: CGImage] = [:]
@@ -36,11 +53,19 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     @Published private(set) var previewImage: CGImage?
     @Published private(set) var progressSummary: String?
 
+    @AppStorage("playgroundModelConfiguration")
+    private var modelConfigurationData: Data?
+    
     var inputSize: CGSize {
         // FIXME: モデルに応じて
         return CGSize(width: 512, height: 512)
     }
-    private(set) lazy var controlNetDefaultImage: CGImage = .create(
+    private(set) lazy var defaultStartingImage: CGImage = .create(
+        size: inputSize,
+        scale: 1,
+        color: .black
+    )
+    private(set) lazy var defaultControlNetImage: CGImage = .create(
         size: inputSize,
         scale: 1,
         color: .black
@@ -54,9 +79,24 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     func prepare() async {
         let urls = await diffusionModelStore.urls()
         availableModels = urls.map { DiffusionModel(url: $0) }
+        
+        // 選択モデルの復元
+        if
+            let modelConfigurationData,
+            let modelConfiguration = try? JSONDecoder().decode(DiffusionModelConfiguration.self, from: modelConfigurationData)
+        {
+            setModelConfiguration(modelConfiguration)
+        }
     }
     
-    func setStartingImage(_ image: CGImage?) {
+    func startingImageBinding() -> Binding<CGImage?> {
+        return .init(
+            get: { [self] in startingImage },
+            set: { [self] in setStartingImage($0) }
+        )
+    }
+
+    private func setStartingImage(_ image: CGImage?) {
         startingImage = image?.aspectFilled(size: inputSize)
     }
 
@@ -113,7 +153,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 stepCount: Int(stepCount),
                 guidanceScale: guidanceScale,
                 controlNetInputs: modelConfiguration.controlNets.map {
-                    let image = controlNetInputImages[$0] ?? controlNetDefaultImage
+                    let image = controlNetInputImages[$0] ?? defaultControlNetImage
                     return DiffusionRequest.ControlNetInput(name: $0, image: image)
                 },
                 generateProgressImage: true
@@ -124,13 +164,20 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 Task.detached { @MainActor [self] in
                     switch progress {
                     case .preparing:
+                        self.progress = .preparing
                         progressSummary = "Preparing..."
                     case .step(let step, let image):
                         if let image {
                             previewImage = image
                         }
+                        self.progress = .step(Float(step) / Float(request.stepCount))
                         progressSummary = "Step: \(step)"
                     case .done(let duration):
+                        self.progress = .done(String(format: "Done: %gs", duration))
+                        Task {
+                            try? await Task.sleep(nanoseconds: 1_000_000_000)
+                            self.progress = nil
+                        }
                         progressSummary = String(format: "Done: %gs", duration)
                     }
                 }
