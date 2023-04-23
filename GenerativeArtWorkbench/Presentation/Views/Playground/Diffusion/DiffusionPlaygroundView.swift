@@ -20,7 +20,6 @@ struct DiffusionPlaygroundView: View {
     var body: some View {
         HStack {
             VStack {
-                Text(presenter.progressSummary ?? "")
                 Group {
                     if let image = presenter.previewImage {
                         Image(image, scale: 1, label: Text("Preview"))
@@ -91,40 +90,11 @@ struct DiffusionPlaygroundView: View {
                         }
                     }
                     Section("Staring Image") {
-                        HStack(alignment: .center) {
-                            Group {
-                                if let image = presenter.startingImage {
-                                    Image(image, scale: 1, label: Text("Preview"))
-                                        .resizable()
-                                        .scaledToFit()
-                                } else {
-                                    Text("No image")
-                                }
-                            }
-                            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedStaringImage))
-                            .onChange(of: droppedStaringImage) { image in
-                                if let image {
-                                    presenter.setStartingImage(image)
-                                }
-                            }
-                            .frame(width: 80, height: 80)
-                            .background(Color.secondary)
-                            .cornerRadius(4)
-
-                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
-                                Text("Choose Image...")
-                            }
-                            .onChange(of: photosPickerItem) { item in
-                                Task {
-                                    if
-                                        let data = try? await item?.loadTransferable(type: Data.self),
-                                        let image = UIImage(data: data)?.normalized().cgImage
-                                    {
-                                        presenter.setStartingImage(image)
-                                    }
-                                }
-                            }
-                        }
+                        FormImagePicker(
+                            title: "Starting Image",
+                            image: presenter.startingImageBinding(),
+                            defaultSketchImage: presenter.defaultStartingImage
+                        )
                         
                         HStack(alignment: .center) {
                             Text("Strength")
@@ -149,14 +119,29 @@ struct DiffusionPlaygroundView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
-                    Button(
-                        action: {
-                            Task { await presenter.run() }
-                        },
-                        label: {
-                            Image(systemName: "play.fill")
+                    if let progress = presenter.progress {
+                        Group {
+                            switch progress {
+                            case .preparing:
+                                IndeterminateCircularProgressView()
+                            case .step(let ratio):
+                                CircularProgressView(progress: ratio)
+                            case .done:
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
-                    )
+                        .frame(width: 24, height: 24)
+                    } else {
+                        Button(
+                            action: {
+                                Task { await presenter.run() }
+                            },
+                            label: {
+                                Image(systemName: "play.fill")
+                            }
+                        )
+                    }
                 }
             }
             .toolbarRole(.editor)
@@ -175,7 +160,7 @@ struct DiffusionPlaygroundView: View {
                 FormImagePicker(
                     title: controlNet,
                     image: presenter.controlNetInputImageBinding(for: controlNet),
-                    defaultSketchImage: presenter.controlNetDefaultImage
+                    defaultSketchImage: presenter.defaultControlNetImage
                 )
             }
         }
