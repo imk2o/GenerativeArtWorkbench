@@ -89,14 +89,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
     }
     
-    func startingImageBinding() -> Binding<CGImage?> {
-        return .init(
-            get: { [self] in startingImage },
-            set: { [self] in setStartingImage($0) }
-        )
-    }
-
-    private func setStartingImage(_ image: CGImage?) {
+    func setStartingImage(_ image: CGImage?) {
         startingImage = image?.aspectFilled(size: inputSize)
     }
 
@@ -124,13 +117,6 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     func setControlNetInputImage(_ image: CGImage?, for name: String) {
         // TODO: align 512x512
         controlNetInputImages[name] = image?.aspectFilled(size: inputSize)
-    }
-    
-    func controlNetInputImageBinding(for name: String) -> Binding<CGImage?> {
-        return .init(
-            get: { [self] in controlNetInputImage(for: name) },
-            set: { [self] in setControlNetInputImage($0, for: name) }
-        )
     }
     
     func run() async {
