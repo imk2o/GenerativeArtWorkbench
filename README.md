@@ -15,6 +15,13 @@ A workbench of [Stable Diffusion](https://github.com/apple/ml-stable-diffusion).
 
 > ~/Library/Containers/GenerativeArtWorkbench/Data/Documents/DiffusionModels
 
-## Upscaling
+## Vision
 
-> Under construction
+A workbench of [imaging with CoreML](https://github.com/john-rocky/CoreML-Models).
+
+### Setup
+
+* Download CoreML models from the link in the above page
+* Copy downloaded `.mlmodel` or `.mlmodelc` file to the following
+
+> ~/Library/Containers/GenerativeArtWorkbench/Data/Documents/VisionModels
