@@ -10,12 +10,13 @@ import SwiftUI
 import StewardSwiftUI
 
 struct VisionPlaygroundView: View {
-    init() {
+    typealias Context = VisionPlaygroundPresenter.Context
+
+    init(context: Context = .new) {
         // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
-        _presenter = .init(wrappedValue: .init())
+        _presenter = .init(wrappedValue: .init(context: context))
     }
     
-//    typealias Context = CoreMLPlaygroundPresenter.Context
     @StateObject private var presenter: VisionPlaygroundPresenter
     @State private var previewItem: DocumentPreview.Item?
     
@@ -33,23 +34,34 @@ struct VisionPlaygroundView: View {
             .cornerRadius(8)
             Form {
                 Section {
-                    Picker(
-                        "Model",
-                        selection: Binding(
-                            get: { presenter.selectedModel },
-                            set: { model in Task { await presenter.setModel(model) } }
-                        ),
-                        content: {
-                            ForEach(presenter.availableModels) { model in
-                                Text(model.name)
-                                    .tag(model)
+                    HStack {
+                        Picker(
+                            "Model",
+                            selection: Binding(
+                                get: { presenter.selectedModel },
+                                set: { model in Task { await presenter.setModel(model) } }
+                            ),
+                            content: {
+                                Text("(Unspecified)")
+                                    .tag(VisionModel.empty)
+                                ForEach(presenter.availableModels) { model in
+                                    Text(model.name)
+                                        .tag(model)
+                                }
                             }
-                        }
-                    )
-                    //                        Button(action: { presenter.openModelDirectory() }, label: {
-                    //                            Image(systemName: "folder.fill")
-                    //                        })
-                    //                        .buttonStyle(BorderlessButtonStyle())
+                        )
+                        Button(
+                            action: { Task { await presenter.browseModelFolder() } },
+                            label: { Image(systemName: "folder.fill") }
+                        )
+                        .buttonStyle(BorderlessButtonStyle())
+                        Divider()
+                        Button(
+                            action: { Task { await presenter.browseModelSite() } },
+                            label: { Image(systemName: "globe") }
+                        )
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
                 }
                 Section {
                     FormImagePicker(

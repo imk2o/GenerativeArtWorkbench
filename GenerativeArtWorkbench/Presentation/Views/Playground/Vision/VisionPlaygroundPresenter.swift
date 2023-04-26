@@ -9,6 +9,16 @@ import SwiftUI
 
 @MainActor
 final class VisionPlaygroundPresenter: ObservableObject {
+    enum Context: Hashable {
+        case new
+        case inputImage(CGImage)
+    }
+    let context: Context
+
+    init(context: Context = .new) {
+        self.context = context
+    }
+
     @Published private(set) var availableModels: [VisionModel] = []
     @Published private(set) var selectedModel: VisionModel = .empty
     @Published private(set) var inputImage: CGImage?
@@ -30,9 +40,15 @@ final class VisionPlaygroundPresenter: ObservableObject {
 //        {
 //            setModelConfiguration(modelConfiguration)
 //        }
+        
+        if case .inputImage(let inputImage) = context {
+            setInputImage(inputImage)
+        }
     }
     
     func setModel(_ model: VisionModel) async {
+        guard model != .empty else { return }
+        
         do {
             visionService = try await .init(
                 with: model,
@@ -45,16 +61,16 @@ final class VisionPlaygroundPresenter: ObservableObject {
     }
 
     func setInputImage(_ image: CGImage?) {
-        guard let visionService else { return }
-        
-        inputImage = image?.aspectFilled(size: visionService.inputSize)
+        inputImage = image
     }
     
     func run() async {
         guard let inputImage, let visionService else { return }
         
         do {
-            outputImage = try await visionService.run(inputImage: inputImage)
+            outputImage = try await visionService.run(
+                inputImage: inputImage.aspectFilled(size: visionService.inputSize)
+            )
         } catch {
             dump(error)
         }
@@ -75,6 +91,14 @@ final class VisionPlaygroundPresenter: ObservableObject {
         } catch {
             return nil
         }
+    }
+    
+    func browseModelFolder() async {
+        openDirectory(url: visionModelStore.baseURL)
+    }
+    
+    func browseModelSite() async {
+        openURL(.init(string: "https://github.com/john-rocky/CoreML-Models")!)
     }
 }
 

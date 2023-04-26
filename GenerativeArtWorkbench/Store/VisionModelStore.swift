@@ -30,8 +30,4 @@ final class VisionModelStore {
             options: .skipsHiddenFiles
         )) ?? []
     }
-    
-    func openDirectory() {
-        
-    }
 }

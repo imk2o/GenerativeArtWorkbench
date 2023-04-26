@@ -12,6 +12,7 @@ import StewardSwiftUI
 
 /// DragとPreviewに対応したImage
 struct InteractiveImage: View {
+    // TODO: (AsyncImage like) ViewBuilder pattern
     init(_ image: CGImage, scale: CGFloat = 1, title: String) {
         self.image = image
         self.scale = scale

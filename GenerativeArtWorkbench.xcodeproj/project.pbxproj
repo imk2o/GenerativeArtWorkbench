@@ -23,8 +23,6 @@
 		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
-		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
-		B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */; };
 		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 		B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B429C65EDC0047907E /* UpscalingService.swift */; };
@@ -73,8 +71,6 @@
 		B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundView.swift; sourceTree = "<group>"; };
 		B1DF268029BA89D30047907E /* DiffusionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffusionService.swift; sourceTree = "<group>"; };
 		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
-		B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundView.swift; sourceTree = "<group>"; };
-		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
 		B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		B1DF26B429C65EDC0047907E /* UpscalingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingService.swift; sourceTree = "<group>"; };
 		B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelStore.swift; sourceTree = "<group>"; };
@@ -254,7 +250,6 @@
 				B1FC89D529F5F8B2002B95A4 /* Vision */,
 				B1FB322A29CFEA5400364219 /* CoreImage */,
 				B1FB322829CD874800364219 /* Diffusion */,
-				B1FB322929CFEA4800364219 /* Upscaling */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -292,15 +287,6 @@
 				B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */,
 			);
 			path = Diffusion;
-			sourceTree = "<group>";
-		};
-		B1FB322929CFEA4800364219 /* Upscaling */ = {
-			isa = PBXGroup;
-			children = (
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
-			);
-			path = Upscaling;
 			sourceTree = "<group>";
 		};
 		B1FB322A29CFEA5400364219 /* CoreImage */ = {
@@ -422,13 +408,11 @@
 				B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
-				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
-				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
