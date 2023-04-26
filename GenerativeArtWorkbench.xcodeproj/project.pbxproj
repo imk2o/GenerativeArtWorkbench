@@ -54,6 +54,7 @@
 		B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */; };
 		B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */; };
 		B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */; };
+		B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +106,7 @@
 		B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
 		B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModelStore.swift; sourceTree = "<group>"; };
 		B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModel.swift; sourceTree = "<group>"; };
+		B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				B1FB323729D267E400364219 /* FormVectorField.swift */,
 				B1FB324029D47EF300364219 /* FormColorPicker.swift */,
 				B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */,
+				B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
+				B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */,
 				B1FB323429D25ED600364219 /* FormImagePicker.swift in Sources */,
 				B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */,
 				B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */,

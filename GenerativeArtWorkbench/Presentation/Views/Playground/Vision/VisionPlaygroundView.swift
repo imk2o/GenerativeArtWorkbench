@@ -23,11 +23,7 @@ struct VisionPlaygroundView: View {
         VStack {
             Group {
                 if let image = presenter.outputImage {
-                    Image(image, scale: 1, label: Text("Result"))
-                        .resizable()
-                        .scaledToFit()
-                        .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
-                        .documentPreview($previewItem)
+                    InteractiveImage(image, title: presenter.selectedModel.name)
                 } else {
                     Text("No image")
                 }

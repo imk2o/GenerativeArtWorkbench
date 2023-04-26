@@ -10,6 +10,10 @@ import CoreGraphics
 import UIKit
 
 extension CGImage {
+    func pngData() -> Data? {
+        return UIImage(cgImage: self).pngData()
+    }
+    
     func writePNG(to url: URL) throws {
         guard let pngData = UIImage(cgImage: self).pngData() else {
             fatalError()
