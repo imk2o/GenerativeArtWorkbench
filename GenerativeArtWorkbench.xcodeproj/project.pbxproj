@@ -23,8 +23,6 @@
 		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
-		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
-		B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */; };
 		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 		B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B429C65EDC0047907E /* UpscalingService.swift */; };
@@ -49,6 +47,12 @@
 		B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323E29D47B6F00364219 /* ColorRGB.swift */; };
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
 		B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */; };
+		B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */; };
+		B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */; };
+		B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */; };
+		B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */; };
+		B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */; };
+		B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,8 +71,6 @@
 		B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundView.swift; sourceTree = "<group>"; };
 		B1DF268029BA89D30047907E /* DiffusionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffusionService.swift; sourceTree = "<group>"; };
 		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
-		B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundView.swift; sourceTree = "<group>"; };
-		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
 		B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		B1DF26B429C65EDC0047907E /* UpscalingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingService.swift; sourceTree = "<group>"; };
 		B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelStore.swift; sourceTree = "<group>"; };
@@ -95,6 +97,12 @@
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
 		B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		B1FC89D429F4BB70002B95A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundView.swift; sourceTree = "<group>"; };
+		B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundPresenter.swift; sourceTree = "<group>"; };
+		B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
+		B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModelStore.swift; sourceTree = "<group>"; };
+		B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModel.swift; sourceTree = "<group>"; };
+		B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +193,7 @@
 				B1FB323729D267E400364219 /* FormVectorField.swift */,
 				B1FB324029D47EF300364219 /* FormColorPicker.swift */,
 				B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */,
+				B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 			children = (
 				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF26B429C65EDC0047907E /* UpscalingService.swift */,
+				B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -203,6 +213,7 @@
 			children = (
 				B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */,
 				B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */,
+				B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -236,9 +247,9 @@
 		B1EDC46129C897F300E595E9 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				B1FC89D529F5F8B2002B95A4 /* Vision */,
 				B1FB322A29CFEA5400364219 /* CoreImage */,
 				B1FB322829CD874800364219 /* Diffusion */,
-				B1FB322929CFEA4800364219 /* Upscaling */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				B1FB323529D2669400364219 /* Vector4.swift */,
 				B1FB323E29D47B6F00364219 /* ColorRGB.swift */,
 				B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */,
+				B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,15 +287,6 @@
 				B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */,
 			);
 			path = Diffusion;
-			sourceTree = "<group>";
-		};
-		B1FB322929CFEA4800364219 /* Upscaling */ = {
-			isa = PBXGroup;
-			children = (
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
-			);
-			path = Upscaling;
 			sourceTree = "<group>";
 		};
 		B1FB322A29CFEA5400364219 /* CoreImage */ = {
@@ -303,6 +306,15 @@
 				B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */,
 			);
 			path = ObjC;
+			sourceTree = "<group>";
+		};
+		B1FC89D529F5F8B2002B95A4 /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */,
+				B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */,
+			);
+			path = Vision;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,23 +401,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */,
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
 				B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
-				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
-				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
+				B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */,
 				B1FB323429D25ED600364219 /* FormImagePicker.swift in Sources */,
+				B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */,
 				B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */,
 				B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
@@ -416,12 +429,15 @@
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
 				B1BFF28E29F0B51400185688 /* SketchViewController.swift in Sources */,
 				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
+				B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
 				B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */,
+				B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */,
 				B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */,
+				B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 				B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */,
 			);

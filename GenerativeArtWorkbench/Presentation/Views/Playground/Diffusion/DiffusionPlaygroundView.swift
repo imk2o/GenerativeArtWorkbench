@@ -92,7 +92,10 @@ struct DiffusionPlaygroundView: View {
                     Section("Staring Image") {
                         FormImagePicker(
                             title: "Starting Image",
-                            image: presenter.startingImageBinding(),
+                            image: Binding(
+                                get: { presenter.startingImage },
+                                set: { presenter.setStartingImage($0) }
+                            ),
                             defaultSketchImage: presenter.defaultStartingImage
                         )
                         
@@ -159,7 +162,10 @@ struct DiffusionPlaygroundView: View {
             ForEach(modelConfiguration.controlNets, id: \.self) { controlNet in
                 FormImagePicker(
                     title: controlNet,
-                    image: presenter.controlNetInputImageBinding(for: controlNet),
+                    image: Binding(
+                        get: { presenter.controlNetInputImage(for: controlNet) },
+                        set: { presenter.setControlNetInputImage($0, for: controlNet) }
+                    ),
                     defaultSketchImage: presenter.defaultControlNetImage
                 )
             }

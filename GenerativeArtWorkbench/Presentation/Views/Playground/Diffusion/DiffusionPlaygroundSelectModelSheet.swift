@@ -55,14 +55,16 @@ struct DiffusionPlaygroundSelectModelSheet: View {
                             .tag(model)
                     }
                 })
-                Button(action: { presenter.openModelDirectory() }, label: {
-                    Image(systemName: "folder.fill")
-                })
+                Button(
+                    action: { Task { await presenter.browseModelFolder() } },
+                    label: { Image(systemName: "folder.fill") }
+                )
                 .buttonStyle(BorderlessButtonStyle())
                 Divider()
-                Button(action: { presenter.openSite() }, label: {
-                    Image(systemName: "globe")
-                })
+                Button(
+                    action: { Task { await presenter.browseModelSite() } },
+                    label: { Image(systemName: "globe") }
+                )
                 .buttonStyle(BorderlessButtonStyle())
             }
             HStack {
@@ -159,11 +161,11 @@ final class DiffusionPlaygroundSelectModelPresenter: ObservableObject {
         }
     }
     
-    func openModelDirectory() {
+    func browseModelFolder() async {
         openDirectory(url: diffusionModelStore.baseURL)
     }
     
-    func openSite() {
+    func browseModelSite() async {
         openURL(.init(string: "https://huggingface.co/coreml")!)
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 
 enum Playground: Hashable {
     case coreImage(CoreImagePlaygroundView.Context)
+    case vision(VisionPlaygroundView.Context)
     case diffusion
-    case upscaling(UpscalingPlaygroundView.Context)
 }
 
 struct ContentView: View {
@@ -28,12 +28,16 @@ struct ContentView: View {
                         ImageDropNavigationLink(
                             title: "Core Image",
                             value: Playground.coreImage(.new)
-                        ) { selectedPlayground = .coreImage(.inputImage($0)) }
-                        NavigationLink("Diffusion", value: Playground.diffusion)
+                        ) {
+                            selectedPlayground = .coreImage(.inputImage($0))
+                        }
                         ImageDropNavigationLink(
-                            title: "Upscaling",
-                            value: Playground.upscaling(.new)
-                        ) { selectedPlayground = .upscaling(.inputImage($0)) }
+                            title: "Vision",
+                            value: Playground.vision(.new)
+                        ) {
+                            selectedPlayground = .vision(.inputImage($0))
+                        }
+                        NavigationLink("Diffusion", value: Playground.diffusion)
                     }
                 }
                 .listStyle(.sidebar)
@@ -47,8 +51,8 @@ struct ContentView: View {
                             CoreImagePlaygroundView(context: context)
                         case .diffusion:
                             DiffusionPlaygroundView()
-                        case .upscaling(let context):
-                            UpscalingPlaygroundView(context: context)
+                        case .vision(let context):
+                            VisionPlaygroundView(context: context)
                         }
                     } else {
                         Text("Select Playground")
