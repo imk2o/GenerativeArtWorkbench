@@ -12,9 +12,7 @@ import StewardSwiftUI
 
 struct DiffusionPlaygroundView: View {
     @StateObject private var presenter = DiffusionPlaygroundPresenter()
-    @State private var photosPickerItem: PhotosPickerItem?
     @State private var droppedStaringImage: CGImage?
-    @State private var previewItem: DocumentPreview.Item?
     @State private var isSelectModelSheetPresented = false
     
     var body: some View {
@@ -22,12 +20,11 @@ struct DiffusionPlaygroundView: View {
             VStack {
                 Group {
                     if let image = presenter.previewImage {
-                        Image(image, scale: 1, label: Text("Preview"))
-                            .resizable()
-                            .scaledToFit()
-                            .onDrag { presenter.previewImageDragItem() }
-                            .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
-                            .documentPreview($previewItem)
+                        InteractiveImage(image, title: presenter.modelConfiguration?.modelID ?? "") { imageView in
+                            imageView
+                                .resizable()
+                                .scaledToFit()
+                        }
                     } else {
                         Text("No image")
                     }

@@ -226,16 +226,4 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             dump(error)
         }
     }
-    
-    func resultImageURL() -> URL? {
-        guard let resultImage else { return nil }
-        
-        do {
-            let fileURL = FileManager.default.temporaryFileURL(path: "\(UUID().uuidString).png")
-            try resultImage.writePNG(to: fileURL)
-            return fileURL
-        } catch {
-            return nil
-        }
-    }
 }

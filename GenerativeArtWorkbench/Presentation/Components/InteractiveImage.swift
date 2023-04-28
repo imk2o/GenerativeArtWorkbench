@@ -11,23 +11,27 @@ import SwiftUI
 import StewardSwiftUI
 
 /// DragとPreviewに対応したImage
-struct InteractiveImage: View {
-    // TODO: (AsyncImage like) ViewBuilder pattern
-    init(_ image: CGImage, scale: CGFloat = 1, title: String) {
+struct InteractiveImage<Content: View>: View {
+    init(
+        _ image: CGImage,
+        scale: CGFloat = 1,
+        title: String,
+        @ViewBuilder content: @escaping (Image) -> Content
+    ) {
         self.image = image
         self.scale = scale
         self.title = title
+        self.content = content
     }
     
     @State private var previewItem: DocumentPreview.Item?
     private let image: CGImage
     private let scale: CGFloat
     private let title: String
-    
+    private let content: (Image) -> Content
+
     var body: some View {
-        Image(image, scale: scale, label: Text(title))
-            .resizable()
-            .scaledToFit()
+        content(Image(image, scale: scale, label: Text(title)))
             .onDrag { dragItem() }
             .onTapGesture { previewItem = .init(url: imageURL()) }
             .documentPreview($previewItem)

@@ -18,13 +18,16 @@ struct VisionPlaygroundView: View {
     }
     
     @StateObject private var presenter: VisionPlaygroundPresenter
-    @State private var previewItem: DocumentPreview.Item?
     
     var body: some View {
         VStack {
             Group {
                 if let image = presenter.outputImage {
-                    InteractiveImage(image, title: presenter.selectedModel.name)
+                    InteractiveImage(image, title: presenter.selectedModel.name) { imageView in
+                        imageView
+                            .resizable()
+                            .scaledToFit()
+                    }
                 } else {
                     Text("No image")
                 }
