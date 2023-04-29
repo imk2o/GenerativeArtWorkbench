@@ -229,38 +229,6 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
     func openSite() {
         openURL(.init(string: "https://huggingface.co/coreml")!)
     }
-    
-    func previewImageURL() -> URL? {
-        guard let pngData = previewImagePngData() else { return nil }
-        
-        do {
-            let fileURL = FileManager.default.temporaryFileURL(path: "\(UUID().uuidString).png")
-            try pngData.write(to: fileURL)
-            return fileURL
-        } catch {
-            return nil
-        }
-    }
-    
-    func previewImageDragItem() -> NSItemProvider {
-        guard let pngData = previewImagePngData() else { return .init() }
-
-        return .init(
-            item: pngData as NSSecureCoding,
-            typeIdentifier: UTType.png.identifier
-        )
-    }
-    
-    private func previewImagePngData() -> Data? {
-        guard
-            let previewImage,
-            let pngData = UIImage(cgImage: previewImage).pngData()
-        else {
-            return nil
-        }
-        
-        return pngData
-    }
 }
 
 extension DiffusionModel: Hashable {

@@ -14,8 +14,6 @@ struct CoreImagePlaygroundView: View {
     typealias Context = CoreImagePlaygroundPresenter.Context
     @StateObject private var presenter: CoreImagePlaygroundPresenter
 
-    @State private var previewItem: DocumentPreview.Item?
-    
     init(context: Context = .new) {
         // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
         _presenter = .init(wrappedValue: .init(context: context))
@@ -26,11 +24,11 @@ struct CoreImagePlaygroundView: View {
             VStack {
                 Group {
                     if let image = presenter.resultImage {
-                        Image(image, scale: 1, label: Text("Result"))
-                            .resizable()
-                            .scaledToFit()
-                            .onTapGesture { previewItem = .init(url: presenter.resultImageURL()) }
-                            .documentPreview($previewItem)
+                        InteractiveImage(image, title: presenter.selectedFilter) { imageView in
+                            imageView
+                                .resizable()
+                                .scaledToFit()
+                        }
                     } else {
                         Text("No image")
                     }
