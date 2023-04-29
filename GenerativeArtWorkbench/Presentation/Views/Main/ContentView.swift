@@ -39,6 +39,9 @@ struct ContentView: View {
                         }
                         NavigationLink("Diffusion", value: Playground.diffusion)
                     }
+                    Section("Assets") {
+                        AssetsView()
+                    }
                 }
                 .listStyle(.sidebar)
                 .navigationSplitViewColumnWidth(240)
