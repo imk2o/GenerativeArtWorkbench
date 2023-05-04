@@ -53,6 +53,10 @@
 		B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */; };
 		B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */; };
 		B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */; };
+		B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E329FDB705002B95A4 /* AssetsView.swift */; };
+		B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */; };
+		B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E729FDBECE002B95A4 /* AssetStore.swift */; };
+		B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E929FDBF33002B95A4 /* Asset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +107,10 @@
 		B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModelStore.swift; sourceTree = "<group>"; };
 		B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModel.swift; sourceTree = "<group>"; };
 		B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveImage.swift; sourceTree = "<group>"; };
+		B1FC89E329FDB705002B95A4 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsPresenter.swift; sourceTree = "<group>"; };
+		B1FC89E729FDBECE002B95A4 /* AssetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
+		B1FC89E929FDBF33002B95A4 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +222,7 @@
 				B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */,
 				B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */,
 				B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */,
+				B1FC89E729FDBECE002B95A4 /* AssetStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -238,8 +247,8 @@
 		B1EDC46029C897E800E595E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1FC89E229FDB6F6002B95A4 /* Main */,
 				B1EDC46129C897F300E595E9 /* Playground */,
-				B1DF267229B808740047907E /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,6 +282,7 @@
 				B1FB323E29D47B6F00364219 /* ColorRGB.swift */,
 				B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */,
 				B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */,
+				B1FC89E929FDBF33002B95A4 /* Asset.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -315,6 +325,16 @@
 				B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */,
 			);
 			path = Vision;
+			sourceTree = "<group>";
+		};
+		B1FC89E229FDB6F6002B95A4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF267229B808740047907E /* ContentView.swift */,
+				B1FC89E329FDB705002B95A4 /* AssetsView.swift */,
+				B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */,
+				B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */,
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
@@ -421,6 +442,7 @@
 				B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */,
 				B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */,
 				B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */,
+				B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
@@ -430,7 +452,9 @@
 				B1BFF28E29F0B51400185688 /* SketchViewController.swift in Sources */,
 				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
 				B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */,
+				B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
+				B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
