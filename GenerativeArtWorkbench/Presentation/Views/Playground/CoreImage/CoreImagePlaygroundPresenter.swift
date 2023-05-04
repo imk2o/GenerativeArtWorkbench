@@ -53,22 +53,15 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         self.context = context
     }
 
+    private let imageFilterStore = ImageFilterStore.shared
     private let ciContext = CIContext()
-    
-    @Published private(set) var availableFilters: [String] = [
-        "CIGaussianBlur",
-        "CIBoxBlur",
-        "CISepiaTone",
-        "CIVignette",
-        "CIBumpDistortion",
-        "CIMultiplyBlendMode",
-        "CILinearGradient"
-    ]
-    @Published var selectedFilter: String = "" {
+
+    @Published private(set) var availableFilters: [ImageFilter.Category: [ImageFilter]] = [:]
+    @Published var selectedFilter: ImageFilter = .empty {
         didSet {
             // フィルタを変えてもinputImageは継承
             let inputImage = ciFilter?.inputImage
-            ciFilter = CIFilter(name: selectedFilter)
+            ciFilter = CIFilter(name: selectedFilter.name)
             ciFilter?.inputImage = inputImage
         }
     }
@@ -86,7 +79,16 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
 
     func prepare() async {
         do {
-            selectedFilter = availableFilters[0]
+            availableFilters = .init(
+                grouping: await imageFilterStore.imageFilters(),
+                by: { $0.category }
+            )
+            if
+                let blurFilters = availableFilters[.blur],
+                let blurFilter = blurFilters.first
+            {
+                selectedFilter = blurFilter
+            }
             
             if
                 case .inputImage(let inputImage) = context,
@@ -117,6 +119,7 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         case "CIImage":
             return .image
         default:
+            print("Unknown type: \(inputAttributes.klass)")
             return nil
         }
     }

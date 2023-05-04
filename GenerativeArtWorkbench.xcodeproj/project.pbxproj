@@ -57,6 +57,8 @@
 		B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */; };
 		B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E729FDBECE002B95A4 /* AssetStore.swift */; };
 		B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E929FDBF33002B95A4 /* Asset.swift */; };
+		B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */; };
+		B1FC89EF2A045719002B95A4 /* ImageFilterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +113,8 @@
 		B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsPresenter.swift; sourceTree = "<group>"; };
 		B1FC89E729FDBECE002B95A4 /* AssetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
 		B1FC89E929FDBF33002B95A4 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
+		B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +227,7 @@
 				B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */,
 				B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */,
 				B1FC89E729FDBECE002B95A4 /* AssetStore.swift */,
+				B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */,
 				B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */,
 				B1FC89E929FDBF33002B95A4 /* Asset.swift */,
+				B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
+				B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
@@ -453,6 +460,7 @@
 				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
 				B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */,
 				B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */,
+				B1FC89EF2A045719002B95A4 /* ImageFilterStore.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
 				B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,

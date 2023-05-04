@@ -24,7 +24,7 @@ struct CoreImagePlaygroundView: View {
             VStack {
                 Group {
                     if let image = presenter.resultImage {
-                        InteractiveImage(image, title: presenter.selectedFilter) { imageView in
+                        InteractiveImage(image, title: presenter.selectedFilter.name) { imageView in
                             imageView
                                 .resizable()
                                 .scaledToFit()
@@ -38,16 +38,28 @@ struct CoreImagePlaygroundView: View {
                 .cornerRadius(8)
                 Form {
                     Section {
-                        Picker("Filter", selection: $presenter.selectedFilter, content: {
-                            ForEach(presenter.availableFilters, id: \.self) { filter in
-                                Text(filter)
-                                    .tag(filter)
+                        HStack {
+                            Text("Filter")
+                            Menu {
+                                ForEach(ImageFilter.Category.allCases, id: \.self) { category in
+                                    if let filters = presenter.availableFilters[category] {
+                                        Menu(category.ciCategory) {
+                                            ForEach(filters) { filter in
+                                                Button(filter.name) { presenter.selectedFilter = filter }
+                                            }
+                                        }
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text(presenter.selectedFilter.name)
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .font(.footnote)
+                                }
+                                .foregroundColor(.secondaryLabel)
                             }
-                        })
-//                        Button(action: { presenter.openModelDirectory() }, label: {
-//                            Image(systemName: "folder.fill")
-//                        })
-//                        .buttonStyle(BorderlessButtonStyle())
+                        }
                     }
                     Section("Input") {
                         ForEach(presenter.inputAttributes) { attributes in
