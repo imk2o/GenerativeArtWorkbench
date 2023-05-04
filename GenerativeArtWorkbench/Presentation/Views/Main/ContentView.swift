@@ -20,30 +20,30 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView(
             sidebar: {
-                List(selection: $selectedPlayground) {
-                    Section("Scripts") {
-                        Text("FIXME")
-                    }
-                    Section("Playgrounds") {
-                        ImageDropNavigationLink(
-                            title: "Core Image",
-                            value: Playground.coreImage(.new)
-                        ) {
-                            selectedPlayground = .coreImage(.inputImage($0))
+                VStack {
+                    List(selection: $selectedPlayground) {
+                        Section("Scripts") {
+                            Text("FIXME")
                         }
-                        ImageDropNavigationLink(
-                            title: "Vision",
-                            value: Playground.vision(.new)
-                        ) {
-                            selectedPlayground = .vision(.inputImage($0))
+                        Section("Playgrounds") {
+                            ImageDropNavigationLink(
+                                title: "Core Image",
+                                value: Playground.coreImage(.new)
+                            ) {
+                                selectedPlayground = .coreImage(.inputImage($0))
+                            }
+                            ImageDropNavigationLink(
+                                title: "Vision",
+                                value: Playground.vision(.new)
+                            ) {
+                                selectedPlayground = .vision(.inputImage($0))
+                            }
+                            NavigationLink("Diffusion", value: Playground.diffusion)
                         }
-                        NavigationLink("Diffusion", value: Playground.diffusion)
                     }
-                    Section("Assets") {
-                        AssetsView()
-                    }
+                    .listStyle(.sidebar)
+                    AssetsView()
                 }
-                .listStyle(.sidebar)
                 .navigationSplitViewColumnWidth(240)
             },
             detail: {

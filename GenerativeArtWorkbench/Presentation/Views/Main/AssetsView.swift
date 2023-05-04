@@ -12,22 +12,38 @@ struct AssetsView: View {
     @State private var droppedImage: CGImage?
 
     var body: some View {
-        Group {
-            if presenter.assets.isEmpty {
-                Text("Drop here")
-                    .foregroundColor(.secondaryLabel)
-                    .frame(height: 200)
-            } else {
-                assetsGrid()
+        VStack {
+            HStack {
+                Text("Assets")
+                Spacer()
+                Button(
+                    action: { Task { await presenter.browseAssetsFolder() } },
+                    label: { Image(systemName: "folder.fill") }
+                )
+                .buttonStyle(BorderlessButtonStyle())
+            }
+            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+            .background(Color.secondarySystemBackground)
+            ScrollView {
+                Group {
+                    if presenter.assets.isEmpty {
+                        Text("Drop here")
+                            .foregroundColor(.secondaryLabel)
+                            .frame(height: 200)
+                    } else {
+                        assetsGrid()
+                            .padding()
+                    }
+                }
+            }
+            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
+            .onChange(of: droppedImage) { image in
+                if let image {
+                    Task { await presenter.add(image: image) }
+                }
             }
         }
         .task { await presenter.prepare() }
-        .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
-        .onChange(of: droppedImage) { image in
-            if let image {
-                Task { await presenter.add(image: image) }
-            }
-        }
     }
     
     private func assetsGrid() -> some View {
@@ -37,13 +53,14 @@ struct AssetsView: View {
                     image
                         .resizable()
                         .scaledToFill()
-                        .onDrag { presenter.dragItem(for: asset) }
+//                        .draggable(image)
                 } placeholder: {
                     Rectangle()
                         .foregroundColor(Color.gray)
                 }
                 .aspectRatio(.init(width: 1, height: 1), contentMode: .fill)
                 .cornerRadius(4)
+                .onDrag { presenter.dragItem(for: asset) }
             }
         }
     }

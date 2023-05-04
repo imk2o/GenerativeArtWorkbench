@@ -48,4 +48,8 @@ final class AssetsPresenter: ObservableObject {
             typeIdentifier: UTType.png.identifier
         )
     }
+    
+    func browseAssetsFolder() async {
+        openDirectory(url: assetStore.baseURL)
+    }
 }
