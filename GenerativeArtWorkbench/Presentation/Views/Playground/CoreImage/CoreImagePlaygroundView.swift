@@ -63,31 +63,7 @@ struct CoreImagePlaygroundView: View {
                     }
                     Section("Input") {
                         ForEach(presenter.inputAttributes) { attributes in
-                            if let inputValueType = presenter.inputValueType(for: attributes) {
-                                switch inputValueType {
-                                case .number:
-                                    FormSlider(
-                                        title: attributes.displayName,
-                                        value: presenter.inputNumberBinding(for: attributes.key),
-                                        in: presenter.inputRange(for: attributes),
-                                        step: presenter.inputPreferredStep(for: attributes)
-                                    )
-                                case .color:
-                                    FormColorPicker(
-                                        title: attributes.displayName,
-                                        color: presenter.inputColorBinding(for: attributes)
-                                    )
-                                case .vector:
-                                    FormVectorField(
-                                        title: attributes.displayName,
-                                        vector: presenter.inputVectorBinding(for: attributes)
-                                    )
-                                case .image:
-                                    FormImagePicker(
-                                        image: presenter.inputImageBinding(for: attributes)
-                                    )
-                                }
-                            }
+                            inputField(for: attributes)
                         }
                     }
                 }
@@ -109,5 +85,57 @@ struct CoreImagePlaygroundView: View {
             .toolbarRole(.editor)
         }
         .onAppear { Task { await presenter.prepare() } }
+    }
+    
+    private func inputField(for attributes: CIFilter.InputAttributes) -> some View {
+        Group {
+            switch presenter.inputValueType(for: attributes) {
+            case .number:
+                FormSlider(
+                    title: attributes.displayName,
+                    value: presenter.inputNumberBinding(for: attributes.key),
+                    in: presenter.inputRange(for: attributes),
+                    step: presenter.inputPreferredStep(for: attributes)
+                )
+            case .color:
+                FormColorPicker(
+                    title: attributes.displayName,
+                    color: presenter.inputColorBinding(for: attributes)
+                )
+            case .vector:
+                FormVectorField(
+                    title: attributes.displayName,
+                    vector: presenter.inputVectorBinding(for: attributes)
+                )
+            case .image:
+                FormImagePicker(
+                    title: attributes.displayName,
+                    image: presenter.inputImageBinding(for: attributes)
+                )
+            case .string:
+                FormTextField(
+                    title: attributes.displayName,
+                    text: Binding(
+                        get: { presenter.inputString(for: attributes) },
+                        set: { presenter.setInputString($0, for: attributes) }
+                    )
+                )
+            case .matrix:
+                FormMatrixField(
+                    title: attributes.displayName,
+                    matrix: Binding(
+                        get: { presenter.inputMatrix(for: attributes) },
+                        set: { presenter.setInputMatrix($0, for: attributes) }
+                    )
+                )
+            case .unknown(let type):
+                HStack {
+                    Text(type)
+                    Spacer()
+                    Text("(Unknown type: \(type))")
+                        .foregroundColor(.secondaryLabel)
+                }
+            }
+        }
     }
 }

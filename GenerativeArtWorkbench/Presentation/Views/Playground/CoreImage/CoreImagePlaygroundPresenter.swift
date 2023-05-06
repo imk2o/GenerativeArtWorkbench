@@ -106,9 +106,12 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         case vector
         case color
         case image
+        case string
+        case matrix
+        case unknown(type: String)
     }
     
-    func inputValueType(for inputAttributes: CIFilter.InputAttributes) -> InputValueType? {
+    func inputValueType(for inputAttributes: CIFilter.InputAttributes) -> InputValueType {
         switch inputAttributes.klass {
         case "NSNumber":
             return .number
@@ -118,9 +121,12 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             return .color
         case "CIImage":
             return .image
+        case "NSString":
+            return .string
+        case "NSAffineTransform":
+            return .matrix
         default:
-            print("Unknown type: \(inputAttributes.klass)")
-            return nil
+            return .unknown(type: inputAttributes.klass)
         }
     }
 
@@ -214,6 +220,26 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             get: { [self] in inputImage(for: attributes) },
             set: { [self] in setInputImage($0, for: attributes) }
         )
+    }
+
+    func inputString(for attributes: CIFilter.InputAttributes) -> String {
+        return ciFilter?.safeValue(forKey: attributes.key) as? String ?? ""
+    }
+
+    func setInputString(_ string: String, for attributes: CIFilter.InputAttributes) {
+        objectWillChange.send()
+        ciFilter?.setSafeValue(string, forKey: attributes.key)
+    }
+
+    func inputMatrix(for attributes: CIFilter.InputAttributes) -> Matrix3 {
+        guard let transform = ciFilter?.safeValue(forKey: attributes.key) as? CGAffineTransform else { return .identity }
+        
+        return .init(transform)
+    }
+
+    func setInputMatrix(_ matrix: Matrix3, for attributes: CIFilter.InputAttributes) {
+        objectWillChange.send()
+        ciFilter?.setSafeValue(CGAffineTransform(matrix), forKey: attributes.key)
     }
 
     func run() async {
