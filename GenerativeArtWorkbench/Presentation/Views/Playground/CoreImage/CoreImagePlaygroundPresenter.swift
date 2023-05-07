@@ -57,6 +57,8 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     private let ciContext = CIContext()
 
     @Published private(set) var availableFilters: [ImageFilter.Category: [ImageFilter]] = [:]
+
+    // Input
     @Published var selectedFilter: ImageFilter = .empty {
         didSet {
             // フィルタを変えてもinputImageは継承
@@ -75,8 +77,14 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
     @Published private(set) var inputAttributes: [CIFilter.InputAttributes] = []
     
-    @Published private(set) var resultImage: CGImage?
+    // Option
+    @Published var clampedToExtent = true
+    @Published var extent: CGRect = .init(x: 0, y: 0, width: 400, height: 400)
+    @Published var isLiveUpdateEnabled = true
 
+    // Output
+    @Published private(set) var resultImage: CGImage?
+    
     func prepare() async {
         do {
             availableFilters = .init(
@@ -85,7 +93,7 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             )
             if
                 let blurFilters = availableFilters[.blur],
-                let blurFilter = blurFilters.first
+                let blurFilter = blurFilters.first(where: { $0.name == "CIGaussianBlur" })
             {
                 selectedFilter = blurFilter
             }
@@ -160,8 +168,9 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputNumber(_ value: CGFloat, for key: String) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(value, forKey: key)
+        updateInputValue {
+            ciFilter?.setSafeValue(value, forKey: key)
+        }
     }
 
     func inputNumberBinding(for key: String) -> Binding<CGFloat> {
@@ -177,8 +186,9 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputVector(_ vector: Vector4, for attributes: CIFilter.InputAttributes) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(CIVector(vector), forKey: attributes.key)
+        updateInputValue {
+            ciFilter?.setSafeValue(CIVector(vector), forKey: attributes.key)
+        }
     }
     
     func inputVectorBinding(for attributes: CIFilter.InputAttributes) -> Binding<Vector4> {
@@ -194,8 +204,9 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputColor(_ color: ColorRGB, for attributes: CIFilter.InputAttributes) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(CIColor(color), forKey: attributes.key)
+        updateInputValue {
+            ciFilter?.setSafeValue(CIColor(color), forKey: attributes.key)
+        }
     }
     
     func inputColorBinding(for attributes: CIFilter.InputAttributes) -> Binding<ColorRGB> {
@@ -211,8 +222,16 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputImage(_ image: CGImage?, for attributes: CIFilter.InputAttributes) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(image.flatMap(CIImage.init), forKey: attributes.key)
+        updateInputValue {
+            ciFilter?.setSafeValue(image.flatMap(CIImage.init), forKey: attributes.key)
+            // 入力画像の大きさをextentに反映
+            if
+                let image,
+                attributes.key == kCIInputImageKey
+            {
+                extent = .init(x: 0, y: 0, width: image.width, height: image.height)
+            }
+        }
     }
     
     func inputImageBinding(for attributes: CIFilter.InputAttributes) -> Binding<CGImage?> {
@@ -227,8 +246,9 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputString(_ string: String, for attributes: CIFilter.InputAttributes) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(string, forKey: attributes.key)
+        updateInputValue {
+            ciFilter?.setSafeValue(string, forKey: attributes.key)
+        }
     }
 
     func inputMatrix(for attributes: CIFilter.InputAttributes) -> Matrix3 {
@@ -238,21 +258,31 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
 
     func setInputMatrix(_ matrix: Matrix3, for attributes: CIFilter.InputAttributes) {
-        objectWillChange.send()
-        ciFilter?.setSafeValue(CGAffineTransform(matrix), forKey: attributes.key)
+        updateInputValue {
+            ciFilter?.setSafeValue(CGAffineTransform(matrix), forKey: attributes.key)
+        }
     }
 
     func run() async {
-        guard
-            let ciFilter,
-            let outputImage = ciFilter.outputImage
-        else { return }
+        // clampedToExtent差し込み破壊する場合があるため、コピーを使う
+        guard let filter = ciFilter?.copy() as? CIFilter else { return }
+        if clampedToExtent {
+            filter.inputImage = filter.inputImage?.clampedToExtent()
+        }
+        guard let outputImage = filter.outputImage else { return }
 
         do {
-            let rect = ciFilter.inputImage?.extent ?? CGRect(x: 0, y: 0, width: 512, height: 512)
-            resultImage = ciContext.createCGImage(outputImage, from: rect)
+            resultImage = ciContext.createCGImage(outputImage, from: extent)
         } catch {
             dump(error)
+        }
+    }
+    
+    private func updateInputValue(updater: () -> Void) {
+        objectWillChange.send()
+        updater()
+        if isLiveUpdateEnabled {
+            Task { await run() }
         }
     }
 }

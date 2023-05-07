@@ -66,6 +66,25 @@ struct CoreImagePlaygroundView: View {
                             inputField(for: attributes)
                         }
                     }
+                    Section("Option") {
+                        HStack {
+                            Text("Extent")
+                            Spacer()
+                            Text("x:")
+                            TextField("X", value: $presenter.extent.origin.x, formatter: NumberFormatter())
+                                .frame(maxWidth: 80)
+                            Text("y:")
+                            TextField("Y", value: $presenter.extent.origin.y, formatter: NumberFormatter())
+                                .frame(maxWidth: 80)
+                            Text("w:")
+                            TextField("W", value: $presenter.extent.size.width, formatter: NumberFormatter())
+                                .frame(maxWidth: 80)
+                            Text("h:")
+                            TextField("H", value: $presenter.extent.size.height, formatter: NumberFormatter())
+                                .frame(maxWidth: 80)
+                        }
+                        Toggle("Clamped to extent", isOn: $presenter.clampedToExtent)
+                    }
                 }
             }
             .navigationTitle("Core Image")
@@ -80,6 +99,8 @@ struct CoreImagePlaygroundView: View {
                             Image(systemName: "play.fill")
                         }
                     )
+                    Toggle("Live", isOn: $presenter.isLiveUpdateEnabled)
+                        .toggleStyle(.switch)
                 }
             }
             .toolbarRole(.editor)
