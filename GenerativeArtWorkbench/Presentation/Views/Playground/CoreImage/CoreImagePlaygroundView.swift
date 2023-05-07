@@ -114,24 +114,36 @@ struct CoreImagePlaygroundView: View {
             case .number:
                 FormSlider(
                     title: attributes.displayName,
-                    value: presenter.inputNumberBinding(for: attributes.key),
+                    value: Binding(
+                        get: { presenter.inputNumber(for: attributes) },
+                        set: { presenter.setInputNumber($0, for: attributes) }
+                    ),
                     in: presenter.inputRange(for: attributes),
                     step: presenter.inputPreferredStep(for: attributes)
                 )
             case .color:
                 FormColorPicker(
                     title: attributes.displayName,
-                    color: presenter.inputColorBinding(for: attributes)
+                    color: Binding(
+                        get: { presenter.inputColor(for: attributes) },
+                        set: { presenter.setInputColor($0, for: attributes) }
+                    )
                 )
             case .vector:
                 FormVectorField(
                     title: attributes.displayName,
-                    vector: presenter.inputVectorBinding(for: attributes)
+                    vector: Binding(
+                        get: { presenter.inputVector(for: attributes) },
+                        set: { presenter.setInputVector($0, for: attributes) }
+                    )
                 )
             case .image:
                 FormImagePicker(
                     title: attributes.displayName,
-                    image: presenter.inputImageBinding(for: attributes)
+                    image: Binding(
+                        get: { presenter.inputImage(for: attributes) },
+                        set: { presenter.setInputImage($0, for: attributes) }
+                    )
                 )
             case .string:
                 FormTextField(
