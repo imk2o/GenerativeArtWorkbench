@@ -2,7 +2,9 @@
 
 ## Core Image
 
-> Under construction
+A workbench of [Core Image](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/uid/TP40004346).
+
+> Some input parameter types are not supported.
 
 ## Diffusion
 

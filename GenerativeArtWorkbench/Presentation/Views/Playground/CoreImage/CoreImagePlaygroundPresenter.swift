@@ -163,21 +163,14 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         return 0
     }
 
-    func inputNumber(for key: String) -> CGFloat {
-        return (ciFilter?.safeValue(forKey: key) as? CGFloat) ?? 0
+    func inputNumber(for attributes: CIFilter.InputAttributes) -> CGFloat {
+        return (ciFilter?.safeValue(forKey: attributes.key) as? CGFloat) ?? 0
     }
 
-    func setInputNumber(_ value: CGFloat, for key: String) {
+    func setInputNumber(_ value: CGFloat, for attributes: CIFilter.InputAttributes) {
         updateInputValue {
-            ciFilter?.setSafeValue(value, forKey: key)
+            ciFilter?.setSafeValue(value, forKey: attributes.key)
         }
-    }
-
-    func inputNumberBinding(for key: String) -> Binding<CGFloat> {
-        return .init(
-            get: { [self] in inputNumber(for: key) },
-            set: { [self] in setInputNumber($0, for: key) }
-        )
     }
 
     func inputVector(for attributes: CIFilter.InputAttributes) -> Vector4 {
@@ -191,13 +184,6 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         }
     }
     
-    func inputVectorBinding(for attributes: CIFilter.InputAttributes) -> Binding<Vector4> {
-        return .init(
-            get: { [self] in inputVector(for: attributes) },
-            set: { [self] in setInputVector($0, for: attributes) }
-        )
-    }
-
     func inputColor(for attributes: CIFilter.InputAttributes) -> ColorRGB {
         guard let ciColor = ciFilter?.safeValue(forKey: attributes.key) as? CIColor else { return .transparent }
         return .init(ciColor)
@@ -209,13 +195,6 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         }
     }
     
-    func inputColorBinding(for attributes: CIFilter.InputAttributes) -> Binding<ColorRGB> {
-        return .init(
-            get: { [self] in inputColor(for: attributes) },
-            set: { [self] in setInputColor($0, for: attributes) }
-        )
-    }
-
     func inputImage(for attributes: CIFilter.InputAttributes) -> CGImage? {
         guard let ciImage = ciFilter?.safeValue(forKey: attributes.key) as? CIImage else { return nil }
         return ciImage.cgImage
@@ -234,13 +213,6 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
         }
     }
     
-    func inputImageBinding(for attributes: CIFilter.InputAttributes) -> Binding<CGImage?> {
-        return .init(
-            get: { [self] in inputImage(for: attributes) },
-            set: { [self] in setInputImage($0, for: attributes) }
-        )
-    }
-
     func inputString(for attributes: CIFilter.InputAttributes) -> String {
         return ciFilter?.safeValue(forKey: attributes.key) as? String ?? ""
     }
