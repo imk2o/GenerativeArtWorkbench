@@ -30,7 +30,9 @@ struct FormSlider<V>: View where V : BinaryFloatingPoint, V.Stride : BinaryFloat
             Text(title)
             Spacer()
             Slider(value: value, in: bounds, step: step)
+                .frame(maxWidth: 400)
             Text(String(format: "%g", value.wrappedValue as! CVarArg))
+                .frame(minWidth: 80, alignment: .trailing)
         }
     }
 }
