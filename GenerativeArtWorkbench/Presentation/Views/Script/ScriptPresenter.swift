@@ -100,7 +100,7 @@ final class Package: NSObject, PackageJS {
                 
                 let diffusionService = try DiffusionService(
                     directoryURL: url,
-                    configuration: configuration
+                    configuration: configuration, controlNets: []
                 )
                 let request = DiffusionRequest(
                     prompt: "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus",
