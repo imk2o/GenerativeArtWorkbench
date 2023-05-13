@@ -17,6 +17,11 @@ struct DiffusionRequest {
     let startingImageStrength: Float
     let stepCount: Int
     let guidanceScale: Float
+    struct ControlNetInput {
+        let name: String
+        let image: CGImage
+    }
+    let controlNetInputs: [ControlNetInput]
     let scheduler: StableDiffusionScheduler
     let generateProgressImage: Bool
 
@@ -28,6 +33,7 @@ struct DiffusionRequest {
         startingImageStrength: Float = 0.7,
         stepCount: Int = 20,
         guidanceScale: Float = 11,
+        controlNetInputs: [ControlNetInput] = [],
         scheduler: StableDiffusionScheduler = .dpmSolverMultistepScheduler,
         generateProgressImage: Bool = false
     ) {
@@ -38,6 +44,7 @@ struct DiffusionRequest {
         self.startingImageStrength = startingImageStrength
         self.stepCount = stepCount
         self.guidanceScale = guidanceScale
+        self.controlNetInputs = controlNetInputs
         self.scheduler = scheduler
         self.generateProgressImage = generateProgressImage
     }

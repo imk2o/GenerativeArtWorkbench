@@ -10,8 +10,8 @@ import SwiftUI
 enum Playground: Hashable {
     case script
     case coreImage(CoreImagePlaygroundView.Context)
+    case vision(VisionPlaygroundView.Context)
     case diffusion
-    case upscaling(UpscalingPlaygroundView.Context)
 }
 
 struct ContentView: View {
@@ -21,23 +21,30 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView(
             sidebar: {
-                List(selection: $selectedPlayground) {
-                    Section("Scripts") {
-                        NavigationLink("Script", value: Playground.script)
+                VStack {
+                    List(selection: $selectedPlayground) {
+                        Section("Scripts") {
+                            NavigationLink("Script", value: Playground.script)
+                        }
+                        Section("Playgrounds") {
+                            ImageDropNavigationLink(
+                                title: "Core Image",
+                                value: Playground.coreImage(.new)
+                            ) {
+                                selectedPlayground = .coreImage(.inputImage($0))
+                            }
+                            ImageDropNavigationLink(
+                                title: "Vision",
+                                value: Playground.vision(.new)
+                            ) {
+                                selectedPlayground = .vision(.inputImage($0))
+                            }
+                            NavigationLink("Diffusion", value: Playground.diffusion)
+                        }
                     }
-                    Section("Playgrounds") {
-                        ImageDropNavigationLink(
-                            title: "Core Image",
-                            value: Playground.coreImage(.new)
-                        ) { selectedPlayground = .coreImage(.inputImage($0)) }
-                        NavigationLink("Diffusion", value: Playground.diffusion)
-                        ImageDropNavigationLink(
-                            title: "Upscaling",
-                            value: Playground.upscaling(.new)
-                        ) { selectedPlayground = .upscaling(.inputImage($0)) }
-                    }
+                    .listStyle(.sidebar)
+                    AssetsView()
                 }
-                .listStyle(.sidebar)
                 .navigationSplitViewColumnWidth(240)
             },
             detail: {
@@ -50,8 +57,8 @@ struct ContentView: View {
                             CoreImagePlaygroundView(context: context)
                         case .diffusion:
                             DiffusionPlaygroundView()
-                        case .upscaling(let context):
-                            UpscalingPlaygroundView(context: context)
+                        case .vision(let context):
+                            VisionPlaygroundView(context: context)
                         }
                     } else {
                         Text("Select Playground")

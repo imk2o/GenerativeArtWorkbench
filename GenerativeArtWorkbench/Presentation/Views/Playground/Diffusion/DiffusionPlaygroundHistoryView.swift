@@ -42,7 +42,7 @@ struct DiffusionPlaygroundHistoryView: View {
                 .background(Color.secondary)
                 .cornerRadius(4)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(history.modelID)
+                    Text(history.modelConfiguration.modelID)
                         .lineLimit(1)
                         .font(.subheadline)
                         .foregroundColor(.label)

@@ -17,12 +17,16 @@ struct FormVectorField: View {
             Spacer()
             Text("x:")
             TextField("X", value: $vector.x, formatter: NumberFormatter())
+                .frame(maxWidth: 80)
             Text("y:")
             TextField("Y", value: $vector.y, formatter: NumberFormatter())
+                .frame(maxWidth: 80)
             Text("z:")
             TextField("Z", value: $vector.z, formatter: NumberFormatter())
+                .frame(maxWidth: 80)
             Text("w:")
             TextField("W", value: $vector.w, formatter: NumberFormatter())
+                .frame(maxWidth: 80)
         }
     }
 }

@@ -12,22 +12,18 @@ import StewardSwiftUI
 
 struct DiffusionPlaygroundView: View {
     @StateObject private var presenter = DiffusionPlaygroundPresenter()
-    @State private var photosPickerItem: PhotosPickerItem?
-    @State private var droppedStaringImage: CGImage?
-    @State private var previewItem: DocumentPreview.Item?
+    @State private var isSelectModelSheetPresented = false
     
     var body: some View {
         HStack {
             VStack {
-                Text(presenter.progressSummary ?? "")
                 Group {
                     if let image = presenter.previewImage {
-                        Image(image, scale: 1, label: Text("Preview"))
-                            .resizable()
-                            .scaledToFit()
-                            .onDrag { presenter.previewImageDragItem() }
-                            .onTapGesture { previewItem = .init(url: presenter.previewImageURL()) }
-                            .documentPreview($previewItem)
+                        InteractiveImage(image, title: presenter.modelConfiguration?.modelID ?? "") { imageView in
+                            imageView
+                                .resizable()
+                                .scaledToFit()
+                        }
                     } else {
                         Text("No image")
                     }
@@ -38,21 +34,19 @@ struct DiffusionPlaygroundView: View {
                 Form {
                     Section {
                         HStack {
-                            Picker("Model", selection: $presenter.selectedModel, content: {
-                                ForEach(presenter.availableModels) { model in
-                                    Text(model.name)
-                                        .tag(model)
+                            Text("Model")
+                            Spacer()
+                            Text(presenter.modelConfiguration?.modelID ?? "(Unspecified)")
+                                .foregroundColor(.secondaryLabel)
+                            Button("Select...") {
+                                isSelectModelSheetPresented = true
+                            }
+                            .buttonStyle(BorderlessButtonStyle())
+                            .sheet(isPresented: $isSelectModelSheetPresented) {
+                                DiffusionPlaygroundSelectModelSheet(presenter.modelConfiguration) {
+                                    presenter.setModelConfiguration($0)
                                 }
-                            })
-                            Button(action: { presenter.openModelDirectory() }, label: {
-                                Image(systemName: "folder.fill")
-                            })
-                            .buttonStyle(BorderlessButtonStyle())
-                            Divider()
-                            Button(action: { presenter.openSite() }, label: {
-                                Image(systemName: "globe")
-                            })
-                            .buttonStyle(BorderlessButtonStyle())
+                            }
                         }
                     }
                     Section("Prompt") {
@@ -70,73 +64,40 @@ struct DiffusionPlaygroundView: View {
                             Toggle("Random", isOn: $presenter.randomSeed)
                         }
 
-                        HStack(alignment: .center, spacing: 8) {
-                            Text("Step")
-                            Spacer()
-                            Slider(
-                                value: $presenter.stepCount.asFloat(),
-                                in: 1...50,
-                                step: 1
-                            )
-                            Text("\(presenter.stepCount)")
-                        }
-                        HStack(alignment: .center, spacing: 8) {
-                            Text("Guidance")
-                            Spacer()
-                            Slider(
-                                value: $presenter.guidanceScale,
-                                in: 0...20,
-                                step: 0.1
-                            )
-                            Text(String(format: "%.1f", presenter.guidanceScale))
-                        }
+                        FormSlider(
+                            title: "Step",
+                            value: $presenter.stepCount.asFloat(),
+                            in: 1...50,
+                            step: 1
+                        )
+                        FormSlider(
+                            title: "Guidance",
+                            value: $presenter.guidanceScale,
+                            in: 0...20,
+                            step: 0.1
+                        )
                     }
                     Section("Staring Image") {
-                        HStack(alignment: .center) {
-                            Group {
-                                if let image = presenter.startingImage {
-                                    Image(image, scale: 1, label: Text("Preview"))
-                                        .resizable()
-                                        .scaledToFit()
-                                } else {
-                                    Text("No image")
-                                }
-                            }
-                            .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedStaringImage))
-                            .onChange(of: droppedStaringImage) { image in
-                                if let image {
-                                    presenter.setStartingImage(image)
-                                }
-                            }
-                            .frame(width: 80, height: 80)
-                            .background(Color.secondary)
-                            .cornerRadius(4)
-
-                            PhotosPicker(selection: $photosPickerItem, matching: .images) {
-                                Text("Choose Image...")
-                            }
-                            .onChange(of: photosPickerItem) { item in
-                                Task {
-                                    if
-                                        let data = try? await item?.loadTransferable(type: Data.self),
-                                        let image = UIImage(data: data)?.normalized().cgImage
-                                    {
-                                        presenter.setStartingImage(image)
-                                    }
-                                }
-                            }
-                        }
-                        
-                        HStack(alignment: .center) {
-                            Text("Strength")
-                            Spacer()
-                            Slider(
-                                value: $presenter.startingImageStrength,
-                                in: 0...1,
-                                step: 0.01
-                            )
-                            Text("\(presenter.startingImageStrength)")
-                        }
+                        FormImagePicker(
+                            title: "Starting Image",
+                            image: Binding(
+                                get: { presenter.startingImage },
+                                set: { presenter.setStartingImage($0) }
+                            ),
+                            defaultSketchImage: presenter.defaultStartingImage
+                        )
+                        FormSlider(
+                            title: "Strength",
+                            value: $presenter.startingImageStrength,
+                            in: 0...1,
+                            step: 0.01
+                        )
+                    }
+                    if
+                        let modelConfiguration = presenter.modelConfiguration,
+                        !modelConfiguration.controlNets.isEmpty
+                    {
+                        controlNetSection(modelConfiguration)
                     }
                 }
             }
@@ -144,14 +105,29 @@ struct DiffusionPlaygroundView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
-                    Button(
-                        action: {
-                            Task { await presenter.run() }
-                        },
-                        label: {
-                            Image(systemName: "play.fill")
+                    if let progress = presenter.progress {
+                        Group {
+                            switch progress {
+                            case .preparing:
+                                IndeterminateCircularProgressView()
+                            case .step(let ratio):
+                                CircularProgressView(progress: ratio)
+                            case .done:
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
-                    )
+                        .frame(width: 24, height: 24)
+                    } else {
+                        Button(
+                            action: {
+                                Task { await presenter.run() }
+                            },
+                            label: {
+                                Image(systemName: "play.fill")
+                            }
+                        )
+                    }
                 }
             }
             .toolbarRole(.editor)
@@ -162,5 +138,20 @@ struct DiffusionPlaygroundView: View {
             .frame(width: 400)
         }
         .onAppear { Task { await presenter.prepare() } }
+    }
+    
+    private func controlNetSection(_ modelConfiguration: DiffusionModelConfiguration) -> some View {
+        Section("Control Net") {
+            ForEach(modelConfiguration.controlNets, id: \.self) { controlNet in
+                FormImagePicker(
+                    title: controlNet,
+                    image: Binding(
+                        get: { presenter.controlNetInputImage(for: controlNet) },
+                        set: { presenter.setControlNetInputImage($0, for: controlNet) }
+                    ),
+                    defaultSketchImage: presenter.defaultControlNetImage
+                )
+            }
+        }
     }
 }

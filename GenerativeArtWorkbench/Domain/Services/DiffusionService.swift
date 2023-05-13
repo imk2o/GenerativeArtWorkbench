@@ -31,11 +31,13 @@ final class DiffusionService {
     init(
         directoryURL: URL,
         configuration: MLModelConfiguration,
+        controlNets: [String],
         disableSafety: Bool = false,
         reduceMemory: Bool = true
     ) throws {
         pipeline = try StableDiffusionPipeline(
             resourcesAt: directoryURL,
+            controlNet: controlNets,
             configuration: configuration,
             disableSafety: disableSafety,
             reduceMemory: reduceMemory
@@ -100,6 +102,7 @@ private extension DiffusionRequest {
         configuration.stepCount = stepCount
         configuration.seed = seed
         configuration.guidanceScale = guidanceScale
+        configuration.controlNetInputs = controlNetInputs.map(\.image)
         configuration.disableSafety = true
         configuration.schedulerType = scheduler
         return configuration

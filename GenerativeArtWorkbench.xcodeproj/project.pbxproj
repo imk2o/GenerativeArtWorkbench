@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
+		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
+		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
+		B1BFF28629F0B44200185688 /* Sketch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BFF28529F0B44200185688 /* Sketch.storyboard */; };
+		B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF28B29F0B51400185688 /* SketchPresenter.swift */; };
+		B1BFF28E29F0B51400185688 /* SketchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF28C29F0B51400185688 /* SketchViewController.swift */; };
+		B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF28F29F0B57E00185688 /* SketchView.swift */; };
+		B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF29129F0B5BC00185688 /* Sketch.swift */; };
 		B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */; };
 		B1DF267329B808740047907E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267229B808740047907E /* ContentView.swift */; };
 		B1DF267529B808750047907E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267429B808750047907E /* Assets.xcassets */; };
 		B1DF267829B808750047907E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1DF267729B808750047907E /* Preview Assets.xcassets */; };
 		B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */; };
 		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
-		B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268329BA89EF0047907E /* StableDiffusion */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
-		B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */; };
-		B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */; };
 		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 		B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B429C65EDC0047907E /* UpscalingService.swift */; };
@@ -43,9 +48,32 @@
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
 		B1FB324429D655FB00364219 /* ScriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324329D655FB00364219 /* ScriptView.swift */; };
 		B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324529D6560400364219 /* ScriptPresenter.swift */; };
+		B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */; };
+		B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */; };
+		B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */; };
+		B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */; };
+		B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */; };
+		B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */; };
+		B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */; };
+		B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E329FDB705002B95A4 /* AssetsView.swift */; };
+		B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */; };
+		B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E729FDBECE002B95A4 /* AssetStore.swift */; };
+		B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89E929FDBF33002B95A4 /* Asset.swift */; };
+		B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */; };
+		B1FC89EF2A045719002B95A4 /* ImageFilterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */; };
+		B1FC89F12A07127A002B95A4 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89F02A07127A002B95A4 /* FormTextField.swift */; };
+		B1FC89F32A07189B002B95A4 /* Matrix3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89F22A07189B002B95A4 /* Matrix3.swift */; };
+		B1FC89F52A071B19002B95A4 /* FormMatrixField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89F42A071B19002B95A4 /* FormMatrixField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
+		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
+		B1BFF28529F0B44200185688 /* Sketch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sketch.storyboard; sourceTree = "<group>"; };
+		B1BFF28B29F0B51400185688 /* SketchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchPresenter.swift; sourceTree = "<group>"; };
+		B1BFF28C29F0B51400185688 /* SketchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchViewController.swift; sourceTree = "<group>"; };
+		B1BFF28F29F0B57E00185688 /* SketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchView.swift; sourceTree = "<group>"; };
+		B1BFF29129F0B5BC00185688 /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenerativeArtWorkbench.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DF267029B808740047907E /* GenerativeArtWorkbenchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerativeArtWorkbenchApp.swift; sourceTree = "<group>"; };
 		B1DF267229B808740047907E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,8 +82,6 @@
 		B1DF267E29B8CF170047907E /* DiffusionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundView.swift; sourceTree = "<group>"; };
 		B1DF268029BA89D30047907E /* DiffusionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffusionService.swift; sourceTree = "<group>"; };
 		B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundPresenter.swift; sourceTree = "<group>"; };
-		B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundView.swift; sourceTree = "<group>"; };
-		B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingPlaygroundPresenter.swift; sourceTree = "<group>"; };
 		B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDropDelegate.swift; sourceTree = "<group>"; };
 		B1DF26B429C65EDC0047907E /* UpscalingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpscalingService.swift; sourceTree = "<group>"; };
 		B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelStore.swift; sourceTree = "<group>"; };
@@ -82,6 +108,23 @@
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
 		B1FB324329D655FB00364219 /* ScriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptView.swift; sourceTree = "<group>"; };
 		B1FB324529D6560400364219 /* ScriptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPresenter.swift; sourceTree = "<group>"; };
+		B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		B1FC89D429F4BB70002B95A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundView.swift; sourceTree = "<group>"; };
+		B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundPresenter.swift; sourceTree = "<group>"; };
+		B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
+		B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModelStore.swift; sourceTree = "<group>"; };
+		B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionModel.swift; sourceTree = "<group>"; };
+		B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveImage.swift; sourceTree = "<group>"; };
+		B1FC89E329FDB705002B95A4 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsPresenter.swift; sourceTree = "<group>"; };
+		B1FC89E729FDBECE002B95A4 /* AssetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStore.swift; sourceTree = "<group>"; };
+		B1FC89E929FDBF33002B95A4 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
+		B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterStore.swift; sourceTree = "<group>"; };
+		B1FC89F02A07127A002B95A4 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		B1FC89F22A07189B002B95A4 /* Matrix3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix3.swift; sourceTree = "<group>"; };
+		B1FC89F42A071B19002B95A4 /* FormMatrixField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormMatrixField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +133,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF26BB29C732C90047907E /* Dynamic in Frameworks */,
-				B1DF268429BA89EF0047907E /* StableDiffusion in Frameworks */,
+				B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */,
 				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
@@ -99,9 +142,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1BFF28429F0B41600185688 /* Sketch */ = {
+			isa = PBXGroup;
+			children = (
+				B1BFF28529F0B44200185688 /* Sketch.storyboard */,
+				B1BFF28B29F0B51400185688 /* SketchPresenter.swift */,
+				B1BFF28C29F0B51400185688 /* SketchViewController.swift */,
+				B1BFF28F29F0B57E00185688 /* SketchView.swift */,
+				B1BFF29129F0B5BC00185688 /* Sketch.swift */,
+			);
+			path = Sketch;
+			sourceTree = "<group>";
+		};
 		B1DF266429B808730047907E = {
 			isa = PBXGroup;
 			children = (
+				B1FC89D429F4BB70002B95A4 /* README.md */,
 				B1DF266F29B808740047907E /* GenerativeArtWorkbench */,
 				B1DF266E29B808740047907E /* Products */,
 			);
@@ -152,11 +208,16 @@
 		B1DF26B029C13DCC0047907E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B1BFF28429F0B41600185688 /* Sketch */,
 				B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */,
 				B1FB323129D25C5700364219 /* FormSlider.swift */,
 				B1FB323329D25ED600364219 /* FormImagePicker.swift */,
 				B1FB323729D267E400364219 /* FormVectorField.swift */,
+				B1FC89F42A071B19002B95A4 /* FormMatrixField.swift */,
 				B1FB324029D47EF300364219 /* FormColorPicker.swift */,
+				B1FC89F02A07127A002B95A4 /* FormTextField.swift */,
+				B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */,
+				B1FC89E029F8A64B002B95A4 /* InteractiveImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -166,6 +227,7 @@
 			children = (
 				B1DF268029BA89D30047907E /* DiffusionService.swift */,
 				B1DF26B429C65EDC0047907E /* UpscalingService.swift */,
+				B1FC89DA29F5FAC7002B95A4 /* VisionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -175,6 +237,9 @@
 			children = (
 				B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */,
 				B1EDC46229C89C3A00E595E9 /* DiffusionHistoryStore.swift */,
+				B1FC89DC29F5FC97002B95A4 /* VisionModelStore.swift */,
+				B1FC89E729FDBECE002B95A4 /* AssetStore.swift */,
+				B1FC89EE2A045719002B95A4 /* ImageFilterStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -200,8 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				B1FB324229D655D800364219 /* Script */,
+				B1FC89E229FDB6F6002B95A4 /* Main */,
 				B1EDC46129C897F300E595E9 /* Playground */,
-				B1DF267229B808740047907E /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,9 +274,9 @@
 		B1EDC46129C897F300E595E9 /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				B1FC89D529F5F8B2002B95A4 /* Vision */,
 				B1FB322A29CFEA5400364219 /* CoreImage */,
 				B1FB322829CD874800364219 /* Diffusion */,
-				B1FB322929CFEA4800364219 /* Upscaling */,
 			);
 			path = Playground;
 			sourceTree = "<group>";
@@ -233,6 +298,11 @@
 				B1EDC46C29CA78F700E595E9 /* DiffusionHistory.swift */,
 				B1FB323529D2669400364219 /* Vector4.swift */,
 				B1FB323E29D47B6F00364219 /* ColorRGB.swift */,
+				B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */,
+				B1FC89DE29F5FD7F002B95A4 /* VisionModel.swift */,
+				B1FC89E929FDBF33002B95A4 /* Asset.swift */,
+				B1FC89EC2A0453D8002B95A4 /* ImageFilter.swift */,
+				B1FC89F22A07189B002B95A4 /* Matrix3.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,17 +314,9 @@
 				B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */,
 				B1FB322629CD873E00364219 /* DiffusionPlaygroundHistoryView.swift */,
 				B1EDC46429C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift */,
+				B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */,
 			);
 			path = Diffusion;
-			sourceTree = "<group>";
-		};
-		B1FB322929CFEA4800364219 /* Upscaling */ = {
-			isa = PBXGroup;
-			children = (
-				B1DF26A829C09ED10047907E /* UpscalingPlaygroundView.swift */,
-				B1DF26AA29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift */,
-			);
-			path = Upscaling;
 			sourceTree = "<group>";
 		};
 		B1FB322A29CFEA5400364219 /* CoreImage */ = {
@@ -285,6 +347,25 @@
 			path = Script;
 			sourceTree = "<group>";
 		};
+		B1FC89D529F5F8B2002B95A4 /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */,
+				B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */,
+			);
+			path = Vision;
+			sourceTree = "<group>";
+		};
+		B1FC89E229FDB6F6002B95A4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B1DF267229B808740047907E /* ContentView.swift */,
+				B1FC89E329FDB705002B95A4 /* AssetsView.swift */,
+				B1FC89E529FDBE9F002B95A4 /* AssetsPresenter.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,10 +383,10 @@
 			);
 			name = GenerativeArtWorkbench;
 			packageProductDependencies = (
-				B1DF268329BA89EF0047907E /* StableDiffusion */,
 				B1DF268829BA8B410047907E /* Steward */,
 				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
 				B1DF26BA29C732C90047907E /* Dynamic */,
+				B1BFF28229F0AEC600185688 /* StableDiffusion */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -337,10 +418,10 @@
 			);
 			mainGroup = B1DF266429B808730047907E;
 			packageReferences = (
-				B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
 				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 				B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */,
+				B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -357,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1DF267829B808750047907E /* Preview Assets.xcassets in Resources */,
+				B1BFF28629F0B44200185688 /* Sketch.storyboard in Resources */,
 				B1DF267529B808750047907E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,34 +450,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */,
+				B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */,
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
+				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
+				B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
 				B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */,
-				B1DF26AB29C09F5C0047907E /* UpscalingPlaygroundPresenter.swift in Sources */,
 				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
-				B1DF26A929C09ED10047907E /* UpscalingPlaygroundView.swift in Sources */,
+				B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
 				B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */,
+				B1FC89E129F8A64B002B95A4 /* InteractiveImage.swift in Sources */,
 				B1FB323429D25ED600364219 /* FormImagePicker.swift in Sources */,
+				B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */,
+				B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */,
+				B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */,
+				B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
+				B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1FB324429D655FB00364219 /* ScriptView.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
+				B1BFF28E29F0B51400185688 /* SketchViewController.swift in Sources */,
+				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
+				B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */,
+				B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */,
+				B1FC89EF2A045719002B95A4 /* ImageFilterStore.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
+				B1FC89F32A07189B002B95A4 /* Matrix3.swift in Sources */,
+				B1FC89E829FDBECE002B95A4 /* AssetStore.swift in Sources */,
 				B1FB322E29CFEA7D00364219 /* CoreImagePlaygroundPresenter.swift in Sources */,
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
 				B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */,
+				B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */,
+				B1FC89F12A07127A002B95A4 /* FormTextField.swift in Sources */,
 				B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */,
+				B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */,
+				B1FC89F52A071B19002B95A4 /* FormMatrixField.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
 				B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */,
 			);
@@ -609,7 +711,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+		B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
 			requirement = {
@@ -644,9 +746,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B1DF268329BA89EF0047907E /* StableDiffusion */ = {
+		B1BFF28229F0AEC600185688 /* StableDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B1DF268229BA89EF0047907E /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			package = B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
 			productName = StableDiffusion;
 		};
 		B1DF268829BA8B410047907E /* Steward */ = {
