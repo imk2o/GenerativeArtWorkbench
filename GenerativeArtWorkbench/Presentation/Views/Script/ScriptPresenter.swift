@@ -14,12 +14,20 @@ import CoreML
 final class ScriptPresenter: ObservableObject {
     
     @Published var code: String = """
-async function run() {
-  const image = await genart.diffusion()
-  message(image)
-}
-
-run()
+//async function run() {
+//  const image = await genart.diffusion()
+//  message(image)
+//}
+//
+//run()
+const gradient = genart.Filter("CILinearGradient", {});
+//const final = genart.Filter("CIColorInvert", {"inputImage": gradient.outputImage});
+const inputImage = genart.Image("image_2023-05-11_090933");
+message(inputImage);
+const final = genart.Filter("CIGaussianBlur", {"inputImage": inputImage});
+const resultImage = final.render();
+message("Result:");
+message(resultImage);
 """
     @Published var error: String = "No error"
     
@@ -75,6 +83,8 @@ import CoreML
     static func print(_ value: JSValue)
     static func bar(_ value: Double) -> JSValue
     static func diffusion() -> JSValue
+    static func Image(_ assetID: String) -> JSImage?
+    static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter?
 }
 
 final class Package: NSObject, PackageJS {
@@ -111,20 +121,17 @@ final class Package: NSObject, PackageJS {
                 
                 let image = try await diffusionService.run(request: request) { _ in true }
                 
-                resolve?.call(withArguments: [JSImage(cgImage: image)])
+                resolve?.call(withArguments: [JSImageImp(cgImage: image)])
             }
         }
     }
-}
-
-@objc protocol JSImageProtocol: NSObjectProtocol, JSExport {
-}
-
-final class JSImage: NSObject, JSImageProtocol {
-    let cgImage: CGImage
     
-    init(cgImage: CGImage) {
-        self.cgImage = cgImage
+    static func Image(_ assetID: String) -> JSImage? {
+        return JSImageImp.create(assetID)
+    }
+
+    static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter? {
+        return JSFilterImp.create(name, params)
     }
 }
 
@@ -141,7 +148,7 @@ final class ScriptContext {
 
     enum PrintMessage {
         case string(String)
-        case image(JSImage)
+        case image(JSImageImp)
     }
     @Published private(set) var printMessage: PrintMessage?
     
@@ -156,7 +163,7 @@ final class ScriptContext {
                     self.printMessage = .string(value.toString())
                 } else {
                     switch value.toObject() {
-                    case let image as JSImage:
+                    case let image as JSImageImp:
                         self.printMessage = .image(image)
                     default:
                         break

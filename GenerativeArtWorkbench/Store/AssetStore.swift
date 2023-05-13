@@ -22,10 +22,10 @@ final class AssetStore {
     private init() {
         try? fileManager.createDirectory(at: baseURL, withIntermediateDirectories: true)
         
-        Task { await load() }
+        load()
     }
 
-    private func load() async {
+    private func load() {
         guard let urls = try? fileManager.contentsOfDirectory(
             at: baseURL,
             includingPropertiesForKeys: nil,
@@ -41,6 +41,10 @@ final class AssetStore {
             }
             .map(Asset.init)
         assetsSubject.send(assets)
+    }
+    
+    func asset(for id: String) -> Asset? {
+        return assetsSubject.value.first { $0.id == id }
     }
     
     func add(image: CGImage, name: String) async throws {
