@@ -10,8 +10,6 @@ import JavaScriptCore
 import CoreImage
 
 @objc protocol JSFilter: NSObjectProtocol, JSExport {
-    static func create(_ name: String, _ params: [String: Any]?) -> JSFilter?
-    
     var outputImage: JSValue { get }
     
     func render() -> JSImage?
@@ -19,7 +17,7 @@ import CoreImage
 
 final class JSFilterImp: NSObject, JSFilter {
     let ciFilter: CIFilter
-    init(ciFilter: CIFilter) {
+    private init(ciFilter: CIFilter) {
         self.ciFilter = ciFilter
     }
     
@@ -34,8 +32,8 @@ final class JSFilterImp: NSObject, JSFilter {
         guard let ciImage = ciFilter.outputImage else { return nil }
         
         let ciContext = CIContext()	// FIXME
-//        let extent = CGRect(x: 0, y: 0, width: 2048, height: 2048)	// FIXME
-        guard let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else { return nil }
+        let extent = ciImage.extent.isInfinite ? CGRect(x: 0, y: 0, width: 400, height: 400) : ciImage.extent	// FIXME
+        guard let cgImage = ciContext.createCGImage(ciImage, from: extent) else { return nil }
 
         return JSImageImp(cgImage: cgImage)
     }
@@ -47,6 +45,10 @@ private extension Dictionary where Key == String, Value == Any {
             switch value {
             case let image as JSImageImp:
                 return CIImage(cgImage: image.cgImage)//.clampedToExtent()
+            case let vector as JSVectorImp:
+                return CIVector(vector.vector)
+            case let color as JSColorImp:
+                return CIColor(color.color)
             default:
                 return value
             }

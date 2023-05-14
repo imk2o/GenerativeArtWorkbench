@@ -51,6 +51,8 @@
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
 		B1FB324429D655FB00364219 /* ScriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324329D655FB00364219 /* ScriptView.swift */; };
 		B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324529D6560400364219 /* ScriptPresenter.swift */; };
+		B1FC21CD2A10C8CE0051FFB6 /* JSVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */; };
+		B1FC21CF2A10CD980051FFB6 /* JSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC21CE2A10CD980051FFB6 /* JSColor.swift */; };
 		B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */; };
 		B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */; };
 		B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */; };
@@ -114,6 +116,8 @@
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
 		B1FB324329D655FB00364219 /* ScriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptView.swift; sourceTree = "<group>"; };
 		B1FB324529D6560400364219 /* ScriptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPresenter.swift; sourceTree = "<group>"; };
+		B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVector.swift; sourceTree = "<group>"; };
+		B1FC21CE2A10CD980051FFB6 /* JSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSColor.swift; sourceTree = "<group>"; };
 		B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		B1FC89D429F4BB70002B95A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 			children = (
 				B107F8652A103CF100929B97 /* JSFilter.swift */,
 				B107F8672A10445600929B97 /* JSImage.swift */,
+				B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */,
+				B1FC21CE2A10CD980051FFB6 /* JSColor.swift */,
 			);
 			path = JSCore;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */,
+				B1FC21CD2A10C8CE0051FFB6 /* JSVector.swift in Sources */,
 				B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */,
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
@@ -497,6 +504,7 @@
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
 				B107F8682A10445600929B97 /* JSImage.swift in Sources */,
 				B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */,
+				B1FC21CF2A10CD980051FFB6 /* JSColor.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1FB324429D655FB00364219 /* ScriptView.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,

@@ -20,14 +20,22 @@ final class ScriptPresenter: ObservableObject {
 //}
 //
 //run()
-const gradient = genart.Filter("CILinearGradient", {});
+const gradient = genart.Filter("CILinearGradient", {
+  "inputPoint0": genart.Vector(0, 100),
+  "inputPoint1": genart.Vector(300, 200),
+  "inputColor0": genart.Color(1, 0, 0),
+  "inputColor1": genart.Color(0, 1, 0)
+});
+message(gradient.render());
+
 //const final = genart.Filter("CIColorInvert", {"inputImage": gradient.outputImage});
-const inputImage = genart.Image("image_2023-05-11_090933");
-message(inputImage);
-const final = genart.Filter("CIGaussianBlur", {"inputImage": inputImage});
-const resultImage = final.render();
-message("Result:");
-message(resultImage);
+//const inputImage = genart.Image("image_2023-05-11_090933");
+//message(inputImage);
+//const final = genart.Filter("CIGaussianBlur", {"inputImage": inputImage});
+//const resultImage = final.render();
+//message("Result:");
+//message(resultImage);
+
 """
     @Published var error: String = "No error"
     
@@ -71,6 +79,8 @@ private extension ScriptContext.PrintMessage {
         switch self {
         case .string(let string):
             return .string(string)
+        case .number(let number):
+            return .string(String(format: "%g", number))
         case .image(let image):
             return .image(image.cgImage)
         }
@@ -85,6 +95,8 @@ import CoreML
     static func diffusion() -> JSValue
     static func Image(_ assetID: String) -> JSImage?
     static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter?
+    static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector
+    static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor
 }
 
 final class Package: NSObject, PackageJS {
@@ -133,6 +145,14 @@ final class Package: NSObject, PackageJS {
     static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter? {
         return JSFilterImp.create(name, params)
     }
+    
+    static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector {
+        return JSVectorImp.create(x, y, z, w)
+    }
+    
+    static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor {
+        return JSColorImp.create(r, g, b, a)
+    }
 }
 
 final class ScriptContext {
@@ -148,6 +168,7 @@ final class ScriptContext {
 
     enum PrintMessage {
         case string(String)
+        case number(Double)
         case image(JSImageImp)
     }
     @Published private(set) var printMessage: PrintMessage?
@@ -161,6 +182,8 @@ final class ScriptContext {
             Task { @MainActor in
                 if value.isString {
                     self.printMessage = .string(value.toString())
+                } else if value.isNumber {
+                    self.printMessage = .number(value.toNumber().doubleValue)
                 } else {
                     switch value.toObject() {
                     case let image as JSImageImp:
