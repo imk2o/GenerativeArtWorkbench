@@ -10,6 +10,7 @@
 		B107F8662A103CF100929B97 /* JSFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8652A103CF100929B97 /* JSFilter.swift */; };
 		B107F8682A10445600929B97 /* JSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8672A10445600929B97 /* JSImage.swift */; };
 		B107F86A2A1045F500929B97 /* Asset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8692A1045F500929B97 /* Asset+Extension.swift */; };
+		B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322B82A15970B00232F67 /* JSMatrix.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
 		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
@@ -75,6 +76,7 @@
 		B107F8652A103CF100929B97 /* JSFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFilter.swift; sourceTree = "<group>"; };
 		B107F8672A10445600929B97 /* JSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSImage.swift; sourceTree = "<group>"; };
 		B107F8692A1045F500929B97 /* Asset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+Extension.swift"; sourceTree = "<group>"; };
+		B13322B82A15970B00232F67 /* JSMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMatrix.swift; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
 		B1BFF28529F0B44200185688 /* Sketch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sketch.storyboard; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				B107F8672A10445600929B97 /* JSImage.swift */,
 				B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */,
 				B1FC21CE2A10CD980051FFB6 /* JSColor.swift */,
+				B13322B82A15970B00232F67 /* JSMatrix.swift */,
 			);
 			path = JSCore;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */,
 				B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
+				B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
 				B107F8682A10445600929B97 /* JSImage.swift in Sources */,

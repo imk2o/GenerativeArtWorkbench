@@ -20,13 +20,21 @@ final class ScriptPresenter: ObservableObject {
 //}
 //
 //run()
-const gradient = genart.Filter("CILinearGradient", {
-  "inputPoint0": genart.Vector(0, 100),
-  "inputPoint1": genart.Vector(300, 200),
-  "inputColor0": genart.Color(1, 0, 0),
-  "inputColor1": genart.Color(0, 1, 0)
-});
-message(gradient.render());
+
+const matrix = genart.Matrix().rotated(Math.PI / 4);
+const inputImage = genart.Image("image_2023-05-11_090933");
+const final = genart.Filter("CIAffineTransform", {inputImage: inputImage, inputTransform: matrix});
+const resultImage = final.render();
+message("Result:");
+message(resultImage);
+
+//const gradient = genart.Filter("CILinearGradient", {
+//  "inputPoint0": genart.Vector(0, 100),
+//  "inputPoint1": genart.Vector(300, 200),
+//  "inputColor0": genart.Color(1, 0, 0),
+//  "inputColor1": genart.Color(0, 1, 0)
+//});
+//message(gradient.render());
 
 //const final = genart.Filter("CIColorInvert", {"inputImage": gradient.outputImage});
 //const inputImage = genart.Image("image_2023-05-11_090933");
@@ -97,6 +105,7 @@ import CoreML
     static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter?
     static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector
     static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor
+    static func Matrix() -> JSMatrix
 }
 
 final class Package: NSObject, PackageJS {
@@ -152,6 +161,10 @@ final class Package: NSObject, PackageJS {
     
     static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor {
         return JSColorImp.create(r, g, b, a)
+    }
+    
+    static func Matrix() -> JSMatrix {
+        return JSMatrixImp.create()
     }
 }
 

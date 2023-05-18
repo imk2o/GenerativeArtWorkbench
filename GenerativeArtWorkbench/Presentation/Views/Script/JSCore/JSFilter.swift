@@ -49,6 +49,8 @@ private extension Dictionary where Key == String, Value == Any {
                 return CIVector(vector.vector)
             case let color as JSColorImp:
                 return CIColor(color.color)
+            case let matrix as JSMatrixImp:
+                return CGAffineTransform(matrix.matrix)
             default:
                 return value
             }

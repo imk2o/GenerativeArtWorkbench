@@ -37,6 +37,30 @@ extension Matrix3 {
         self.m32 = transform.ty
         self.m33 = 1
     }
+    
+    static func translate(x: CGFloat, y: CGFloat) -> Self {
+        return .init(CGAffineTransform(translationX: x, y: y))
+    }
+    
+    static func rotation(angle: CGFloat) -> Self {
+        return .init(CGAffineTransform(rotationAngle: angle))
+    }
+    
+    static func scale(x: CGFloat, y: CGFloat) -> Self {
+        return .init(CGAffineTransform(scaleX: x, y: y))
+    }
+    
+    func translated(x: CGFloat, y: CGFloat) -> Self {
+        return .init(CGAffineTransform(self).translatedBy(x: x, y: y))
+    }
+    
+    func rotated(angle: CGFloat) -> Self {
+        return .init(CGAffineTransform(self).rotated(by: angle))
+    }
+    
+    func scaled(x: CGFloat, y: CGFloat) -> Self {
+        return .init(CGAffineTransform(self).scaledBy(x: x, y: y))
+    }
 }
 
 extension CGAffineTransform {
