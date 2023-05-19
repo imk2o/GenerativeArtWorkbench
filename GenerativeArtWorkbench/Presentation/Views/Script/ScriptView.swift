@@ -50,9 +50,12 @@ struct ScriptView: View {
                 case .string(let string):
                     Text(string)
                 case .image(let image):
-                    Image(image, scale: 1, label: Text(""))
-                        .resizable()
-                        .frame(width: 200, height: 200)
+                    HStack {
+                        Image(image, scale: 1, label: Text(""))
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                        Text("\(image.width) x \(image.height)")
+                    }
                 }
             }
         }

@@ -21,12 +21,11 @@ final class ScriptPresenter: ObservableObject {
 //
 //run()
 
-const matrix = genart.Matrix().rotated(Math.PI / 4);
-const inputImage = genart.Image("image_2023-05-11_090933");
-const final = genart.Filter("CIAffineTransform", {inputImage: inputImage, inputTransform: matrix});
+const matrix = art.Matrix().rotated(Math.PI / 4);
+const inputImage = art.Image("image_2023-05-11_090933");
+const final = art.Filter("CIAffineTransform", {inputImage: inputImage, inputTransform: matrix});
 const resultImage = final.render();
-message("Result:");
-message(resultImage);
+inspect(resultImage);
 
 //const gradient = genart.Filter("CILinearGradient", {
 //  "inputPoint0": genart.Vector(0, 100),
@@ -34,15 +33,15 @@ message(resultImage);
 //  "inputColor0": genart.Color(1, 0, 0),
 //  "inputColor1": genart.Color(0, 1, 0)
 //});
-//message(gradient.render());
+//inspect(gradient.render());
 
 //const final = genart.Filter("CIColorInvert", {"inputImage": gradient.outputImage});
 //const inputImage = genart.Image("image_2023-05-11_090933");
-//message(inputImage);
+//inspect(inputImage);
 //const final = genart.Filter("CIGaussianBlur", {"inputImage": inputImage});
 //const resultImage = final.render();
-//message("Result:");
-//message(resultImage);
+//inspect("Result:");
+//inspect(resultImage);
 
 """
     @Published var error: String = "No error"
@@ -65,7 +64,7 @@ message(resultImage);
     func run() async {
         do {
             let context = ScriptContext()
-            context.$printMessage
+            context.$inspectObject
                 .sink { message in
                     if let message {
                         self.logs.append(message.toLog())
@@ -82,7 +81,7 @@ message(resultImage);
     }
 }
 
-private extension ScriptContext.PrintMessage {
+private extension ScriptContext.InspectObject {
     func toLog() -> ScriptPresenter.Log {
         switch self {
         case .string(let string):
@@ -91,131 +90,6 @@ private extension ScriptContext.PrintMessage {
             return .string(String(format: "%g", number))
         case .image(let image):
             return .image(image.cgImage)
-        }
-    }
-}
-import JavaScriptCore
-import CoreML
-
-@objc protocol PackageJS: NSObjectProtocol, JSExport {
-    static func print(_ value: JSValue)
-    static func bar(_ value: Double) -> JSValue
-    static func diffusion() -> JSValue
-    static func Image(_ assetID: String) -> JSImage?
-    static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter?
-    static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector
-    static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor
-    static func Matrix() -> JSMatrix
-}
-
-final class Package: NSObject, PackageJS {
-    static func print(_ value: JSValue) {
-        Swift.print(value.description)
-    }
-
-    static func bar(_ value: Double) -> JSValue {
-        .init(newPromiseIn: JSContext.current()) { resolve, reject in
-            resolve?.call(withArguments: [value * 10])
-        }
-    }
-
-    static func diffusion() -> JSValue {
-        .init(newPromiseIn: JSContext.current()) { resolve, reject in
-            Task {
-                guard let url = await DiffusionModelStore.shared.urls().first else {
-                    reject?.call(withArguments: [])
-                    return
-                }
-                let configuration = MLModelConfiguration()
-                configuration.computeUnits = .cpuAndNeuralEngine
-                
-                let diffusionService = try DiffusionService(
-                    directoryURL: url,
-                    configuration: configuration, controlNets: []
-                )
-                let request = DiffusionRequest(
-                    prompt: "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus",
-                    negativePrompt: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name",
-                    stepCount: 10,
-                    guidanceScale: 11
-                )
-                
-                let image = try await diffusionService.run(request: request) { _ in true }
-                
-                resolve?.call(withArguments: [JSImageImp(cgImage: image)])
-            }
-        }
-    }
-    
-    static func Image(_ assetID: String) -> JSImage? {
-        return JSImageImp.create(assetID)
-    }
-
-    static func Filter(_ name: String, _ params: [String: Any]?) -> JSFilter? {
-        return JSFilterImp.create(name, params)
-    }
-    
-    static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector {
-        return JSVectorImp.create(x, y, z, w)
-    }
-    
-    static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor {
-        return JSColorImp.create(r, g, b, a)
-    }
-    
-    static func Matrix() -> JSMatrix {
-        return JSMatrixImp.create()
-    }
-}
-
-final class ScriptContext {
-    struct Exception: Error {
-        let message: String
-        let line: Int
-        
-        init(_ exception: JSValue) {
-            self.message = exception.toString() ?? "Unknonw error"
-            self.line = exception.toDictionary()["line"] as? Int ?? 0
-        }
-    }
-
-    enum PrintMessage {
-        case string(String)
-        case number(Double)
-        case image(JSImageImp)
-    }
-    @Published private(set) var printMessage: PrintMessage?
-    
-    private let jsContext: JSContext
-
-    init() {
-        self.jsContext = JSContext()
-        // FIXME: export
-        let message: @convention(block) (JSValue) -> Void = { value in
-            Task { @MainActor in
-                if value.isString {
-                    self.printMessage = .string(value.toString())
-                } else if value.isNumber {
-                    self.printMessage = .number(value.toNumber().doubleValue)
-                } else {
-                    switch value.toObject() {
-                    case let image as JSImageImp:
-                        self.printMessage = .image(image)
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-        jsContext.setObject(message, forKeyedSubscript: "message" as NSString)
-        
-        jsContext.setObject(Package.self, forKeyedSubscript: "genart" as NSString)
-    }
-    
-    func run(code: String) throws {
-        jsContext.evaluateScript(code)
-        if let exception = jsContext.exception {
-            throw Exception(exception)
         }
     }
 }
