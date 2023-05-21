@@ -14,18 +14,20 @@ import CoreML
 final class ScriptPresenter: ObservableObject {
     
     @Published var code: String = """
-//async function run() {
-//  const image = await genart.diffusion()
-//  message(image)
-//}
-//
-//run()
+async function run() {
+  const vision = await art.Vision("anime2sketch");
+  const inputImage = art.Image("image_2023-05-11_090933");
+  inspect(inputImage);
+  const outputImage = await vision.perform(inputImage);
+  inspect(outputImage);
+}
+run()
 
-const matrix = art.Matrix().rotated(Math.PI / 4);
-const inputImage = art.Image("image_2023-05-11_090933");
-const final = art.Filter("CIAffineTransform", {inputImage: inputImage, inputTransform: matrix});
-const resultImage = final.render();
-inspect(resultImage);
+//const matrix = art.Matrix().rotated(Math.PI / 4);
+//const inputImage = art.Image("image_2023-05-11_090933");
+//const final = art.Filter("CIAffineTransform", {inputImage: inputImage, inputTransform: matrix});
+//const resultImage = final.render();
+//inspect(resultImage);
 
 //const gradient = genart.Filter("CILinearGradient", {
 //  "inputPoint0": genart.Vector(0, 100),

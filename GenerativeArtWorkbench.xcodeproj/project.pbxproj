@@ -13,6 +13,7 @@
 		B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322B82A15970B00232F67 /* JSMatrix.swift */; };
 		B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BA2A16ED4100232F67 /* JSPackage.swift */; };
 		B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BC2A16EF3C00232F67 /* ScriptContext.swift */; };
+		B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13E0AF62A199A4F0014B839 /* JSVision.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
 		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
@@ -81,6 +82,7 @@
 		B13322B82A15970B00232F67 /* JSMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMatrix.swift; sourceTree = "<group>"; };
 		B13322BA2A16ED4100232F67 /* JSPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPackage.swift; sourceTree = "<group>"; };
 		B13322BC2A16EF3C00232F67 /* ScriptContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptContext.swift; sourceTree = "<group>"; };
+		B13E0AF62A199A4F0014B839 /* JSVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVision.swift; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
 		B1BFF28529F0B44200185688 /* Sketch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sketch.storyboard; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				B1FC21CE2A10CD980051FFB6 /* JSColor.swift */,
 				B13322B82A15970B00232F67 /* JSMatrix.swift */,
 				B13322BA2A16ED4100232F67 /* JSPackage.swift */,
+				B13E0AF62A199A4F0014B839 /* JSVision.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
+				B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */,
 				B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,

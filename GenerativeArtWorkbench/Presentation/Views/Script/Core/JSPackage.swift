@@ -16,6 +16,7 @@ import JavaScriptCore
     static func Vector(_ x: CGFloat, _ y: CGFloat, _ z: CGFloat, _ w: CGFloat) -> JSVector
     static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor
     static func Matrix() -> JSMatrix
+    static func Vision(_ modelID: String) -> JSValue
 }
 
 final class JSPackageImp: NSObject, JSPackage {
@@ -72,5 +73,8 @@ final class JSPackageImp: NSObject, JSPackage {
     static func Matrix() -> JSMatrix {
         return JSMatrixImp.create()
     }
+    
+    static func Vision(_ modelID: String) -> JSValue {
+        return JSVision.create(modelID)
+    }
 }
-
