@@ -11,11 +11,16 @@ import JavaScriptCore
 final class ScriptContext {
     struct Exception: Error {
         let message: String
-        let line: Int
+        let line: Int?
+        
+        init(message: String, line: Int?) {
+            self.message = message
+            self.line = line
+        }
         
         init(_ exception: JSValue) {
             self.message = exception.toString() ?? "Unknown error"
-            self.line = exception.toDictionary()["line"] as? Int ?? 0
+            self.line = exception.toDictionary()["line"] as? Int
         }
     }
 
@@ -66,5 +71,10 @@ final class ScriptContext {
         jsContext.setObject(inspect, forKeyedSubscript: "inspect" as NSString)
         // art
         jsContext.setObject(JSPackageImp.self, forKeyedSubscript: "art" as NSString)
+        
+//        jsContext.exceptionHandler = { context, exception in
+//            let errorDescription = exception.flatMap { $0.toString() } ?? "unknown"
+//            NSLog("JSCoreImage Error: \(errorDescription)")
+//        }
     }
 }

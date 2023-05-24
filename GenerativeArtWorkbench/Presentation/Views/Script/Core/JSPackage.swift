@@ -17,6 +17,7 @@ import JavaScriptCore
     static func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat, _ a: CGFloat) -> JSColor
     static func Matrix() -> JSMatrix
     static func Vision(_ modelID: String) -> JSValue
+    static func Diffusion(_ modelID: String, _ params: [String: Any]?) -> JSValue
 }
 
 final class JSPackageImp: NSObject, JSPackage {
@@ -76,5 +77,9 @@ final class JSPackageImp: NSObject, JSPackage {
     
     static func Vision(_ modelID: String) -> JSValue {
         return JSVision.create(modelID)
+    }
+    
+    static func Diffusion(_ modelID: String, _ params: [String: Any]?) -> JSValue {
+        return JSDiffusion.create(modelID, params)
     }
 }

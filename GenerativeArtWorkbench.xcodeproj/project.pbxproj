@@ -13,6 +13,7 @@
 		B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322B82A15970B00232F67 /* JSMatrix.swift */; };
 		B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BA2A16ED4100232F67 /* JSPackage.swift */; };
 		B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BC2A16EF3C00232F67 /* ScriptContext.swift */; };
+		B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13560482A1C362A00125678 /* JSDiffusion.swift */; };
 		B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13E0AF62A199A4F0014B839 /* JSVision.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
@@ -82,6 +83,7 @@
 		B13322B82A15970B00232F67 /* JSMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMatrix.swift; sourceTree = "<group>"; };
 		B13322BA2A16ED4100232F67 /* JSPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPackage.swift; sourceTree = "<group>"; };
 		B13322BC2A16EF3C00232F67 /* ScriptContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptContext.swift; sourceTree = "<group>"; };
+		B13560482A1C362A00125678 /* JSDiffusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDiffusion.swift; sourceTree = "<group>"; };
 		B13E0AF62A199A4F0014B839 /* JSVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVision.swift; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				B13322B82A15970B00232F67 /* JSMatrix.swift */,
 				B13322BA2A16ED4100232F67 /* JSPackage.swift */,
 				B13E0AF62A199A4F0014B839 /* JSVision.swift */,
+				B13560482A1C362A00125678 /* JSDiffusion.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				B107F8682A10445600929B97 /* JSImage.swift in Sources */,
 				B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */,
 				B1FC21CF2A10CD980051FFB6 /* JSColor.swift in Sources */,
+				B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
 				B1FB324429D655FB00364219 /* ScriptView.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,

@@ -15,13 +15,40 @@ final class ScriptPresenter: ObservableObject {
     
     @Published var code: String = """
 async function run() {
-  const vision = await art.Vision("anime2sketch");
-  const inputImage = art.Image("image_2023-05-11_090933");
-  inspect(inputImage);
-  const outputImage = await vision.perform(inputImage);
-  inspect(outputImage);
+  try {
+    const diffusion = await art.Diffusion(
+      "anything-v3.0-controlnet",
+      {controlNets: ["LllyasvielSdControlnetCanny"]}
+    );
+
+    const cannyInputImage = art.Image("image_2023-05-11_085046");
+
+    const outputImage = await diffusion.perform(
+      {
+        prompt: "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus",
+        nagativePrompt: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name",
+        stepCount: 10,
+        guidanceScale: 11,
+        controlNetInputs: [{name: "LllyasvielSdControlnetCanny", image: cannyInputImage}]
+      },
+      (progress) => { inspect(progress.image); }
+    );
+    inspect("Done");
+    inspect(outputImage);
+  } catch (error) {
+    print(error);
+  }
 }
 run()
+
+//async function run() {
+//  const vision = await art.Vision("anime2sketch");
+//  const inputImage = art.Image("image_2023-05-11_090933");
+//  inspect(inputImage);
+//  const outputImage = await vision.perform(inputImage);
+//  inspect(outputImage);
+//}
+//run()
 
 //const matrix = art.Matrix().rotated(Math.PI / 4);
 //const inputImage = art.Image("image_2023-05-11_090933");
