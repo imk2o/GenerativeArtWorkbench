@@ -49,8 +49,8 @@ final class JSDiffusion: NSObject, JSDiffusionProtocol {
                 seed: request["seed"] as? UInt32 ?? .random(in: 0...UInt32.max),
                 prompt: request["prompt"] as? String ?? "",
                 negativePrompt: request["negativePrompt"] as? String ?? "",
-                //startingImage: <#T##CGImage?#>,
-                //startingImageStrength: <#T##Float#>,
+                startingImage: (request["startingImage"] as? JSImageImp)?.cgImage,
+                startingImageStrength: request["startingImageStrength"] as? Float ?? 0.7,
                 stepCount: request["stepCount"] as? Int ?? 20,
                 guidanceScale: request["guidanceScale"] as? Float ?? 11,
                 controlNetInputs: (request["controlNetInputs"] as? [[String: Any]] ?? []).compactMap { params in
