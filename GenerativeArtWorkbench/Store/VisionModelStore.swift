@@ -23,6 +23,10 @@ final class VisionModelStore {
         return await urls().map(VisionModel.init)
     }
     
+    func model(for id: VisionModel.ID) async -> VisionModel? {
+        return await models().first { $0.id == id }
+    }
+    
     private func urls() async -> [URL] {
         return (try? fileManager.contentsOfDirectory(
             at: baseURL,

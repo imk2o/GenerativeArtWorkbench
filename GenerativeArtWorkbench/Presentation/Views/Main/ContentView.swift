@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum Playground: Hashable {
+    case script
     case coreImage(CoreImagePlaygroundView.Context)
     case vision(VisionPlaygroundView.Context)
     case diffusion
@@ -23,7 +24,7 @@ struct ContentView: View {
                 VStack {
                     List(selection: $selectedPlayground) {
                         Section("Scripts") {
-                            Text("FIXME")
+                            NavigationLink("Script", value: Playground.script)
                         }
                         Section("Playgrounds") {
                             ImageDropNavigationLink(
@@ -50,6 +51,8 @@ struct ContentView: View {
                 NavigationStack {
                     if let selectedPlayground {
                         switch selectedPlayground {
+                        case .script:
+                            ScriptView()
                         case .coreImage(let context):
                             CoreImagePlaygroundView(context: context)
                         case .diffusion:

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B107F8662A103CF100929B97 /* JSFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8652A103CF100929B97 /* JSFilter.swift */; };
+		B107F8682A10445600929B97 /* JSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8672A10445600929B97 /* JSImage.swift */; };
+		B107F86A2A1045F500929B97 /* Asset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8692A1045F500929B97 /* Asset+Extension.swift */; };
+		B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322B82A15970B00232F67 /* JSMatrix.swift */; };
+		B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BA2A16ED4100232F67 /* JSPackage.swift */; };
+		B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BC2A16EF3C00232F67 /* ScriptContext.swift */; };
+		B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13560482A1C362A00125678 /* JSDiffusion.swift */; };
+		B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13E0AF62A199A4F0014B839 /* JSVision.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
 		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
@@ -46,6 +54,10 @@
 		B1FB323C29D475B700364219 /* NSObject+SafeKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */; };
 		B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB323E29D47B6F00364219 /* ColorRGB.swift */; };
 		B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324029D47EF300364219 /* FormColorPicker.swift */; };
+		B1FB324429D655FB00364219 /* ScriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324329D655FB00364219 /* ScriptView.swift */; };
+		B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FB324529D6560400364219 /* ScriptPresenter.swift */; };
+		B1FC21CD2A10C8CE0051FFB6 /* JSVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */; };
+		B1FC21CF2A10CD980051FFB6 /* JSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC21CE2A10CD980051FFB6 /* JSColor.swift */; };
 		B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */; };
 		B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */; };
 		B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FC89D829F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift */; };
@@ -65,6 +77,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B107F8652A103CF100929B97 /* JSFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFilter.swift; sourceTree = "<group>"; };
+		B107F8672A10445600929B97 /* JSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSImage.swift; sourceTree = "<group>"; };
+		B107F8692A1045F500929B97 /* Asset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+Extension.swift"; sourceTree = "<group>"; };
+		B13322B82A15970B00232F67 /* JSMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMatrix.swift; sourceTree = "<group>"; };
+		B13322BA2A16ED4100232F67 /* JSPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPackage.swift; sourceTree = "<group>"; };
+		B13322BC2A16EF3C00232F67 /* ScriptContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptContext.swift; sourceTree = "<group>"; };
+		B13560482A1C362A00125678 /* JSDiffusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDiffusion.swift; sourceTree = "<group>"; };
+		B13E0AF62A199A4F0014B839 /* JSVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVision.swift; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
 		B1BFF28529F0B44200185688 /* Sketch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sketch.storyboard; sourceTree = "<group>"; };
@@ -104,6 +124,10 @@
 		B1FB323D29D475EC00364219 /* NSObject+SafeKVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+SafeKVC.h"; sourceTree = "<group>"; };
 		B1FB323E29D47B6F00364219 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
 		B1FB324029D47EF300364219 /* FormColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormColorPicker.swift; sourceTree = "<group>"; };
+		B1FB324329D655FB00364219 /* ScriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptView.swift; sourceTree = "<group>"; };
+		B1FB324529D6560400364219 /* ScriptPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptPresenter.swift; sourceTree = "<group>"; };
+		B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVector.swift; sourceTree = "<group>"; };
+		B1FC21CE2A10CD980051FFB6 /* JSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSColor.swift; sourceTree = "<group>"; };
 		B1FC89D229F494D4002B95A4 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		B1FC89D429F4BB70002B95A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B1FC89D629F5F8C9002B95A4 /* VisionPlaygroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionPlaygroundView.swift; sourceTree = "<group>"; };
@@ -138,6 +162,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B107F8642A103CB900929B97 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B13322BC2A16EF3C00232F67 /* ScriptContext.swift */,
+				B107F8652A103CF100929B97 /* JSFilter.swift */,
+				B107F8672A10445600929B97 /* JSImage.swift */,
+				B1FC21CC2A10C8CE0051FFB6 /* JSVector.swift */,
+				B1FC21CE2A10CD980051FFB6 /* JSColor.swift */,
+				B13322B82A15970B00232F67 /* JSMatrix.swift */,
+				B13322BA2A16ED4100232F67 /* JSPackage.swift */,
+				B13E0AF62A199A4F0014B839 /* JSVision.swift */,
+				B13560482A1C362A00125678 /* JSDiffusion.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		B1BFF28429F0B41600185688 /* Sketch */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +293,7 @@
 			children = (
 				B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */,
 				B1FB322F29CFEAF000364219 /* CGImage+Extension.swift */,
+				B107F8692A1045F500929B97 /* Asset+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -260,6 +301,7 @@
 		B1EDC46029C897E800E595E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1FB324229D655D800364219 /* Script */,
 				B1FC89E229FDB6F6002B95A4 /* Main */,
 				B1EDC46129C897F300E595E9 /* Playground */,
 			);
@@ -331,6 +373,16 @@
 				B1FB323B29D475B700364219 /* NSObject+SafeKVC.m */,
 			);
 			path = ObjC;
+			sourceTree = "<group>";
+		};
+		B1FB324229D655D800364219 /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				B107F8642A103CB900929B97 /* Core */,
+				B1FB324329D655FB00364219 /* ScriptView.swift */,
+				B1FB324529D6560400364219 /* ScriptPresenter.swift */,
+			);
+			path = Script;
 			sourceTree = "<group>";
 		};
 		B1FC89D529F5F8B2002B95A4 /* Vision */ = {
@@ -437,18 +489,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FC89DD29F5FC97002B95A4 /* VisionModelStore.swift in Sources */,
+				B1FC21CD2A10C8CE0051FFB6 /* JSVector.swift in Sources */,
 				B1FC89E429FDB705002B95A4 /* AssetsView.swift in Sources */,
 				B1DF26BE29C7348E0047907E /* SystemUtilities.swift in Sources */,
 				B1BFF28D29F0B51400185688 /* SketchPresenter.swift in Sources */,
 				B1EDC46B29CA761800E595E9 /* DiffusionRequest.swift in Sources */,
+				B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */,
+				B107F8662A103CF100929B97 /* JSFilter.swift in Sources */,
 				B1FC89D329F494D4002B95A4 /* CircularProgressView.swift in Sources */,
 				B1EDC46329C89C3A00E595E9 /* DiffusionHistoryStore.swift in Sources */,
 				B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */,
+				B1FB324629D6560400364219 /* ScriptPresenter.swift in Sources */,
 				B1FB323029CFEAF000364219 /* CGImage+Extension.swift in Sources */,
 				B1DF267329B808740047907E /* ContentView.swift in Sources */,
 				B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */,
 				B1FB323829D267E400364219 /* FormVectorField.swift in Sources */,
 				B1FB323229D25C5700364219 /* FormSlider.swift in Sources */,
+				B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */,
 				B1FC89ED2A0453D8002B95A4 /* ImageFilter.swift in Sources */,
 				B1FB323629D2669400364219 /* Vector4.swift in Sources */,
 				B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */,
@@ -458,17 +515,24 @@
 				B1FC89DB29F5FAC7002B95A4 /* VisionService.swift in Sources */,
 				B1BFF29029F0B57E00185688 /* SketchView.swift in Sources */,
 				B1BFF29229F0B5BC00185688 /* Sketch.swift in Sources */,
+				B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */,
 				B1FC89E629FDBE9F002B95A4 /* AssetsPresenter.swift in Sources */,
 				B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */,
+				B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */,
 				B1EDC45F29C8562500E595E9 /* Binging+Extension.swift in Sources */,
 				B1FB323F29D47B6F00364219 /* ColorRGB.swift in Sources */,
+				B107F8682A10445600929B97 /* JSImage.swift in Sources */,
 				B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */,
+				B1FC21CF2A10CD980051FFB6 /* JSColor.swift in Sources */,
+				B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */,
 				B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */,
+				B1FB324429D655FB00364219 /* ScriptView.swift in Sources */,
 				B1EDC46929CA738800E595E9 /* DiffusionModel.swift in Sources */,
 				B1BFF28E29F0B51400185688 /* SketchViewController.swift in Sources */,
 				B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */,
 				B1FC89D729F5F8C9002B95A4 /* VisionPlaygroundView.swift in Sources */,
 				B1FC89EA29FDBF33002B95A4 /* Asset.swift in Sources */,
+				B107F86A2A1045F500929B97 /* Asset+Extension.swift in Sources */,
 				B1FC89EF2A045719002B95A4 /* ImageFilterStore.swift in Sources */,
 				B1FB322C29CFEA6700364219 /* CoreImagePlaygroundView.swift in Sources */,
 				B1FC89F32A07189B002B95A4 /* Matrix3.swift in Sources */,

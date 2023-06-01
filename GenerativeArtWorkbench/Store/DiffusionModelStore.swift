@@ -27,6 +27,14 @@ final class DiffusionModelStore {
         )) ?? []
     }
     
+    func models() async -> [DiffusionModel] {
+        return await urls().map(DiffusionModel.init)
+    }
+    
+    func model(for id: DiffusionModel.ID) async -> DiffusionModel? {
+        return await models().first { $0.id == id }
+    }
+
     func openDirectory() {
         
     }
