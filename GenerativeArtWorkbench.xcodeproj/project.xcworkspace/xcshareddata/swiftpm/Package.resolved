@@ -3,10 +3,10 @@
     {
       "identity" : "coremlhelpers",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/rodrigoatbcl/CoreMLHelpers",
+      "location" : "https://github.com/imk2o/CoreMLHelpers",
       "state" : {
-        "branch" : "master",
-        "revision" : "5b12b2c44332e4061a6a818cca178120c502e787"
+        "branch" : "fix/support_mac_catalyst",
+        "revision" : "390975a52b33503dde1b2583991ccb07fdfa46e7"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/ml-stable-diffusion",
       "state" : {
-        "branch" : "main",
-        "revision" : "fbef6c38264f5a9cbb9c2d344d4b5eb811f916f6"
+        "revision" : "a7bf219247eb4aa872f09d4e5599763d4878d1b8",
+        "version" : "0.4.0"
       }
     },
     {
