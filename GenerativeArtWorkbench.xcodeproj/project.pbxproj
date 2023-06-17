@@ -14,6 +14,7 @@
 		B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BA2A16ED4100232F67 /* JSPackage.swift */; };
 		B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BC2A16EF3C00232F67 /* ScriptContext.swift */; };
 		B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13560482A1C362A00125678 /* JSDiffusion.swift */; };
+		B137AAAA2A3E725A00DCA906 /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B137AAA92A3E725A00DCA906 /* CoreMLHelpers */; };
 		B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13E0AF62A199A4F0014B839 /* JSVision.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
@@ -31,7 +32,6 @@
 		B1DF268129BA89D40047907E /* DiffusionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268029BA89D30047907E /* DiffusionService.swift */; };
 		B1DF268629BA8A530047907E /* DiffusionPlaygroundPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF268529BA8A530047907E /* DiffusionPlaygroundPresenter.swift */; };
 		B1DF268929BA8B410047907E /* Steward in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF268829BA8B410047907E /* Steward */; };
-		B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B1DF26AD29C0A38B0047907E /* CoreMLHelpers */; };
 		B1DF26B229C13DF90047907E /* ImageDropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */; };
 		B1DF26B529C65EDC0047907E /* UpscalingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B429C65EDC0047907E /* UpscalingService.swift */; };
 		B1DF26B829C6C4900047907E /* DiffusionModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DF26B729C6C4900047907E /* DiffusionModelStore.swift */; };
@@ -84,6 +84,7 @@
 		B13322BA2A16ED4100232F67 /* JSPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPackage.swift; sourceTree = "<group>"; };
 		B13322BC2A16EF3C00232F67 /* ScriptContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptContext.swift; sourceTree = "<group>"; };
 		B13560482A1C362A00125678 /* JSDiffusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDiffusion.swift; sourceTree = "<group>"; };
+		B137AAA62A3E707E00DCA906 /* GenerativeArtWorkbench.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenerativeArtWorkbench.entitlements; sourceTree = "<group>"; };
 		B13E0AF62A199A4F0014B839 /* JSVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVision.swift; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
@@ -154,7 +155,7 @@
 			files = (
 				B1DF26BB29C732C90047907E /* Dynamic in Frameworks */,
 				B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */,
-				B1DF26AE29C0A38B0047907E /* CoreMLHelpers in Frameworks */,
+				B137AAAA2A3E725A00DCA906 /* CoreMLHelpers in Frameworks */,
 				B1DF268929BA8B410047907E /* Steward in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +211,7 @@
 		B1DF266F29B808740047907E /* GenerativeArtWorkbench */ = {
 			isa = PBXGroup;
 			children = (
+				B137AAA62A3E707E00DCA906 /* GenerativeArtWorkbench.entitlements */,
 				B1DF26BF29C737350047907E /* Info.plist */,
 				B1DF26AF29C13DC20047907E /* Presentation */,
 				B1EDC46629CA736A00E595E9 /* Domain */,
@@ -422,9 +424,9 @@
 			name = GenerativeArtWorkbench;
 			packageProductDependencies = (
 				B1DF268829BA8B410047907E /* Steward */,
-				B1DF26AD29C0A38B0047907E /* CoreMLHelpers */,
 				B1DF26BA29C732C90047907E /* Dynamic */,
 				B1BFF28229F0AEC600185688 /* StableDiffusion */,
+				B137AAA92A3E725A00DCA906 /* CoreMLHelpers */,
 			);
 			productName = GenerativeArtWorkbench;
 			productReference = B1DF266D29B808740047907E /* GenerativeArtWorkbench.app */;
@@ -457,9 +459,9 @@
 			mainGroup = B1DF266429B808730047907E;
 			packageReferences = (
 				B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */,
-				B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 				B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */,
 				B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
+				B137AAA82A3E725900DCA906 /* XCRemoteSwiftPackageReference "CoreMLHelpers" */,
 			);
 			productRefGroup = B1DF266E29B808740047907E /* Products */;
 			projectDirPath = "";
@@ -674,6 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = GenerativeArtWorkbench/GenerativeArtWorkbench.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GenerativeArtWorkbench/Preview Content\"";
@@ -694,6 +697,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.imk2o.GenerativeArtWorkbench;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "GenerativeArtWorkbench/ObjC/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -708,6 +714,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = GenerativeArtWorkbench/GenerativeArtWorkbench.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GenerativeArtWorkbench/Preview Content\"";
@@ -728,6 +735,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.imk2o.GenerativeArtWorkbench;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "GenerativeArtWorkbench/ObjC/Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -759,6 +769,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B137AAA82A3E725900DCA906 /* XCRemoteSwiftPackageReference "CoreMLHelpers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/imk2o/CoreMLHelpers";
+			requirement = {
+				branch = fix/support_mac_catalyst;
+				kind = branch;
+			};
+		};
 		B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
@@ -775,14 +793,6 @@
 				kind = branch;
 			};
 		};
-		B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rodrigoatbcl/CoreMLHelpers";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		B1DF26B929C732C90047907E /* XCRemoteSwiftPackageReference "Dynamic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Dynamic.git";
@@ -794,6 +804,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B137AAA92A3E725A00DCA906 /* CoreMLHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B137AAA82A3E725900DCA906 /* XCRemoteSwiftPackageReference "CoreMLHelpers" */;
+			productName = CoreMLHelpers;
+		};
 		B1BFF28229F0AEC600185688 /* StableDiffusion */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B1BFF28129F0AEC600185688 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
@@ -803,11 +818,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B1DF268729BA8B410047907E /* XCRemoteSwiftPackageReference "Steward" */;
 			productName = Steward;
-		};
-		B1DF26AD29C0A38B0047907E /* CoreMLHelpers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B1DF26AC29C0A38B0047907E /* XCRemoteSwiftPackageReference "CoreMLHelpers" */;
-			productName = CoreMLHelpers;
 		};
 		B1DF26BA29C732C90047907E /* Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
