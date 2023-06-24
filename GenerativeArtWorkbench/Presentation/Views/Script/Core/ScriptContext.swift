@@ -38,10 +38,42 @@ final class ScriptContext {
         export()
     }
     
-    func run(code: String) throws {
-        jsContext.evaluateScript(code)
-        if let exception = jsContext.exception {
-            throw Exception(exception)
+//    func run(code: String) throws {
+//        jsContext.evaluateScript(code)
+//        if let exception = jsContext.exception {
+//            throw Exception(exception)
+//        }
+//    }
+
+    func run(code: String, entry: String = "main") async throws {
+        return try await withCheckedThrowingContinuation { continuation in
+            let semaphore = DispatchSemaphore(value: 0)
+
+            jsContext.evaluateScript(code)
+
+            // https://stackoverflow.com/questions/74817895/how-to-await-async-js-function-inside-swift-using-javascriptcore-and-callback
+            let onFulfilled: @convention(block) (JSValue) -> Void = { _ in
+                semaphore.signal()
+            }
+            let onRejected: @convention(block) (JSValue) -> Void = { _ in
+                semaphore.signal()
+            }
+            let entryFunction = jsContext.objectForKeyedSubscript(entry)
+            entryFunction?.call(withArguments: []).invokeMethod(
+                "then",
+                withArguments: [
+                    JSValue(object: onFulfilled, in: jsContext)!,
+                    JSValue(object: onRejected, in: jsContext)!
+                ]
+            )
+
+            _ = semaphore.wait(timeout: .distantFuture)
+
+            if let exception = jsContext.exception {
+                continuation.resume(throwing: Exception(exception))
+            } else {
+                continuation.resume()
+            }
         }
     }
 
