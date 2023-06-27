@@ -14,22 +14,33 @@ import CoreML
 final class ScriptPresenter: ObservableObject {
     
     @Published var code: String = """
-async function run() {
+async function main() {
   try {
-    const diffusion = await art.Diffusion(
-      "anything-v3.0-controlnet",
-      {controlNets: ["LllyasvielSdControlnetCanny"]}
-    );
+    const vision = await art.Vision("anime2sketch");
+    const inputImage = art.Image("image_2023-06-24_161601");
+    inspect(inputImage);
 
-    const cannyInputImage = art.Image("image_2023-05-11_085046");
+    const sketchImage = await vision.perform(inputImage);
+    inspect(sketchImage);
+
+    const scribbleInputImage = art.Filter("CIColorInvert", {"inputImage": sketchImage}).render();
+    inspect(scribbleInputImage);
+
+    const diffusion = await art.Diffusion(
+      "dreamshaper-v5 _original_512x512_for-controlnet",
+      {
+        computeUnits: "cpu&gpu",
+        controlNets: ["Scribble-5x5"]
+      }
+    );
 
     const outputImage = await diffusion.perform(
       {
-        prompt: "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus",
+        prompt: "realistic, masterpiece, boy highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus",
         nagativePrompt: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name",
         stepCount: 10,
         guidanceScale: 11,
-        controlNetInputs: [{name: "LllyasvielSdControlnetCanny", image: cannyInputImage}]
+        controlNetInputs: [{name: "Scribble-5x5", image: scribbleInputImage}]
       },
       (progress) => { inspect(progress.image); }
     );
@@ -39,7 +50,6 @@ async function run() {
     print(error);
   }
 }
-run()
 
 //async function run() {
 //  const vision = await art.Vision("anime2sketch");
@@ -101,7 +111,7 @@ run()
                 }
                 .store(in: &cancellable)
             
-            try context.run(code: code)
+            try await context.run(code: code)
         } catch let exception as ScriptContext.Exception {
             error = "\(exception.line): \(exception.message)"
         } catch {

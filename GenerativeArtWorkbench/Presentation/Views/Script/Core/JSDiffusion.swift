@@ -30,7 +30,7 @@ final class JSDiffusion: NSObject, JSDiffusionProtocol {
                 }
                 
                 let configuration = MLModelConfiguration()
-                configuration.computeUnits = .cpuAndNeuralEngine
+                configuration.computeUnits = .init(params?["computeUnits"] as? String) ?? .cpuAndNeuralEngine
                 let service = try DiffusionService(
                     directoryURL: model.url,
                     configuration: configuration,
@@ -85,6 +85,25 @@ final class JSDiffusion: NSObject, JSDiffusionProtocol {
                 
                 resolve?.call(withArguments: [JSImageImp(cgImage: image)])
             }
+        }
+    }
+}
+
+private extension MLComputeUnits {
+    init?(_ name: String?) {
+        guard let name else { return nil }
+
+        switch name {
+        case "all":
+            self = .all
+        case "cpu":
+            self = .cpuOnly
+        case "cpu&gpu":
+            self = .cpuAndGPU
+        case "cpu&ne":
+            self = .cpuAndNeuralEngine
+        default:
+            return nil
         }
     }
 }
