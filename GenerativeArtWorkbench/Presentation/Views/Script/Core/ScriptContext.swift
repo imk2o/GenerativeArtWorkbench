@@ -35,16 +35,9 @@ final class ScriptContext {
 
     init() {
         self.jsContext = JSContext()
-        export()
+        exportFeatures()
     }
     
-//    func run(code: String) throws {
-//        jsContext.evaluateScript(code)
-//        if let exception = jsContext.exception {
-//            throw Exception(exception)
-//        }
-//    }
-
     func run(code: String, entry: String = "main") async throws {
         return try await withCheckedThrowingContinuation { continuation in
             let semaphore = DispatchSemaphore(value: 0)
@@ -77,7 +70,7 @@ final class ScriptContext {
         }
     }
 
-    private func export() {
+    private func exportFeatures() {
         // print
         let print: @convention(block) (JSValue) -> Void = { value in
             Swift.print(value.description)

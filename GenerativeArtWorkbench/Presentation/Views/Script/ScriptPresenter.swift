@@ -27,8 +27,11 @@ async function main() {
     inspect(scribbleInputImage);
 
     const diffusion = await art.Diffusion(
-      "anything-v3.0-controlnet",
-      {controlNets: ["LllyasvielSdControlnetScribble"]}
+      "dreamshaper-v5 _original_512x512_for-controlnet",
+      {
+        computeUnits: "cpu&gpu",
+        controlNets: ["Scribble-5x5"]
+      }
     );
 
     const outputImage = await diffusion.perform(
@@ -37,7 +40,7 @@ async function main() {
         nagativePrompt: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name",
         stepCount: 10,
         guidanceScale: 11,
-        controlNetInputs: [{name: "LllyasvielSdControlnetScribble", image: scribbleInputImage}]
+        controlNetInputs: [{name: "Scribble-5x5", image: scribbleInputImage}]
       },
       (progress) => { inspect(progress.image); }
     );
