@@ -51,9 +51,12 @@ struct ScriptView: View {
                     Text(string)
                 case .image(let image):
                     HStack {
-                        Image(image, scale: 1, label: Text(""))
-                            .resizable()
-                            .frame(width: 200, height: 200)
+                        InteractiveImage(image, title: "image") { imageView in
+                            imageView
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        .frame(width: 80, height: 80)
                         Text("\(image.width) x \(image.height)")
                     }
                 }
