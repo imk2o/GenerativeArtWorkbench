@@ -47,21 +47,35 @@ struct AssetsView: View {
     }
     
     private func assetsGrid() -> some View {
-        LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3)) {
+        LazyVGrid(
+            columns: Array(repeating: .init(.flexible(), spacing: 2), count: 3),
+            spacing: 2
+        ) {
             ForEach(presenter.assets) { asset in
-                AsyncImage(url: asset.url) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-//                        .draggable(image)
-                } placeholder: {
-                    Rectangle()
-                        .foregroundColor(Color.gray)
-                }
-                .aspectRatio(.init(width: 1, height: 1), contentMode: .fill)
-                .cornerRadius(4)
-                .onDrag { presenter.dragItem(for: asset) }
+                AssetCell(asset)
+                    .onDrag { presenter.dragItem(for: asset) }
             }
+        }
+    }
+    
+    private struct AssetCell: View {
+        let asset: Asset
+        
+        init(_ asset: Asset) {
+            self.asset = asset
+        }
+        
+        var body: some View {
+            AsyncImage(url: asset.url) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+//                        .draggable(image)
+            } placeholder: {
+                Rectangle()
+                    .foregroundColor(Color.gray)
+            }
+            .aspectRatio(1, contentMode: .fit)
         }
     }
 }
