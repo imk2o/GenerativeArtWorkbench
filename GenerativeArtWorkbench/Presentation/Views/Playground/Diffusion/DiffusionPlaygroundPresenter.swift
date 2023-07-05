@@ -183,6 +183,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 return
             }
 
+            progress = nil
             dump(error)
         }
     }

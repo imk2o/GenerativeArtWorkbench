@@ -127,6 +127,7 @@ struct DiffusionPlaygroundView: View {
                                 Image(systemName: "play.fill")
                             }
                         )
+                        .keyboardShortcut("r")
                     }
                 }
             }
