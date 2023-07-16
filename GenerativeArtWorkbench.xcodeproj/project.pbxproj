@@ -16,6 +16,7 @@
 		B13560492A1C362A00125678 /* JSDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13560482A1C362A00125678 /* JSDiffusion.swift */; };
 		B137AAAA2A3E725A00DCA906 /* CoreMLHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = B137AAA92A3E725A00DCA906 /* CoreMLHelpers */; };
 		B13E0AF72A199A4F0014B839 /* JSVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13E0AF62A199A4F0014B839 /* JSVision.swift */; };
+		B18DF6B42A63E9D500F9D977 /* IssueAlert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DF6B32A63E9D500F9D977 /* IssueAlert+Extension.swift */; };
 		B1BFF27829E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */; };
 		B1BFF27A29E9745F00185688 /* DiffusionModelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */; };
 		B1BFF28329F0AEC600185688 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = B1BFF28229F0AEC600185688 /* StableDiffusion */; };
@@ -86,6 +87,7 @@
 		B13560482A1C362A00125678 /* JSDiffusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSDiffusion.swift; sourceTree = "<group>"; };
 		B137AAA62A3E707E00DCA906 /* GenerativeArtWorkbench.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenerativeArtWorkbench.entitlements; sourceTree = "<group>"; };
 		B13E0AF62A199A4F0014B839 /* JSVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSVision.swift; sourceTree = "<group>"; };
+		B18DF6B32A63E9D500F9D977 /* IssueAlert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IssueAlert+Extension.swift"; sourceTree = "<group>"; };
 		B1BFF27729E837B200185688 /* DiffusionPlaygroundSelectModelSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionPlaygroundSelectModelSheet.swift; sourceTree = "<group>"; };
 		B1BFF27929E9745F00185688 /* DiffusionModelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffusionModelConfiguration.swift; sourceTree = "<group>"; };
 		B1BFF28529F0B44200185688 /* Sketch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sketch.storyboard; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				B1EDC45E29C8562500E595E9 /* Binging+Extension.swift */,
 				B1FB322F29CFEAF000364219 /* CGImage+Extension.swift */,
 				B107F8692A1045F500929B97 /* Asset+Extension.swift */,
+				B18DF6B32A63E9D500F9D977 /* IssueAlert+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				B1FC89DF29F5FD7F002B95A4 /* VisionModel.swift in Sources */,
 				B1FC89F52A071B19002B95A4 /* FormMatrixField.swift in Sources */,
 				B1DF267129B808740047907E /* GenerativeArtWorkbenchApp.swift in Sources */,
+				B18DF6B42A63E9D500F9D977 /* IssueAlert+Extension.swift in Sources */,
 				B1EDC46D29CA78F700E595E9 /* DiffusionHistory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
