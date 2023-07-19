@@ -9,7 +9,10 @@ import SwiftUI
 import Dynamic
 
 func openDirectory(url: URL) {
-    if ProcessInfo.processInfo.isiOSAppOnMac {
+    if
+        ProcessInfo.processInfo.isiOSAppOnMac ||
+        ProcessInfo.processInfo.isMacCatalystApp
+    {
         // Finderで開く
         Dynamic.NSWorkspace.sharedWorkspace.activateFileViewerSelectingURLs([url])
     } else {

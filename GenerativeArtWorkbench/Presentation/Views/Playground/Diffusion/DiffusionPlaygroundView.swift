@@ -13,7 +13,7 @@ import StewardSwiftUI
 struct DiffusionPlaygroundView: View {
     @StateObject private var presenter = DiffusionPlaygroundPresenter()
     @State private var isSelectModelSheetPresented = false
-    
+
     var body: some View {
         HStack {
             VStack {
@@ -103,6 +103,7 @@ struct DiffusionPlaygroundView: View {
             }
             .navigationTitle("Diffusion")
             .navigationBarTitleDisplayMode(.inline)
+            .alert($presenter.issueAlert)
             .toolbar {
                 ToolbarItemGroup(placement: .primaryAction) {
                     if let progress = presenter.progress {
@@ -127,6 +128,7 @@ struct DiffusionPlaygroundView: View {
                                 Image(systemName: "play.fill")
                             }
                         )
+                        .keyboardShortcut("r")
                     }
                 }
             }

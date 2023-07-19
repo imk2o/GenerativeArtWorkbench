@@ -16,8 +16,16 @@ final class DiffusionService {
         case done(TimeInterval)
     }
 
-    enum Error: Swift.Error {
+    enum Error: Swift.Error, LocalizedError {
         case generateImageFailed(Swift.Error?)
+
+        var errorDescription: String { localizedDescription }
+        var localizedDescription: String {
+            switch self {
+            case .generateImageFailed(let underlyingError):
+                return "Generate image failed: \(underlyingError?.localizedDescription ?? "")"
+            }
+        }
     }
 
     private class RunHolder: @unchecked Sendable {

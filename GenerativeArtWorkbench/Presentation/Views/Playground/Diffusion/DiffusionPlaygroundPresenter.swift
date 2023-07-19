@@ -11,6 +11,7 @@ import CoreML
 
 import StewardFoundation
 import StewardUIKit
+import StewardSwiftUI
 
 @MainActor
 final class DiffusionPlaygroundPresenter: ObservableObject {
@@ -26,6 +27,7 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         case done(String)
     }
     @Published private(set) var progress: Progress?
+    @Published var issueAlert: IssueAlert = .empty
     
     @Published private(set) var modelConfiguration: DiffusionModelConfiguration? {
         didSet {
@@ -177,12 +179,15 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
                 modelConfiguration: modelConfiguration
             )
             previewImage = resultImage
+            issueAlert = .empty
         } catch {
             guard !Task.isCancelled else {
                 progressSummary = "Cancelled"
                 return
             }
 
+            issueAlert = .init(error: error)
+            progress = nil
             dump(error)
         }
     }
