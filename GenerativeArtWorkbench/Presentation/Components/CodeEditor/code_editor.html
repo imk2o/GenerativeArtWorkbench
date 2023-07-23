@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Code Editor</title>
+  <style type="text/css" media="screen">
+      #editor {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+      }
+  </style>
+</head>
+<body>
+  <div id="editor" style="height: 100vh"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.23.4/ace.js"></script>
+  <script>
+    const editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github_dark");
+    editor.setFontSize(14);
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setUseWrapMode(true);
+    editor.getSession().setTabSize(2);
+    
+    editor.session.on('change', function(delta) {
+        const code = editor.session.getValue();
+        webkit.messageHandlers.callback.postMessage(code);
+        //console.log('change: ' + code);
+    });
+  </script>
+</body>
+</html>
+
