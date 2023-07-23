@@ -10,6 +10,8 @@
 		B107F8662A103CF100929B97 /* JSFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8652A103CF100929B97 /* JSFilter.swift */; };
 		B107F8682A10445600929B97 /* JSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8672A10445600929B97 /* JSImage.swift */; };
 		B107F86A2A1045F500929B97 /* Asset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B107F8692A1045F500929B97 /* Asset+Extension.swift */; };
+		B12EA3E12A6CFE4300A143CA /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12EA3E02A6CFE4300A143CA /* CodeEditor.swift */; };
+		B12EA3E32A6CFE9100A143CA /* code_editor.html in Resources */ = {isa = PBXBuildFile; fileRef = B12EA3E22A6CFE9100A143CA /* code_editor.html */; };
 		B13322B92A15970B00232F67 /* JSMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322B82A15970B00232F67 /* JSMatrix.swift */; };
 		B13322BB2A16ED4100232F67 /* JSPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BA2A16ED4100232F67 /* JSPackage.swift */; };
 		B13322BD2A16EF3C00232F67 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13322BC2A16EF3C00232F67 /* ScriptContext.swift */; };
@@ -81,6 +83,8 @@
 		B107F8652A103CF100929B97 /* JSFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSFilter.swift; sourceTree = "<group>"; };
 		B107F8672A10445600929B97 /* JSImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSImage.swift; sourceTree = "<group>"; };
 		B107F8692A1045F500929B97 /* Asset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Asset+Extension.swift"; sourceTree = "<group>"; };
+		B12EA3E02A6CFE4300A143CA /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
+		B12EA3E22A6CFE9100A143CA /* code_editor.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = code_editor.html; sourceTree = "<group>"; };
 		B13322B82A15970B00232F67 /* JSMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSMatrix.swift; sourceTree = "<group>"; };
 		B13322BA2A16ED4100232F67 /* JSPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSPackage.swift; sourceTree = "<group>"; };
 		B13322BC2A16EF3C00232F67 /* ScriptContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptContext.swift; sourceTree = "<group>"; };
@@ -181,6 +185,15 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		B12EA3DF2A6CFE3400A143CA /* CodeEditor */ = {
+			isa = PBXGroup;
+			children = (
+				B12EA3E02A6CFE4300A143CA /* CodeEditor.swift */,
+				B12EA3E22A6CFE9100A143CA /* code_editor.html */,
+			);
+			path = CodeEditor;
+			sourceTree = "<group>";
+		};
 		B1BFF28429F0B41600185688 /* Sketch */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +261,7 @@
 		B1DF26B029C13DCC0047907E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B12EA3DF2A6CFE3400A143CA /* CodeEditor */,
 				B1BFF28429F0B41600185688 /* Sketch */,
 				B1DF26B129C13DF90047907E /* ImageDropDelegate.swift */,
 				B1FB323129D25C5700364219 /* FormSlider.swift */,
@@ -480,6 +494,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B12EA3E32A6CFE9100A143CA /* code_editor.html in Resources */,
 				B1DF267829B808750047907E /* Preview Assets.xcassets in Resources */,
 				B1BFF28629F0B44200185688 /* Sketch.storyboard in Resources */,
 				B1DF267529B808750047907E /* Assets.xcassets in Resources */,
@@ -546,6 +561,7 @@
 				B1DF267F29B8CF170047907E /* DiffusionPlaygroundView.swift in Sources */,
 				B1FB322729CD873E00364219 /* DiffusionPlaygroundHistoryView.swift in Sources */,
 				B1EDC46529C8A0ED00E595E9 /* DiffusionPlaygroundHistoryPresenter.swift in Sources */,
+				B12EA3E12A6CFE4300A143CA /* CodeEditor.swift in Sources */,
 				B1FC89D929F5F8DA002B95A4 /* VisionPlaygroundPresenter.swift in Sources */,
 				B1FC89F12A07127A002B95A4 /* FormTextField.swift in Sources */,
 				B1FB324129D47EF300364219 /* FormColorPicker.swift in Sources */,

@@ -40,7 +40,7 @@ struct ScriptView: View {
     }
     
     private func editorView() -> some View {
-        TextEditor(text: $presenter.code)
+        CodeEditor(code: $presenter.code)
     }
     
     private func logView() -> some View {
