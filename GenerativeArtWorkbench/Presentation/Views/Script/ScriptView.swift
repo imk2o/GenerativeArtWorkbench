@@ -12,17 +12,16 @@ struct ScriptView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                editorView()
-                Divider()
-                logView()
-                    .frame(width: 400)
-            }
+            editorView()
             errorView()
                 .frame(height: 120)
         }
         .navigationTitle("Script")
         .navigationBarTitleDisplayMode(.inline)
+        .inspector(isPresented: .constant(true)) {
+            logView()
+                .inspectorColumnWidth(400)
+        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(
