@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/ml-stable-diffusion",
       "state" : {
-        "revision" : "a7bf219247eb4aa872f09d4e5599763d4878d1b8",
-        "version" : "0.4.0"
+        "revision" : "7f9c58a6c1483a6da1f398cad49eee2f9fa3bee4",
+        "version" : "1.0.0"
       }
     },
     {
