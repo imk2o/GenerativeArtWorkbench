@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 import CoreML
 
-@MainActor
-final class ScriptPresenter: ObservableObject {
+@Observable
+final class ScriptPresenter {
     
-    @Published var code: String = """
+    var code: String = """
 async function main() {
   try {
     const vision = await art.Vision("anime2sketch");
@@ -83,14 +84,15 @@ async function main() {
 //inspect(resultImage);
 
 """
-    @Published var error: String = "No error"
+    var error: String = "No error"
     
     enum Log {
         case string(String)
         case image(CGImage)
     }
-    @Published private(set) var logs: [Log] = []
+    private(set) var logs: [Log] = []
 
+    @ObservationIgnored
     private var cancellable = Set<AnyCancellable>()
 
     init() {

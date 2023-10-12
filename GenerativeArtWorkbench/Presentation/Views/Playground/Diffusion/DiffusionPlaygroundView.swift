@@ -11,7 +11,7 @@ import PhotosUI
 import StewardSwiftUI
 
 struct DiffusionPlaygroundView: View {
-    @StateObject private var presenter = DiffusionPlaygroundPresenter()
+    @Bindable private var presenter = DiffusionPlaygroundPresenter()
     @State private var isSelectModelSheetPresented = false
 
     var body: some View {

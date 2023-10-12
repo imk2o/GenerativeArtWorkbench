@@ -6,29 +6,26 @@
 //
 
 import SwiftUI
+import Observation
 import UniformTypeIdentifiers
 
 import StewardArchitecture
 
-@MainActor
-final class AssetsPresenter: ObservableObject {
-    @Published private(set) var assets: [Asset] = []
+@Observable
+final class AssetsPresenter {
+    private(set) var assets: [Asset] = []
     
+    @ObservationIgnored
     private let assetStore = AssetStore.shared
-    private let tasks = ConcurrencyTaskStore()
     
-    deinit {
-        tasks.cancelAll()
-    }
-    
-    func prepare() async {
-        tasks += Task.detached { [weak self] in
-            guard let assetStore = self?.assetStore else { return }
-            for await assets in assetStore.assets() {
-                Task { @MainActor [weak self] in
-                    self?.assets = assets
+    func listen() async {
+        await withTaskGroup(of: Void.self) { group in
+            group.addTask { [self] in
+                for await assets in assetStore.assets() {
+                    self.assets = assets
                 }
             }
+            // TODO: 監視対象があればgroup.addTaskする
         }
     }
     

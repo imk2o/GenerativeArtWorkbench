@@ -79,7 +79,7 @@ struct ContentView: View {
         var body: some View {
             NavigationLink(title, value: value)
                 .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
-                .onChange(of: droppedImage) { image in
+                .onChange(of: droppedImage) { _, image in
                     if let image {
                         onDrop(image)
                     }

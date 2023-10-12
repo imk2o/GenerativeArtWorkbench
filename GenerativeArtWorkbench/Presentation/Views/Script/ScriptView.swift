@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScriptView: View {
-    @StateObject private var presenter = ScriptPresenter()
+    @Bindable private var presenter = ScriptPresenter()
     
     var body: some View {
         VStack {

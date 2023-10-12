@@ -10,8 +10,8 @@ import SwiftUI
 struct DiffusionPlaygroundHistoryView: View {
     private(set) var onTap: (DiffusionHistory) -> Void
     
-    @StateObject private var presenter = DiffusionPlaygroundHistoryPresenter()
-    
+    @State private var presenter = DiffusionPlaygroundHistoryPresenter()
+
     var body: some View {
         List {
             ForEach(presenter.histories) { history in

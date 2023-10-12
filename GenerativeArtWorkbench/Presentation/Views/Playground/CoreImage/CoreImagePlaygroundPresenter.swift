@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Observation
 import Combine
 
 import StewardFoundation
@@ -40,26 +41,29 @@ extension CIFilter {
     }
 }
 
-@MainActor
-final class CoreImagePlaygroundPresenter: ObservableObject {
+@Observable
+final class CoreImagePlaygroundPresenter {
 
     enum Context: Hashable {
         case new
         case inputImage(CGImage)
     }
+    @ObservationIgnored
     let context: Context
 
     init(context: Context = .new) {
         self.context = context
     }
 
+    @ObservationIgnored
     private let imageFilterStore = ImageFilterStore.shared
+    @ObservationIgnored
     private let ciContext = CIContext()
 
-    @Published private(set) var availableFilters: [ImageFilter.Category: [ImageFilter]] = [:]
+    private(set) var availableFilters: [ImageFilter.Category: [ImageFilter]] = [:]
 
     // Input
-    @Published var selectedFilter: ImageFilter = .empty {
+    var selectedFilter: ImageFilter = .empty {
         didSet {
             // フィルタを変えてもinputImageは継承
             let inputImage = ciFilter?.inputImage
@@ -67,7 +71,7 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             ciFilter?.inputImage = inputImage
         }
     }
-    @Published private var ciFilter: CIFilter? {
+    private var ciFilter: CIFilter? {
         didSet {
             guard let ciFilter else { return }
             inputAttributes = ciFilter.inputKeys.compactMap {
@@ -75,15 +79,15 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
             }
         }
     }
-    @Published private(set) var inputAttributes: [CIFilter.InputAttributes] = []
+    private(set) var inputAttributes: [CIFilter.InputAttributes] = []
     
     // Option
-    @Published var clampedToExtent = true
-    @Published var extent: CGRect = .init(x: 0, y: 0, width: 400, height: 400)
-    @Published var isLiveUpdateEnabled = true
+    var clampedToExtent = true
+    var extent: CGRect = .init(x: 0, y: 0, width: 400, height: 400)
+    var isLiveUpdateEnabled = true
 
     // Output
-    @Published private(set) var resultImage: CGImage?
+    private(set) var resultImage: CGImage?
     
     func prepare() async {
         do {
@@ -251,8 +255,9 @@ final class CoreImagePlaygroundPresenter: ObservableObject {
     }
     
     private func updateInputValue(updater: () -> Void) {
-        objectWillChange.send()
-        updater()
+        withMutation(keyPath: \.inputAttributes) {
+            updater()
+        }
         if isLiveUpdateEnabled {
             Task { await run() }
         }

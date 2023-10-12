@@ -13,11 +13,10 @@ struct VisionPlaygroundView: View {
     typealias Context = VisionPlaygroundPresenter.Context
 
     init(context: Context = .new) {
-        // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
-        _presenter = .init(wrappedValue: .init(context: context))
+        presenter = .init(context: context)
     }
     
-    @StateObject private var presenter: VisionPlaygroundPresenter
+    private let presenter: VisionPlaygroundPresenter
     
     var body: some View {
         VStack {
