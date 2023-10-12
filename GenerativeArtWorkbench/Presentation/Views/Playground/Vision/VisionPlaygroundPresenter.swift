@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Observation
 
-@MainActor
-final class VisionPlaygroundPresenter: ObservableObject {
+@Observable
+final class VisionPlaygroundPresenter {
     enum Context: Hashable {
         case new
         case inputImage(CGImage)
@@ -19,13 +20,14 @@ final class VisionPlaygroundPresenter: ObservableObject {
         self.context = context
     }
 
-    @Published private(set) var availableModels: [VisionModel] = []
-    @Published private(set) var selectedModel: VisionModel = .empty
-    @Published private(set) var inputImage: CGImage?
+    private(set) var availableModels: [VisionModel] = []
+    private(set) var selectedModel: VisionModel = .empty
+    private(set) var inputImage: CGImage?
+    private(set) var outputImage: CGImage?
 
-    @Published private(set) var outputImage: CGImage?
-
+    @ObservationIgnored
     private var visionService: VisionService?
+    @ObservationIgnored
     private let visionModelStore = VisionModelStore.shared
     private func model(for id: String) -> VisionModel? {
         return availableModels.first { $0.id == id }

@@ -12,11 +12,10 @@ import StewardSwiftUI
 
 struct CoreImagePlaygroundView: View {
     typealias Context = CoreImagePlaygroundPresenter.Context
-    @StateObject private var presenter: CoreImagePlaygroundPresenter
+    @Bindable private var presenter: CoreImagePlaygroundPresenter
 
     init(context: Context = .new) {
-        // https://stackoverflow.com/questions/62635914/initialize-stateobject-with-a-parameter-in-swiftui
-        _presenter = .init(wrappedValue: .init(context: context))
+        self.presenter = .init(context: context)
     }
 
     var body: some View {

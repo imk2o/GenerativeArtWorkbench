@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Observation
 import PhotosUI
 import CoreML
 
@@ -13,8 +14,8 @@ import StewardFoundation
 import StewardUIKit
 import StewardSwiftUI
 
-@MainActor
-final class DiffusionPlaygroundPresenter: ObservableObject {
+@Observable
+final class DiffusionPlaygroundPresenter {
     private var diffusionService: DiffusionService?
     private let diffusionModelStore = DiffusionModelStore.shared
     
@@ -26,10 +27,10 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         case step(Float)
         case done(String)
     }
-    @Published private(set) var progress: Progress?
-    @Published var issueAlert: IssueAlert = .empty
+    private(set) var progress: Progress?
+    var issueAlert: IssueAlert = .empty
     
-    @Published private(set) var modelConfiguration: DiffusionModelConfiguration? {
+    private(set) var modelConfiguration: DiffusionModelConfiguration? {
         didSet {
             modelConfigurationData = {
                 if let modelConfiguration {
@@ -41,20 +42,22 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         }
     }
     
-    @Published var seed: UInt32 = 0
-    @Published var randomSeed: Bool = true
-    @Published var prompt: String = "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus"
-    @Published var negativePrompt: String = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
-    @Published var stepCount: Int = 10
-    @Published var guidanceScale: Float = 11
-    @Published private(set) var startingImage: CGImage?
-    @Published var startingImageStrength: Float = 0.8
+    var seed: UInt32 = 0
+    var randomSeed: Bool = true
+    var prompt: String = "realistic, masterpiece, girl highest quality, full body, looking at viewers, highres, indoors, detailed face and eyes, wolf ears, brown hair, short hair, silver eyes, necklace, sneakers, parka jacket, solo focus"
+    var negativePrompt: String = "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name"
+    var stepCount: Int = 10
+    var guidanceScale: Float = 11
+    private(set) var startingImage: CGImage?
+    var startingImageStrength: Float = 0.8
 
-    @Published private var controlNetInputImages: [String: CGImage] = [:]
+    private var controlNetInputImages: [String: CGImage] = [:]
 
-    @Published private(set) var previewImage: CGImage?
-    @Published private(set) var progressSummary: String?
+    
+    private(set) var previewImage: CGImage?
+    private(set) var progressSummary: String?
 
+    @ObservationIgnored
     @AppStorage("playgroundModelConfiguration")
     private var modelConfigurationData: Data?
     
@@ -62,17 +65,20 @@ final class DiffusionPlaygroundPresenter: ObservableObject {
         // FIXME: モデルに応じて
         return CGSize(width: 512, height: 512)
     }
+    @ObservationIgnored
     private(set) lazy var defaultStartingImage: CGImage = .create(
         size: inputSize,
         scale: 1,
         color: .black
     )
+    @ObservationIgnored
     private(set) lazy var defaultControlNetImage: CGImage = .create(
         size: inputSize,
         scale: 1,
         color: .black
     )
 
+    @ObservationIgnored
     private var availableModels: [DiffusionModel] = []
     private func model(for id: String) -> DiffusionModel? {
         return availableModels.first { $0.id == id }

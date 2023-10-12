@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AssetsView: View {
-    @StateObject private var presenter = AssetsPresenter()
+    @State private var presenter = AssetsPresenter()
     @State private var droppedImage: CGImage?
 
     var body: some View {
@@ -37,13 +37,13 @@ struct AssetsView: View {
                 }
             }
             .onDrop(of: [.image], delegate: ImageDropDelegate(image: $droppedImage))
-            .onChange(of: droppedImage) { image in
+            .onChange(of: droppedImage) { _, image in
                 if let image {
                     Task { await presenter.add(image: image) }
                 }
             }
         }
-        .task { await presenter.prepare() }
+        .task { await presenter.listen() }
     }
     
     private func assetsGrid() -> some View {

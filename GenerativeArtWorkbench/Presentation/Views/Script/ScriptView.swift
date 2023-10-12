@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct ScriptView: View {
-    @StateObject private var presenter = ScriptPresenter()
+    @Bindable private var presenter = ScriptPresenter()
     
     var body: some View {
         VStack {
-            HStack {
-                editorView()
-                Divider()
-                logView()
-                    .frame(width: 400)
-            }
+            editorView()
             errorView()
                 .frame(height: 120)
         }
         .navigationTitle("Script")
         .navigationBarTitleDisplayMode(.inline)
+        .inspector(isPresented: .constant(true)) {
+            logView()
+                .inspectorColumnWidth(400)
+        }
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(

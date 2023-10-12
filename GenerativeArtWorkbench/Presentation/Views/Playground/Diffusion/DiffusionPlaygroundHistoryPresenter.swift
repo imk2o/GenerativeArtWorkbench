@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Observation
 
 import StewardFoundation
 import StewardUIKit
 
-@MainActor
-final class DiffusionPlaygroundHistoryPresenter: ObservableObject {
-    @Published private(set) var histories: [DiffusionHistory] = []
+@Observable
+final class DiffusionPlaygroundHistoryPresenter {
+    private(set) var histories: [DiffusionHistory] = []
 
     func prepare() async {
         Task.detached {
